@@ -96,12 +96,12 @@ def accounts(request):
             user_pass = request.POST.get('user_pass', '')
             user_edit = User.objects.get(id=user_id)
             user_edit.set_password(user_pass)
-            user_edit.is_staff = request.POST.get('user_is_staff', False)
-            user_edit.is_superuser = request.POST.get('user_is_superuser', False)
+            user_edit.is_staff = True if request.POST.get('user_is_staff', False) == 'on' else False
+            user_edit.is_superuser = True if request.POST.get('user_is_superuser', False) == 'on' else False
             user_edit.save()
 
             userattributes = user_edit.userattributes
-            userattributes.can_clone_instances = request.POST.get('userattributes_can_clone_instances', False)
+            userattributes.can_clone_instances = True if request.POST.get('userattributes_can_clone_instances', False) == 'on' else False
             userattributes.max_instances = request.POST.get('userattributes_max_instances', 0)
             userattributes.max_cpus = request.POST.get('userattributes_max_cpus', 0)
             userattributes.max_memory = request.POST.get('userattributes_max_memory', 0)

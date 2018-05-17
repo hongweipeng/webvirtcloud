@@ -538,6 +538,15 @@ msgstr "基本信息"
 msgid "Connection"
 msgstr "连接"
 
+msgid "Computes"
+msgstr "宿主机"
+
+msgid "Users"
+msgstr "用户"
+
+msgid "Logs"
+msgstr "日志"
+
 #: templates/hostdetail.html:25 templates/storages.html:246
 msgid "Hostname"
 msgstr "主机名"
@@ -568,11 +577,11 @@ msgid "Performance"
 msgstr "性能"
 
 #: templates/hostdetail.html:52 templates/instance.html:618
-msgid "CPU usage"
+msgid "CPU utilization"
 msgstr "CPU占用"
 
 #: templates/hostdetail.html:54
-msgid "Memory usage"
+msgid "RAM utilization"
 msgstr "内存占用"
 
 #: templates/infrastructure.html:24 templates/infrastructure.html.py:67
@@ -693,6 +702,9 @@ msgstr "关机"
 #: templates/instances.html.py:238
 msgid "Force Shutdown"
 msgstr "强制关机"
+
+msgid "Power Cycle"
+msgstr "重启"
 
 #: templates/instance.html:96 templates/instance.html.py:169
 #: templates/instance.html:172 templates/instance.html.py:533

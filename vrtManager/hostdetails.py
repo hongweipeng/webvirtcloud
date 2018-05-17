@@ -18,9 +18,8 @@ class wvmHostDetails(wvmConnect):
         """
         Function return memory usage on node.
         """
-        get_all_mem = self.wvm.getInfo()[1] * 1048576
+        # get_all_mem = self.wvm.getInfo()[1] * 1048576
         get_freemem = self.wvm.getMemoryStats(-1, 0)
-        print(get_freemem)
         if type(get_freemem) == dict:
             # free = (get_freemem.values()[0] +
             #         get_freemem.values()[2] +

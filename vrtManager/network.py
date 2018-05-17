@@ -168,9 +168,12 @@ class wvmNetwork(wvmConnect):
     def get_mac_ipaddr(self):
         def network(ctx):
             result = []
-            for net in ctx.xpathEval('/network/ip/dhcp/host'):
-                host = net.xpathEval('@ip')[0].content
-                mac = net.xpathEval('@mac')[0].content
+            # for net in ctx.xpathEval('/network/ip/dhcp/host'):
+            for net in ctx.xpath('/network/ip/dhcp/host'):
+                # host = net.xpathEval('@ip')[0].content
+                host = net.xpath('@ip')[0]
+                # mac = net.xpathEval('@mac')[0].content
+                mac = net.xpath('@mac')[0]
                 result.append({'host': host, 'mac': mac})
             return result
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webvirtmgr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-17 20:55+0800\n"
+"POT-Creation-Date: 2018-05-17 22:35+0800\n"
 "PO-Revision-Date: 2014-10-07 14:48+0100\n"
 "Last-Translator: Jens Hyllegaard <jens.hyllegaard@gmail.com>\n"
 "Language-Team: Danish <LL@li.org>\n"
@@ -104,8 +104,8 @@ msgid "Delete"
 msgstr "Slet"
 
 #: accounts/templates/account.html:60 create/templates/create_instance.html:252
-#: instances/templates/instance.html:530 secrets/templates/secrets.html:54
-#: storages/templates/storage.html:97
+#: instances/templates/instance.html:530 instances/templates/instances.html:47
+#: secrets/templates/secrets.html:54 storages/templates/storage.html:97
 msgid "Action"
 msgstr "Handling"
 
@@ -202,7 +202,7 @@ msgstr ""
 #: create/templates/create_instance.html:274
 #: create/templates/create_instance.html:277
 #: instances/templates/instance.html:413 instances/templates/instance.html:415
-#: instances/templates/instance.html:528
+#: instances/templates/instance.html:528 instances/templates/instances.html:42
 #: interfaces/templates/create_iface_block.html:18
 #: networks/templates/create_net_block.html:18
 #: storages/templates/create_stg_block.html:38
@@ -637,7 +637,7 @@ msgstr "Værtsnavn"
 msgid "Hypervisor"
 msgstr "Hypervisor"
 
-#: computes/templates/overview.html:38
+#: computes/templates/overview.html:38 instances/templates/instances.html:46
 msgid "Memory"
 msgstr "Hukommelse"
 
@@ -930,8 +930,7 @@ msgstr ""
 msgid "Choose"
 msgstr ""
 
-#: instances/templates/instance.html:17 instances/templates/instances.html:60
-#: instances/templates/instances.html:163
+#: instances/templates/instance.html:17 instances/templates/instances.html:163
 #, fuzzy
 #| msgid "off"
 msgid "Off"
@@ -988,17 +987,9 @@ msgstr "Status"
 msgid "Destroy"
 msgstr "Slet"
 
-#: instances/templates/instance.html:107 instances/templates/instance.html:157
-#: instances/templates/instances.html:84 instances/templates/instances.html:101
-#: instances/templates/instances.html:118
-#: instances/templates/instances.html:184
-#: instances/templates/instances.html:198
-#: instances/templates/instances.html:212 instances/views.py:123
-#: instances/views.py:378
-#, fuzzy
-#| msgid "Power"
-msgid "Power Off"
-msgstr "Power"
+#: instances/templates/instance.html:107
+msgid "Shutdown"
+msgstr "Luk ned"
 
 #: instances/templates/instance.html:112 instances/templates/instance.html:164
 #: instances/templates/instances.html:87 instances/templates/instances.html:104
@@ -1039,6 +1030,18 @@ msgstr "Power"
 #: instances/templates/instance.html:155
 msgid "This action sends an ACPI shutdown signal to the instance."
 msgstr "Denne handling sender et ACPI nedlukningsignal til instansen."
+
+#: instances/templates/instance.html:157 instances/templates/instances.html:84
+#: instances/templates/instances.html:101
+#: instances/templates/instances.html:118
+#: instances/templates/instances.html:184
+#: instances/templates/instances.html:198
+#: instances/templates/instances.html:212 instances/views.py:123
+#: instances/views.py:378
+#, fuzzy
+#| msgid "Power"
+msgid "Power Off"
+msgstr "Power"
 
 #: instances/templates/instance.html:162
 #, fuzzy
@@ -1497,6 +1500,20 @@ msgstr "Instanser"
 #| msgid "You do not have any snapshots"
 msgid "You don't have any Instace"
 msgstr "Du har ikke nogen snapshots"
+
+#: instances/templates/instances.html:44
+#, fuzzy
+#| msgid "Status"
+msgid "Status"
+msgstr "Status"
+
+#: instances/templates/instances.html:45
+msgid "VCPUs"
+msgstr "VCPU'er"
+
+#: instances/templates/instances.html:60
+msgid "Shutoff"
+msgstr "Slukket"
 
 #: instances/templates/instances.html:90 instances/templates/instances.html:107
 #: instances/templates/instances.html:190
@@ -2399,14 +2416,8 @@ msgstr "Processor"
 #~ msgid "Running"
 #~ msgstr "Kører"
 
-#~ msgid "Shutoff"
-#~ msgstr "Slukket"
-
 #~ msgid "Hostname / VMs"
 #~ msgstr "Værtsnavn / VM'er"
-
-#~ msgid "VCPUs"
-#~ msgstr "VCPU'er"
 
 #~ msgid "Not Active"
 #~ msgstr "Ikke aktiv"
@@ -2425,9 +2436,6 @@ msgstr "Processor"
 
 #~ msgid "Statistics"
 #~ msgstr "Statistik"
-
-#~ msgid "Shutdown"
-#~ msgstr "Luk ned"
 
 #~ msgid "Force Shutdown"
 #~ msgstr "Gennemtving nedlukning"

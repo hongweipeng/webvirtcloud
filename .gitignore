@@ -11,3 +11,4 @@ tags
 dhcpd.*
 #webvirtcloud/settings.py
 migrations
+test.py

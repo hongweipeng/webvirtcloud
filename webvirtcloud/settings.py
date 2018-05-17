@@ -103,7 +103,7 @@ TEMPLATES = [
     }
 ]
 
-LANGUAGE_CODE = 'zh_CN'
+LANGUAGE_CODE = 'zh_hans'
 LOCAL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'local')
 LOCALE_PATHS = (
     os.path.join(os.path.dirname(__file__), '..', 'locale'),
