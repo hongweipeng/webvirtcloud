@@ -1,9 +1,17 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
+import instances.views
+import storages.views
+import networks.views
+import computes.views
+import create.views
+import interfaces.views
+import secrets.views
+import console.views
 
-urlpatterns = patterns('',
-    url(r'^$', 'instances.views.index', name='index'),
-    url(r'^instances/$', 'instances.views.instances', name='instances'),
+urlpatterns =[
+    url(r'^$', instances.views.index, name='index'),
+    url(r'^instances/$', instances.views.instances, name='instances'),
 
     url(r'^instance/', include('instances.urls')),
     url(r'^accounts/', include('accounts.urls')),
@@ -11,22 +19,22 @@ urlpatterns = patterns('',
     url(r'^logs/', include('logs.urls')),
 
     url(r'^compute/(?P<compute_id>[0-9]+)/storages/$',
-        'storages.views.storages', name='storages'),
+        storages.views.storages, name='storages'),
     url(r'^compute/(?P<compute_id>[0-9]+)/storage/(?P<pool>[\w\-\.\/]+)/$',
-        'storages.views.storage', name='storage'),
+        storages.views.storage, name='storage'),
     url(r'^compute/(?P<compute_id>[0-9]+)/networks/$',
-        'networks.views.networks', name='networks'),
+        networks.views.networks, name='networks'),
     url(r'^compute/(?P<compute_id>[0-9]+)/network/(?P<pool>[\w\-\.]+)/$',
-        'networks.views.network', name='network'),
+        networks.views.network, name='network'),
     url(r'^compute/(?P<compute_id>[0-9]+)/interfaces/$',
-        'interfaces.views.interfaces', name='interfaces'),
+        interfaces.views.interfaces, name='interfaces'),
     url(r'^compute/(?P<compute_id>[0-9]+)/interface/(?P<iface>[\w\-\.\:]+)/$',
-        'interfaces.views.interface', name='interface'),
+        interfaces.views.interface, name='interface'),
     url(r'^compute/(?P<compute_id>[0-9]+)/secrets/$',
-        'secrets.views.secrets', name='secrets'),
+        secrets.views.secrets, name='secrets'),
     url(r'^compute/(?P<compute_id>[0-9]+)/create/$',
-        'create.views.create_instance', name='create_instance'),
+        create.views.create_instance, name='create_instance'),
 
-    url(r'^console/$', 'console.views.console', name='console'),
+    url(r'^console/$', console.views.console, name='console'),
     # (r'^admin/', include(admin.site.urls)),
-)
+]

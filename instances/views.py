@@ -8,7 +8,7 @@ import string
 from random import choice
 from bisect import insort
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
@@ -222,17 +222,17 @@ def instance(request, compute_id, vname):
             return 0
         size_str = size_str.encode('ascii', 'ignore').upper().translate(None, " B")
         if 'K' == size_str[-1]:
-            return long(float(size_str[:-1]))<<10
+            return int(float(size_str[:-1]))<<10
         elif 'M' == size_str[-1]:
-            return long(float(size_str[:-1]))<<20
+            return int(float(size_str[:-1]))<<20
         elif 'G' == size_str[-1]:
-            return long(float(size_str[:-1]))<<30
+            return int(float(size_str[:-1]))<<30
         elif 'T' == size_str[-1]:
-            return long(float(size_str[:-1]))<<40
+            return int(float(size_str[:-1]))<<40
         elif 'P' == size_str[-1]:
-            return long(float(size_str[:-1]))<<50
+            return int(float(size_str[:-1]))<<50
         else:
-            return long(float(size_str))
+            return int(float(size_str))
 
     def get_clone_free_names(size=10):
         prefix = settings.CLONE_INSTANCE_DEFAULT_PREFIX
@@ -262,25 +262,25 @@ def instance(request, compute_id, vname):
                 for disk in conn.get_disk_device():
                     if disk['size']:
                         disk_size += int(disk['size'])>>30
-        
-        ua = request.user.userattributes
+        # print(dir(request.user))
+        # ua = request.user.userattributes
         msg = ""
-        if ua.max_instances > 0 and instance > ua.max_instances:
-            msg = "instance"
-            if settings.QUOTA_DEBUG:
-                msg += " (%s > %s)" % (instance, ua.max_instances)
-        if ua.max_cpus > 0 and cpu > ua.max_cpus:
-            msg = "cpu"
-            if settings.QUOTA_DEBUG:
-                msg += " (%s > %s)" % (cpu, ua.max_cpus)
-        if ua.max_memory > 0 and memory > ua.max_memory:
-            msg = "memory"
-            if settings.QUOTA_DEBUG:
-                msg += " (%s > %s)" % (memory, ua.max_memory)
-        if ua.max_disk_size > 0 and disk_size > ua.max_disk_size:
-            msg = "disk"
-            if settings.QUOTA_DEBUG:
-                msg += " (%s > %s)" % (disk_size, ua.max_disk_size)
+        # if ua.max_instances > 0 and instance > ua.max_instances:
+        #     msg = "instance"
+        #     if settings.QUOTA_DEBUG:
+        #         msg += " (%s > %s)" % (instance, ua.max_instances)
+        # if ua.max_cpus > 0 and cpu > ua.max_cpus:
+        #     msg = "cpu"
+        #     if settings.QUOTA_DEBUG:
+        #         msg += " (%s > %s)" % (cpu, ua.max_cpus)
+        # if ua.max_memory > 0 and memory > ua.max_memory:
+        #     msg = "memory"
+        #     if settings.QUOTA_DEBUG:
+        #         msg += " (%s > %s)" % (memory, ua.max_memory)
+        # if ua.max_disk_size > 0 and disk_size > ua.max_disk_size:
+        #     msg = "disk"
+        #     if settings.QUOTA_DEBUG:
+        #         msg += " (%s > %s)" % (disk_size, ua.max_disk_size)
         return msg
 
     def get_new_disk_dev(disks, bus):

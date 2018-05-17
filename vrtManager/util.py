@@ -1,8 +1,8 @@
 import random
-import libxml2
+#import libxml2
 import libvirt
 import string
-
+from lxml import etree
 
 def is_kvm_available(xml):
     kvm_domains = get_xml_path(xml, "//domain/@type='kvm'")
@@ -30,9 +30,9 @@ def randomUUID():
     return "-".join(["%02x" * 4, "%02x" * 2, "%02x" * 2, "%02x" * 2, "%02x" * 6]) % tuple(u)
 
 
-def randomPasswd(length=12, alphabet=string.letters + string.digits):
+def randomPasswd(length=12, alphabet=string.ascii_letters + string.digits):
     """Generate a random password"""
-    return ''.join([random.choice(alphabet) for i in xrange(length)])
+    return ''.join([random.choice(alphabet) for i in range(length)])
 
 
 def get_max_vcpus(conn, type=None):
@@ -71,7 +71,7 @@ def compareMAC(p, q):
         else:
             return -1
 
-    for i in xrange(len(pa)):
+    for i in range(len(pa)):
         n = int(pa[i], 0x10) - int(qa[i], 0x10)
         if n > 0:
             return 1
@@ -89,33 +89,36 @@ def get_xml_path(xml, path=None, func=None):
     ctx = None
     result = None
 
-    try:
-        doc = libxml2.parseDoc(xml)
-        ctx = doc.xpathNewContext()
+    # try:
+        # doc = libxml2.parseDoc(xml)
+        # ctx = doc.xpathNewContext()
+    ctx = etree.fromstring(xml)
+    if path:
+        result = get_xpath(ctx, path)
 
-        if path:
-            result = get_xpath(ctx, path)
+    elif func:
+        result = func(ctx)
 
-        elif func:
-            result = func(ctx)
-
-        else:
-            raise ValueError("'path' or 'func' is required.")
-    finally:
-        if doc:
-            doc.freeDoc()
-        if ctx:
-            ctx.xpathFreeContext()
+    else:
+        raise ValueError("'path' or 'func' is required.")
+    # finally:
+    #     if doc:
+    #         doc.freeDoc()
+    #     if ctx:
+    #         ctx.xpathFreeContext()
     return result
 
 
 def get_xpath(ctx, path):
     result = None
-    ret = ctx.xpathEval(path)
+    ret = ctx.xpath(path)
     if ret is not None:
         if type(ret) == list:
             if len(ret) >= 1:
-                result = ret[0].content
+                # result = ret[0].content
+                result = ret[0]
+                if isinstance(result, etree._Element):
+                    result = result.text
         else:
             result = ret
     

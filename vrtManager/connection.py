@@ -2,7 +2,7 @@ import libvirt
 import threading
 import socket
 from vrtManager import util
-from rwlock import ReadWriteLock
+from rwlock import RWLock as ReadWriteLock
 from django.conf import settings
 from libvirt import libvirtError
 
@@ -253,16 +253,16 @@ class wvmConnectionManager(object):
         search the connection dict for a connection with the given credentials
         if it does not exist return None
         """
-        self._connections_lock.acquireRead()
-        try:
+        with self._connections_lock.reader_lock:
+        #try:
             if (host in self._connections):
                 connections = self._connections[host]
 
                 for connection in connections:
                     if (connection.login == login and connection.passwd == passwd and connection.type == conn):
                         return connection
-        finally:
-            self._connections_lock.release()
+        #finally:
+        #    self._connections_lock.reader_lock.release()
 
         return None
 
@@ -272,15 +272,15 @@ class wvmConnectionManager(object):
         raises libvirtError if (re)connecting fails
         """
         # force all string values to unicode
-        host = unicode(host)
-        login = unicode(login)
-        passwd = unicode(passwd) if passwd is not None else None
+        host = host
+        login = login
+        passwd = passwd if passwd is not None else None
 
         connection = self._search_connection(host, login, passwd, conn)
 
         if (connection is None):
-            self._connections_lock.acquireWrite()
-            try:
+            with self._connections_lock.writer_lock:
+            #try:
                 # we have to search for the connection again after aquireing the write lock
                 # as the thread previously holding the write lock may have already added our connection
                 connection = self._search_connection(host, login, passwd, conn)
@@ -293,8 +293,8 @@ class wvmConnectionManager(object):
                         self._connections[host].append(connection)
                     else:
                         self._connections[host] = [connection]
-            finally:
-                self._connections_lock.release()
+            #finally:
+            #    self._connections_lock.release()
 
         elif not connection.connected:
             # try to (re-)connect if connection is closed

@@ -198,7 +198,7 @@ class wvmInstance(wvmConnect):
         """Get number of physical CPUs."""
         hostinfo = self.wvm.getInfo()
         pcpus = hostinfo[4] * hostinfo[5] * hostinfo[6] * hostinfo[7]
-        range_pcpus = xrange(1, int(pcpus + 1))
+        range_pcpus = list(range(1, int(pcpus + 1)))
         return range_pcpus
 
     def get_net_device(self):
@@ -215,9 +215,12 @@ class wvmInstance(wvmConnect):
 
         def networks(ctx):
             result = []
-            for net in ctx.xpathEval('/domain/devices/interface'):
-                mac_host = net.xpathEval('mac/@address')[0].content
-                nic_host = net.xpathEval('source/@network|source/@bridge|source/@dev|target/@dev')[0].content
+            # for net in ctx.xpathEval('/domain/devices/interface'):
+            for net in ctx.xpath('/domain/devices/interface'):
+                # mac_host = net.xpathEval('mac/@address')[0].content
+                mac_host = net.xpath('mac/@address')[0]
+                # nic_host = net.xpathEval('source/@network|source/@bridge|source/@dev')[0].content
+                nic_host = net.xpath('source/@network|source/@bridge|source/@dev')[0]
                 try:
                     net = self.get_network(nic_host)
                     ip = get_mac_ipaddr(net, mac_host)
@@ -237,13 +240,18 @@ class wvmInstance(wvmConnect):
             src_fl = None
             disk_format = None
             disk_size = None
-            for disk in ctx.xpathEval('/domain/devices/disk'):
-                device = disk.xpathEval('@device')[0].content
+            # for disk in ctx.xpathEval('/domain/devices/disk'):
+            for disk in ctx.xpath('/domain/devices/disk'):
+                # device = disk.xpathEval('@device')[0].content
+                device = disk.xpath('@device')[0]
                 if device == 'disk':
                     try:
-                        dev = disk.xpathEval('target/@dev')[0].content
-                        src_fl = disk.xpathEval('source/@file|source/@dev|source/@name|source/@volume')[0].content
-                        disk_format = disk.xpathEval('driver/@type')[0].content
+                        # dev = disk.xpathEval('target/@dev')[0].content
+                        dev = disk.xpath('target/@dev')[0]
+                        # src_fl = disk.xpathEval('source/@file|source/@dev|source/@name|source/@volume')[0].content
+                        src_fl = disk.xpath('source/@file|source/@dev|source/@name|source/@volume')[0]
+                        # disk_format = disk.xpathEval('driver/@type')[0].content
+                        disk_format = disk.xpath('driver/@type')[0]
                         try:
                             vol = self.get_volume_by_path(src_fl)
                             volume = vol.name()
@@ -269,13 +277,17 @@ class wvmInstance(wvmConnect):
             volume = None
             storage = None
             src_fl = None
-            for media in ctx.xpathEval('/domain/devices/disk'):
-                device = media.xpathEval('@device')[0].content
+            # for media in ctx.xpathEval('/domain/devices/disk'):
+            for media in ctx.xpath('/domain/devices/disk'):
+                # device = media.xpathEval('@device')[0].content
+                device = media.xpath('@device')[0]
                 if device == 'cdrom':
                     try:
-                        dev = media.xpathEval('target/@dev')[0].content
+                        # dev = media.xpathEval('target/@dev')[0].content
+                        dev = media.xpath('target/@dev')[0]
                         try:
-                            src_fl = media.xpathEval('source/@file')[0].content
+                            # src_fl = media.xpathEval('source/@file')[0].content
+                            src_fl = media.xpath('source/@file')[0]
                             vol = self.get_volume_by_path(src_fl)
                             volume = vol.name()
                             stg = vol.storagePoolLookupByVolume()
@@ -364,7 +376,7 @@ class wvmInstance(wvmConnect):
             time.sleep(1)
             cpu_use_now = self.instance.info()[4]
             diff_usage = cpu_use_now - cpu_use_ago
-            cpu_usage['cpu'] = 100 * diff_usage / (1 * nbcore * 10 ** 9L)
+            cpu_usage['cpu'] = 100 * diff_usage / (1 * nbcore * 10 ** 9)
         else:
             cpu_usage['cpu'] = 0
         return cpu_usage

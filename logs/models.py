@@ -7,5 +7,5 @@ class Logs(models.Model):
     message = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.instance

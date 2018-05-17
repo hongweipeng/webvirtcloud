@@ -1,0 +1,2554 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: webvirtmgr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-17 20:55+0800\n"
+"PO-Revision-Date: 2014-10-07 14:48+0100\n"
+"Last-Translator: Jens Hyllegaard <jens.hyllegaard@gmail.com>\n"
+"Language-Team: Danish <LL@li.org>\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.9\n"
+
+#: accounts/forms.py:10
+#, fuzzy
+#| msgid "No hostname has been entered"
+msgid "No User name has been entered"
+msgstr "Der er ikke angivet noget værtsnavn"
+
+#: accounts/forms.py:12 computes/forms.py:14 computes/forms.py:88
+msgid "No password has been entered"
+msgstr "Der er ikke angivet nogen adgangskode"
+
+#: accounts/forms.py:18 create/forms.py:22
+msgid "The flavor name must not contain any special characters"
+msgstr "Variantnavn må ikke indeholde nogen specialtegn"
+
+#: accounts/forms.py:20 create/forms.py:24
+msgid "The flavor name must not exceed 20 characters"
+msgstr "Variantnavn må ikke overskride 20 tegn"
+
+#: accounts/forms.py:25 create/forms.py:29
+msgid "Flavor name is already use"
+msgstr "Variantnavn eksisterer allerede"
+
+#: accounts/templates/account.html:3
+#: instances/templates/add_instance_owner_block.html:18
+#: instances/templates/instance.html:1103 logs/templates/showlogs.html:32
+#, fuzzy
+#| msgid "Username"
+msgid "User"
+msgstr "Brugernavn"
+
+#: accounts/templates/account.html:23 accounts/templates/profile.html:98
+#, fuzzy
+#| msgid "Username"
+msgid "Key name"
+msgstr "Brugernavn"
+
+#: accounts/templates/account.html:24 accounts/templates/profile.html:104
+msgid "Public key"
+msgstr ""
+
+#: accounts/templates/account.html:47 accounts/templates/accounts.html:21
+#: computes/templates/computes.html:221
+#: create/templates/create_instance.html:237
+#: instances/templates/instances.html:35 instances/templates/instances.html:141
+#: interfaces/templates/interfaces.html:39 logs/templates/showlogs.html:21
+#: networks/templates/networks.html:38 secrets/templates/secrets.html:42
+#: storages/templates/storage.html:181 storages/templates/storages.html:38
+msgid "Warning:"
+msgstr "Advarsel:"
+
+#: accounts/templates/account.html:47
+#, fuzzy
+#| msgid "You do not have any snapshots"
+msgid "User doesn't have any Instace"
+msgstr "Du har ikke nogen snapshots"
+
+#: accounts/templates/account.html:56 instances/templates/instance.html:4
+#: logs/templates/showlogs.html:33
+#, fuzzy
+#| msgid "Instances"
+msgid "Instance"
+msgstr "Instanser"
+
+#: accounts/templates/account.html:57 accounts/templates/account.html:88
+#: instances/templates/instance.html:594
+msgid "VNC"
+msgstr "VNC"
+
+#: accounts/templates/account.html:58 accounts/templates/account.html:97
+#: instances/templates/instance.html:70 instances/templates/instance.html:387
+#: instances/templates/instance.html:389 instances/templates/instance.html:394
+#: instances/views.py:485
+msgid "Resize"
+msgstr ""
+
+#: accounts/templates/account.html:59 accounts/templates/account.html:106
+#: accounts/templates/account.html:127 accounts/templates/accounts.html:119
+#: accounts/templates/profile.html:84 computes/templates/computes.html:95
+#: computes/templates/computes.html:132 computes/templates/computes.html:174
+#: computes/templates/computes.html:198 instances/templates/instance.html:1021
+#: interfaces/templates/interface.html:59 networks/templates/network.html:46
+#: secrets/templates/secrets.html:78 storages/templates/storage.html:57
+#: storages/templates/storage.html:167
+msgid "Delete"
+msgstr "Slet"
+
+#: accounts/templates/account.html:60 create/templates/create_instance.html:252
+#: instances/templates/instance.html:530 secrets/templates/secrets.html:54
+#: storages/templates/storage.html:97
+msgid "Action"
+msgstr "Handling"
+
+#: accounts/templates/account.html:82
+msgid "Edit privilegies for"
+msgstr ""
+
+#: accounts/templates/account.html:116 accounts/templates/accounts.html:131
+#: accounts/templates/create_user_block.html:31
+#: accounts/templates/create_user_inst_block.html:29
+#: computes/templates/computes.html:98 computes/templates/computes.html:135
+#: computes/templates/computes.html:177 computes/templates/computes.html:201
+#: computes/templates/create_comp_block.html:56
+#: computes/templates/create_comp_block.html:89
+#: computes/templates/create_comp_block.html:127
+#: computes/templates/create_comp_block.html:155
+#: create/templates/create_flav_block.html:55
+#: create/templates/create_instance.html:331
+#: instances/templates/add_instance_owner_block.html:29
+#: instances/templates/create_inst_block.html:35
+#: interfaces/templates/create_iface_block.html:133
+#: networks/templates/create_net_block.html:66
+#: secrets/templates/create_secret_block.html:53
+#: secrets/templates/secrets.html:102
+#: storages/templates/create_stg_block.html:51
+#: storages/templates/create_stg_block.html:80
+#: storages/templates/create_stg_block.html:136
+#: storages/templates/create_stg_block.html:198
+#: storages/templates/create_stg_block.html:226
+#: storages/templates/create_stg_vol_block.html:27
+#: storages/templates/create_stg_vol_block.html:82
+#: storages/templates/storage.html:151
+msgid "Close"
+msgstr "Luk"
+
+#: accounts/templates/account.html:117 accounts/templates/accounts.html:31
+#: accounts/templates/accounts.html:134 computes/templates/computes.html:25
+#: computes/templates/computes.html:31 secrets/templates/secrets.html:75
+msgid "Edit"
+msgstr "Rediger"
+
+#: accounts/templates/account.html:127 accounts/templates/profile.html:84
+#: create/templates/create_instance.html:349
+#: instances/templates/instance.html:555 interfaces/templates/interface.html:59
+#: interfaces/templates/interface.html:61 networks/templates/network.html:46
+#: networks/templates/network.html:48 networks/templates/network.html:57
+#: secrets/templates/secrets.html:78 storages/templates/storage.html:58
+#: storages/templates/storage.html:61 storages/templates/storage.html:72
+#: storages/templates/storage.html:167
+msgid "Are you sure?"
+msgstr "Er du sikker?"
+
+#: accounts/templates/accounts.html:3 accounts/templates/accounts.html:9
+#: instances/templates/instance.html:634 templates/navbar.html:25
+#, fuzzy
+#| msgid "Username"
+msgid "Users"
+msgstr "Brugernavn"
+
+#: accounts/templates/accounts.html:21
+#, fuzzy
+#| msgid "You do not have any Secrets"
+msgid "You don't have any User"
+msgstr "Du har ikke nogen hemmeligheder"
+
+#: accounts/templates/accounts.html:38 computes/templates/computes.html:40
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "Status"
+
+#: accounts/templates/accounts.html:42 instances/templates/instance.html:20
+#: instances/templates/instances.html:57 instances/templates/instances.html:160
+msgid "Active"
+msgstr "Aktiv"
+
+#: accounts/templates/accounts.html:44
+msgid "Blocked"
+msgstr ""
+
+#: accounts/templates/accounts.html:57
+msgid "Edit user info"
+msgstr ""
+
+#: accounts/templates/accounts.html:62
+#: accounts/templates/create_user_block.html:18
+#: computes/templates/computes.html:162
+#: create/templates/create_flav_block.html:19
+#: create/templates/create_instance.html:37
+#: create/templates/create_instance.html:39
+#: create/templates/create_instance.html:133
+#: create/templates/create_instance.html:135
+#: create/templates/create_instance.html:248
+#: create/templates/create_instance.html:274
+#: create/templates/create_instance.html:277
+#: instances/templates/instance.html:413 instances/templates/instance.html:415
+#: instances/templates/instance.html:528
+#: interfaces/templates/create_iface_block.html:18
+#: networks/templates/create_net_block.html:18
+#: storages/templates/create_stg_block.html:38
+#: storages/templates/create_stg_block.html:67
+#: storages/templates/create_stg_block.html:96
+#: storages/templates/create_stg_block.html:161
+#: storages/templates/create_stg_block.html:210
+#: storages/templates/create_stg_vol_block.html:20
+#: storages/templates/create_stg_vol_block.html:51
+#: storages/templates/create_stg_vol_block.html:53
+#: storages/templates/storage.html:94 storages/templates/storage.html:120
+#: storages/templates/storage.html:122
+msgid "Name"
+msgstr "Navn"
+
+#: accounts/templates/accounts.html:69
+#: accounts/templates/create_user_block.html:24
+#: computes/templates/computes.html:87 computes/templates/computes.html:166
+#: computes/templates/create_comp_block.html:48
+#: computes/templates/create_comp_block.html:50
+#: computes/templates/create_comp_block.html:119
+#: computes/templates/create_comp_block.html:121
+#: instances/templates/instance.html:732 instances/templates/instance.html:738
+msgid "Password"
+msgstr "Adgangskode"
+
+#: accounts/templates/accounts.html:75
+msgid "Is staff"
+msgstr ""
+
+#: accounts/templates/accounts.html:81
+msgid "Is superuser"
+msgstr ""
+
+#: accounts/templates/accounts.html:87
+#, fuzzy
+#| msgid "Create Instance"
+msgid "Can clone instances"
+msgstr "Opret instant"
+
+#: accounts/templates/accounts.html:93
+#, fuzzy
+#| msgid "Instances"
+msgid "Max instances"
+msgstr "Instanser"
+
+#: accounts/templates/accounts.html:99
+msgid "Max cpus"
+msgstr ""
+
+#: accounts/templates/accounts.html:105
+msgid "Max memory (MB)"
+msgstr ""
+
+#: accounts/templates/accounts.html:111
+msgid "Max disk size (GB)"
+msgstr ""
+
+#: accounts/templates/accounts.html:123
+msgid "Block"
+msgstr ""
+
+#: accounts/templates/accounts.html:127
+msgid "Unblock"
+msgstr ""
+
+#: accounts/templates/create_user_block.html:13
+#, fuzzy
+#| msgid "Add New Network"
+msgid "Add New User"
+msgstr "Tilføj nyt netværk"
+
+#: accounts/templates/create_user_block.html:32
+#: create/templates/create_instance.html:119
+#: create/templates/create_instance.html:123
+#: create/templates/create_instance.html:207
+#: create/templates/create_instance.html:211
+#: create/templates/create_instance.html:224
+#: create/templates/create_instance.html:333
+#: create/templates/create_instance.html:335
+#: interfaces/templates/create_iface_block.html:136
+#: networks/templates/create_net_block.html:67
+#: secrets/templates/create_secret_block.html:54
+#: storages/templates/create_stg_block.html:52
+#: storages/templates/create_stg_block.html:81
+#: storages/templates/create_stg_block.html:140
+#: storages/templates/create_stg_block.html:144
+#: storages/templates/create_stg_block.html:201
+#: storages/templates/create_stg_block.html:229
+#: storages/templates/create_stg_vol_block.html:83
+msgid "Create"
+msgstr "Opret"
+
+#: accounts/templates/create_user_inst_block.html:13
+#, fuzzy
+#| msgid "Instances"
+msgid "Add Instance for User"
+msgstr "Instanser"
+
+#: accounts/templates/create_user_inst_block.html:18
+#, fuzzy
+#| msgid "Custom Instance"
+msgid "Host / Instance"
+msgstr "Tilpasset instans"
+
+#: accounts/templates/create_user_inst_block.html:30
+#: accounts/templates/profile.html:111
+#: computes/templates/create_comp_block.html:59
+#: computes/templates/create_comp_block.html:92
+#: computes/templates/create_comp_block.html:130
+#: computes/templates/create_comp_block.html:158
+#: create/templates/create_flav_block.html:58
+#: instances/templates/add_instance_owner_block.html:30
+msgid "Add"
+msgstr "Tilføj"
+
+#: accounts/templates/login.html:3
+msgid "WebVirtCloud - Sign In"
+msgstr ""
+
+#: accounts/templates/login.html:13
+msgid "Incorrect username or password."
+msgstr "Forkert brugernavn eller adgangskode."
+
+#: accounts/templates/login.html:17 accounts/templates/login.html:21
+msgid "Sign In"
+msgstr "Log ind"
+
+#: accounts/templates/logout.html:3
+msgid "WebVirtCloud - Sign Out"
+msgstr ""
+
+#: accounts/templates/logout.html:11
+msgid "Successful log out"
+msgstr "Korrekt logget ud"
+
+#: accounts/templates/profile.html:4 accounts/templates/profile.html:9
+msgid "Profile"
+msgstr ""
+
+#: accounts/templates/profile.html:18
+msgid "Edit Profile"
+msgstr ""
+
+#: accounts/templates/profile.html:21
+msgid "Login"
+msgstr ""
+
+#: accounts/templates/profile.html:27 computes/templates/computes.html:81
+#: computes/templates/computes.html:124 computes/templates/computes.html:160
+#: computes/templates/create_comp_block.html:42
+#: computes/templates/create_comp_block.html:44
+#: computes/templates/create_comp_block.html:81
+#: computes/templates/create_comp_block.html:83
+#: computes/templates/create_comp_block.html:113
+#: computes/templates/create_comp_block.html:115
+msgid "Username"
+msgstr "Brugernavn"
+
+#: accounts/templates/profile.html:33
+msgid "Email"
+msgstr ""
+
+#: accounts/templates/profile.html:40 accounts/templates/profile.html:67
+#: computes/templates/computes.html:101 computes/templates/computes.html:138
+#: computes/templates/computes.html:180 computes/templates/computes.html:204
+#: instances/templates/instance.html:803 instances/templates/instance.html:805
+#: instances/templates/instance.html:963 instances/templates/instance.html:967
+#: instances/templates/instance.html:996 instances/templates/instance.html:998
+msgid "Change"
+msgstr "Skift"
+
+#: accounts/templates/profile.html:45
+#, fuzzy
+#| msgid "Set Password"
+msgid "Edit Password"
+msgstr "Indstil adgangskode"
+
+#: accounts/templates/profile.html:48
+msgid "Old"
+msgstr ""
+
+#: accounts/templates/profile.html:54
+#, fuzzy
+#| msgid "Network"
+msgid "New"
+msgstr "Netværk"
+
+#: accounts/templates/profile.html:60
+msgid "Retry"
+msgstr ""
+
+#: accounts/templates/profile.html:72 instances/templates/instance.html:240
+msgid "SSH Keys"
+msgstr ""
+
+#: accounts/templates/profile.html:100
+#, fuzzy
+#| msgid "Clone Name"
+msgid "Enter Name"
+msgstr "Klonnavn"
+
+#: accounts/templates/profile.html:106
+msgid "Enter Public Key"
+msgstr ""
+
+#: accounts/views.py:52
+#, fuzzy
+#| msgid "ISO image already exist"
+msgid "Key name already exist"
+msgstr "ISO-image eksisterer allerede"
+
+#: accounts/views.py:55
+#, fuzzy
+#| msgid "ISO image already exist"
+msgid "Public key already exist"
+msgstr "ISO-image eksisterer allerede"
+
+#: accounts/views.py:178
+#, fuzzy
+#| msgid "Instance Migrate"
+msgid "Instance already added"
+msgstr "Migrer instans"
+
+#: computes/forms.py:8 computes/forms.py:46 computes/forms.py:82
+#: computes/forms.py:121 computes/forms.py:150
+msgid "No hostname has been entered"
+msgstr "Der er ikke angivet noget værtsnavn"
+
+#: computes/forms.py:10 computes/forms.py:48 computes/forms.py:84
+#: computes/forms.py:123
+msgid "No IP / Domain name has been entered"
+msgstr "Der er ikke angivet nogen IP / domænenavn"
+
+#: computes/forms.py:12 computes/forms.py:50 computes/forms.py:86
+#: computes/forms.py:125
+msgid "No login has been entered"
+msgstr "Der er ikke angivet noget login"
+
+#: computes/forms.py:21 computes/forms.py:95 computes/forms.py:159
+msgid "The host name must not contain any special characters"
+msgstr "Værtsnavnet må ikke indeholde nogen specialtegn"
+
+#: computes/forms.py:23 computes/forms.py:97 computes/forms.py:161
+msgid "The host name must not exceed 20 characters"
+msgstr "Værtsnavnet må ikke overskride 20 tegn"
+
+#: computes/forms.py:28 computes/forms.py:42 computes/forms.py:64
+#: computes/forms.py:78 computes/forms.py:102 computes/forms.py:116
+#: computes/forms.py:166
+msgid "This host is already connected"
+msgstr "Denne vært er allerede tilsluttet"
+
+#: computes/forms.py:35 computes/forms.py:71 computes/forms.py:109
+#: computes/forms.py:143
+msgid ""
+"Hostname must contain only numbers, or the domain name separated by \".\""
+msgstr "Værtsnavnet må kun indeholde tal, eller domænenavnet adskilt med \".\""
+
+#: computes/forms.py:37 computes/forms.py:73 computes/forms.py:111
+#: computes/forms.py:145
+msgid "Wrong IP address"
+msgstr "Forkert IP adresse"
+
+#: computes/forms.py:57 computes/forms.py:133
+msgid "The name of the host must not contain any special characters"
+msgstr "Navnet på værten må ikke indeholde nogen specialtegn"
+
+#: computes/forms.py:59 computes/forms.py:135
+msgid "The name of the host must not exceed 20 characters"
+msgstr "Navnet på værten må ikke overskride 20 tegn"
+
+#: computes/forms.py:152
+#, fuzzy
+#| msgid "No device has been entered"
+msgid "No details has been entred"
+msgstr "Der er ikke angivet nogen enhed"
+
+#: computes/templates/computes.html:3 computes/templates/computes.html:9
+#: templates/navbar.html:22
+msgid "Computes"
+msgstr ""
+
+#: computes/templates/computes.html:44
+#, fuzzy
+#| msgid "Connect"
+msgid "Connected"
+msgstr "Tilslut"
+
+#: computes/templates/computes.html:46
+#, fuzzy
+#| msgid "Connect"
+msgid "Not Connected"
+msgstr "Tilslut"
+
+#: computes/templates/computes.html:51
+msgid "No details available"
+msgstr ""
+
+#: computes/templates/computes.html:62
+#, fuzzy
+#| msgid "Add Connection"
+msgid "Edit connection"
+msgstr "Tilføj forbindelse"
+
+#: computes/templates/computes.html:68 computes/templates/computes.html:111
+#: computes/templates/computes.html:147 computes/templates/computes.html:189
+#: computes/templates/create_comp_block.html:30
+#: computes/templates/create_comp_block.html:69
+#: computes/templates/create_comp_block.html:101
+#: computes/templates/create_comp_block.html:139
+msgid "Label"
+msgstr "Mærkat"
+
+#: computes/templates/computes.html:75 computes/templates/computes.html:118
+#: computes/templates/computes.html:154
+#: computes/templates/create_comp_block.html:36
+#: computes/templates/create_comp_block.html:75
+#: computes/templates/create_comp_block.html:107
+msgid "FQDN / IP"
+msgstr "FQDN / IP"
+
+#: computes/templates/computes.html:109
+msgid ""
+"Need create ssh <a href='https://github.com/retspen/webvirtmgr/wiki/Setup-"
+"SSH-Authorization'>authorization key</a>. If you have another SSH port on "
+"your server, you can add IP:PORT like '192.168.1.1:2222'."
+msgstr ""
+"Der skal oprettes en ssh <a href='https://github.com/retspen/webvirtmgr/wiki/"
+"Setup-SSH-Authorization'>authorization nøgle</a>. Hvis du har  en anden SSH "
+"port på din server, kan du tilføje IP:PORT sådan '192.168.1.1:2222'."
+
+#: computes/templates/computes.html:221
+msgid "Hypervisor doesn't have any Computes"
+msgstr ""
+
+#: computes/templates/create_comp_block.html:13
+msgid "Add Connection"
+msgstr "Tilføj forbindelse"
+
+#: computes/templates/create_comp_block.html:18
+msgid "TCP Connections"
+msgstr "TCP forbindelser"
+
+#: computes/templates/create_comp_block.html:20
+msgid "SSH Connections"
+msgstr "SSH forbindelsen"
+
+#: computes/templates/create_comp_block.html:21
+msgid "TLS Connection"
+msgstr "TLS forbindelse"
+
+#: computes/templates/create_comp_block.html:22
+msgid "Local Socket"
+msgstr "Lokal socket"
+
+#: computes/templates/create_comp_block.html:38
+#: computes/templates/create_comp_block.html:77
+#: computes/templates/create_comp_block.html:109
+msgid "FQDN or IP Address"
+msgstr "FQDN eller IP adresse"
+
+#: computes/templates/create_comp_block.html:67
+msgid ""
+"You must create ssh <a href='https://github.com/retspen/webvirtmgr/wiki/"
+"Setup-SSH-Authorization'>authorization key</a>. If you have another SSH port "
+"on your server, you can add IP:PORT like '192.168.1.1:2222'."
+msgstr ""
+"Du skal oprette en ssh <a href='https://github.com/retspen/webvirtmgr/wiki/"
+"Setup-SSH-Authorization'>authorization nøgle</a>. Hvis du har  en anden SSH "
+"port på din server, kan du tilføje IP:PORT sådan '192.168.1.1:2222'."
+
+#: computes/templates/create_comp_block.html:146
+#: computes/templates/create_comp_block.html:148
+#: computes/templates/overview.html:43
+#, fuzzy
+#| msgid "Basic details"
+msgid "Details"
+msgstr "Basis-detaljer"
+
+#: computes/templates/overview.html:4 computes/templates/overview.html:12
+#: interfaces/templates/interface.html:11
+#: interfaces/templates/interfaces.html:13 networks/templates/network.html:11
+#: networks/templates/networks.html:12 secrets/templates/secrets.html:16
+#: storages/templates/storage.html:16 storages/templates/storages.html:12
+msgid "Overview"
+msgstr "Oversigt"
+
+#: computes/templates/overview.html:15 interfaces/templates/interface.html:14
+#: interfaces/templates/interfaces.html:16 networks/templates/network.html:14
+#: networks/templates/networks.html:15 secrets/templates/secrets.html:19
+#: storages/templates/storage.html:19 storages/templates/storages.html:3
+#: storages/templates/storages.html:15
+msgid "Storages"
+msgstr "Storage"
+
+#: computes/templates/overview.html:18 interfaces/templates/interface.html:17
+#: interfaces/templates/interfaces.html:19 networks/templates/network.html:17
+#: networks/templates/networks.html:3 networks/templates/networks.html:18
+#: secrets/templates/secrets.html:22 storages/templates/storage.html:22
+#: storages/templates/storages.html:18
+msgid "Networks"
+msgstr "Netværk"
+
+#: computes/templates/overview.html:21 interfaces/templates/interface.html:20
+#: interfaces/templates/interfaces.html:4
+#: interfaces/templates/interfaces.html:22 networks/templates/network.html:20
+#: networks/templates/networks.html:21 secrets/templates/secrets.html:25
+#: storages/templates/storage.html:25 storages/templates/storages.html:21
+msgid "Interfaces"
+msgstr "Interfaces"
+
+#: computes/templates/overview.html:24 interfaces/templates/interface.html:23
+#: interfaces/templates/interfaces.html:25 networks/templates/network.html:23
+#: networks/templates/networks.html:24 secrets/templates/secrets.html:4
+#: secrets/templates/secrets.html:13 secrets/templates/secrets.html:28
+#: storages/templates/create_stg_block.html:120
+#: storages/templates/storage.html:28 storages/templates/storages.html:24
+msgid "Secrets"
+msgstr "Hemmeligheder"
+
+#: computes/templates/overview.html:34
+msgid "Basic details"
+msgstr "Basis-detaljer"
+
+#: computes/templates/overview.html:36
+#: storages/templates/create_stg_block.html:167
+msgid "Hostname"
+msgstr "Værtsnavn"
+
+#: computes/templates/overview.html:37
+msgid "Hypervisor"
+msgstr "Hypervisor"
+
+#: computes/templates/overview.html:38
+msgid "Memory"
+msgstr "Hukommelse"
+
+#: computes/templates/overview.html:39
+msgid "Architecture"
+msgstr "Arkitektur"
+
+#: computes/templates/overview.html:40
+msgid "Logical CPUs"
+msgstr "Logiske CPU'er"
+
+#: computes/templates/overview.html:41
+msgid "Processor"
+msgstr "Processor"
+
+#: computes/templates/overview.html:42
+msgid "Connection"
+msgstr "Forbindelse"
+
+#: computes/templates/overview.html:58
+msgid "Performance"
+msgstr "Ydelse"
+
+#: computes/templates/overview.html:61
+msgid "CPU utilization"
+msgstr ""
+
+#: computes/templates/overview.html:73
+msgid "RAM utilization"
+msgstr ""
+
+#: console/templates/console-base.html:87
+msgid "Fullscreen"
+msgstr ""
+
+#: console/templates/console-vnc.html:11
+msgid "Show Keyboad"
+msgstr ""
+
+#: console/templates/console-vnc.html:17
+msgid "Canvas not supported."
+msgstr "Canvas er ikke understøttet."
+
+#: console/templates/console-vnc.html:57
+#, fuzzy
+#| msgid "Password"
+msgid "Password required"
+msgstr "Adgangskode"
+
+#: console/templates/console-vnc.html:68
+msgid "OK"
+msgstr ""
+
+#: create/forms.py:9
+msgid "No flavor name has been entered"
+msgstr "Der er ikke indtastet noget variantnavn"
+
+#: create/forms.py:12 create/forms.py:35
+msgid "No VCPU has been entered"
+msgstr "Der er ikke angivet nogen VCPU'er"
+
+#: create/forms.py:14
+msgid "No HDD image has been entered"
+msgstr "Der er ikke angivet noget HDD image"
+
+#: create/forms.py:16 create/forms.py:38
+msgid "No RAM size has been entered"
+msgstr "Der er ikke angivet nogen RAM størrelse"
+
+#: create/forms.py:33
+msgid "No Virtual Machine name has been entered"
+msgstr "Der er ikke angivet noget virtuel maskine navn"
+
+#: create/forms.py:39
+msgid "No Network pool has been choice"
+msgstr "Der er ikke valgt nogen netværkspool"
+
+#: create/forms.py:43
+msgid "Please select HDD cache mode"
+msgstr ""
+
+#: create/forms.py:53
+msgid "The name of the virtual machine must not contain any special characters"
+msgstr "Navnet på den virtuelle maskine må ikke indeholde nogen specialtegn"
+
+#: create/forms.py:55
+msgid "The name of the virtual machine must not exceed 20 characters"
+msgstr "Navnet på den virtuelle maskine må ikke overskride 20 tegn"
+
+#: create/templates/create_flav_block.html:14
+msgid "Add New Flavor"
+msgstr "Tilføj ny variant"
+
+#: create/templates/create_flav_block.html:27
+#: create/templates/create_instance.html:43
+#: create/templates/create_instance.html:139
+msgid "VCPU"
+msgstr "VCPU"
+
+#: create/templates/create_flav_block.html:35
+#: create/templates/create_instance.html:56
+#: create/templates/create_instance.html:152
+#: create/templates/create_instance.html:250
+msgid "RAM"
+msgstr "RAM"
+
+#: create/templates/create_flav_block.html:41
+#: create/templates/create_instance.html:60
+#: create/templates/create_instance.html:156
+#: create/templates/create_instance.html:261
+#: instances/templates/instance.html:32 instances/templates/instance.html:350
+#: instances/templates/instance.html:364 instances/templates/instances.html:46
+#: instances/templates/instances.html:170
+msgid "MB"
+msgstr "MB"
+
+#: create/templates/create_flav_block.html:44
+#: create/templates/create_instance.html:63
+#: create/templates/create_instance.html:159
+#: create/templates/create_instance.html:251
+msgid "HDD"
+msgstr "HDD"
+
+#: create/templates/create_flav_block.html:50
+#: create/templates/create_instance.html:262
+#: instances/templates/instance.html:440
+#: storages/templates/create_stg_vol_block.html:72
+msgid "GB"
+msgstr "GB"
+
+#: create/templates/create_instance.html:4
+#, fuzzy
+#| msgid "Create Instance"
+msgid "Create new instance"
+msgstr "Opret instant"
+
+#: create/templates/create_instance.html:13
+#, fuzzy
+#| msgid "New Instance"
+msgid "New instance on"
+msgstr "Ny instans"
+
+#: create/templates/create_instance.html:24
+#, fuzzy
+#| msgid "Custom value"
+msgid "Custom"
+msgstr "Tilpasset værdi"
+
+#: create/templates/create_instance.html:27
+#, fuzzy
+#| msgid "From Template"
+msgid "Template"
+msgstr "Fra skabelon"
+
+#: create/templates/create_instance.html:30
+#: instances/templates/instance.html:620
+msgid "XML"
+msgstr "XML"
+
+#: create/templates/create_instance.html:49
+#: create/templates/create_instance.html:145
+#: create/templates/create_instance.html:317
+msgid "Host-Model"
+msgstr "Værtsmodel"
+
+#: create/templates/create_instance.html:53
+#: create/templates/create_instance.html:149
+#: create/templates/create_instance.html:321
+msgid "CPU"
+msgstr "CPU"
+
+#: create/templates/create_instance.html:75
+#: create/templates/create_instance.html:167
+#: create/templates/create_instance.html:295
+#: instances/templates/create_inst_block.html:26
+#: instances/templates/instance.html:286 instances/templates/instance.html:654
+#: storages/templates/create_stg_block.html:128
+#: storages/templates/storage.html:49 storages/templates/storage.html:50
+#: storages/templates/storage.html:51
+msgid "None"
+msgstr "Ingen"
+
+#: create/templates/create_instance.html:81
+#: create/templates/create_instance.html:173
+#: instances/templates/instance.html:463
+#: storages/templates/create_stg_vol_block.html:75
+#: storages/templates/storage.html:144
+msgid "Metadata"
+msgstr "Metadata"
+
+#: create/templates/create_instance.html:85
+#: create/templates/create_instance.html:177
+msgid "Image"
+msgstr "Image"
+
+#: create/templates/create_instance.html:88
+#: create/templates/create_instance.html:180
+msgid "HDD cache mode"
+msgstr ""
+
+#: create/templates/create_instance.html:98
+#: create/templates/create_instance.html:190
+#: create/templates/create_instance.html:301
+#: instances/templates/instance.html:601 networks/templates/network.html:3
+msgid "Network"
+msgstr "Netværk"
+
+#: create/templates/create_instance.html:112
+#: create/templates/create_instance.html:200
+#: create/templates/create_instance.html:324
+msgid "VirtIO"
+msgstr "VirtIO"
+
+#: create/templates/create_instance.html:237
+#, fuzzy
+#| msgid "You do not have any flavors"
+msgid "Hypervisor doesn't have any Flavors"
+msgstr "Du har ikke nogen varianter"
+
+#: create/templates/create_instance.html:242
+#, fuzzy
+#| msgid "Create a clone"
+msgid "Create from flavor"
+msgstr "Opret en klon"
+
+#: create/templates/create_instance.html:249
+msgid "VCPU's"
+msgstr "VCPU'er"
+
+#: create/templates/create_instance.html:269
+msgid "Create Virtual Machine"
+msgstr "Opret virtuel maskine"
+
+#: create/templates/create_instance.html:285
+#: instances/templates/instance.html:403 storages/templates/storage.html:4
+msgid "Storage"
+msgstr "Storage"
+
+#: create/templates/create_instance.html:311
+#: networks/templates/network.html:128
+msgid "MAC"
+msgstr "MAC"
+
+#: create/views.py:51
+#, fuzzy
+#| msgid "You haven't defined have any storage pools"
+msgid "You haven't defined any storage pools"
+msgstr "Du har ikke angivet nogen storagepools"
+
+#: create/views.py:54
+#, fuzzy
+#| msgid "You haven't defined have any network pools"
+msgid "You haven't defined any network pools"
+msgstr "Du har ikke angivet nogen netværkspools"
+
+#: create/views.py:80 create/views.py:97
+msgid "A virtual machine with this name already exists"
+msgstr "Der findes allerede en virtuel maskine med dette navn"
+
+#: create/views.py:102
+msgid "No Virtual Machine MAC has been entered"
+msgstr "Der er ikke angivet nogen virtuel maskine MAC"
+
+#: create/views.py:117
+msgid "First you need to create or select an image"
+msgstr "Du skal først oprette eller vælge et image"
+
+#: create/views.py:127
+msgid "Invalid cache mode"
+msgstr ""
+
+#: instances/templates/add_instance_owner_block.html:13
+#, fuzzy
+#| msgid "New Instance"
+msgid "Add Instance Owner"
+msgstr "Ny instans"
+
+#: instances/templates/create_inst_block.html:13
+#, fuzzy
+#| msgid "To set a keymap for vnc, shutdown the instance."
+msgid "Choose a compute for new instance"
+msgstr "For at indstille et keymap til vnc skal instansen lukkes ned."
+
+#: instances/templates/create_inst_block.html:18
+msgid "Compute"
+msgstr ""
+
+#: instances/templates/create_inst_block.html:39
+#: instances/templates/create_inst_block.html:43
+msgid "Choose"
+msgstr ""
+
+#: instances/templates/instance.html:17 instances/templates/instances.html:60
+#: instances/templates/instances.html:163
+#, fuzzy
+#| msgid "off"
+msgid "Off"
+msgstr "fra"
+
+#: instances/templates/instance.html:23 instances/templates/instance.html:123
+#: instances/templates/instance.html:179 instances/templates/instances.html:63
+#: instances/templates/instances.html:81 instances/templates/instances.html:98
+#: instances/templates/instances.html:115
+#: instances/templates/instances.html:166 instances/views.py:157
+#: instances/views.py:552
+msgid "Suspend"
+msgstr "Suspendér"
+
+#: instances/templates/instance.html:27 instances/templates/instance.html:29
+msgid "Vcpu"
+msgstr ""
+
+#: instances/templates/instance.html:32
+msgid "Ram"
+msgstr ""
+
+#: instances/templates/instance.html:35
+#, fuzzy
+#| msgid "Disk I/O"
+msgid "Disk"
+msgstr "Disk I/O"
+
+#: instances/templates/instance.html:58
+msgid "Power"
+msgstr "Power"
+
+#: instances/templates/instance.html:64
+msgid "Access"
+msgstr "Adgang"
+
+#: instances/templates/instance.html:76
+msgid "Snapshots"
+msgstr "Snapshot"
+
+#: instances/templates/instance.html:82
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: instances/templates/instance.html:88
+#, fuzzy
+#| msgid "Status"
+msgid "Stats"
+msgstr "Status"
+
+#: instances/templates/instance.html:94 instances/templates/instance.html:1133
+#: instances/templates/instance.html:1142
+#: instances/templates/instance.html:1146 instances/views.py:407
+msgid "Destroy"
+msgstr "Slet"
+
+#: instances/templates/instance.html:107 instances/templates/instance.html:157
+#: instances/templates/instances.html:84 instances/templates/instances.html:101
+#: instances/templates/instances.html:118
+#: instances/templates/instances.html:184
+#: instances/templates/instances.html:198
+#: instances/templates/instances.html:212 instances/views.py:123
+#: instances/views.py:378
+#, fuzzy
+#| msgid "Power"
+msgid "Power Off"
+msgstr "Power"
+
+#: instances/templates/instance.html:112 instances/templates/instance.html:164
+#: instances/templates/instances.html:87 instances/templates/instances.html:104
+#: instances/templates/instances.html:121
+#: instances/templates/instances.html:187
+#: instances/templates/instances.html:201
+#: instances/templates/instances.html:215 instances/views.py:129
+#: instances/views.py:372
+#, fuzzy
+#| msgid "Power"
+msgid "Power Cycle"
+msgstr "Power"
+
+#: instances/templates/instance.html:117 instances/templates/instance.html:171
+#: instances/views.py:384
+msgid "Force Off"
+msgstr ""
+
+#: instances/templates/instance.html:132 instances/templates/instance.html:138
+#: instances/templates/instance.html:190 instances/templates/instance.html:198
+#: instances/templates/instances.html:95 instances/views.py:163
+#: instances/views.py:558
+msgid "Resume"
+msgstr "Genoptag"
+
+#: instances/templates/instance.html:146 instances/templates/instance.html:210
+#: instances/templates/instance.html:212 instances/templates/instances.html:77
+#: instances/templates/instances.html:112
+#: instances/templates/instances.html:180
+#: instances/templates/instances.html:195
+#: instances/templates/instances.html:209 instances/views.py:117
+#: instances/views.py:365
+#, fuzzy
+#| msgid "Power"
+msgid "Power On"
+msgstr "Power"
+
+#: instances/templates/instance.html:155
+msgid "This action sends an ACPI shutdown signal to the instance."
+msgstr "Denne handling sender et ACPI nedlukningsignal til instansen."
+
+#: instances/templates/instance.html:162
+#, fuzzy
+#| msgid ""
+#| "This action forcibly powers off the instance and may cause data "
+#| "corruption."
+msgid ""
+"This action forcibly powers off and start the instance and may cause data "
+"corruption."
+msgstr "Denne handling lukker maskinen med det samme og kan skabe datafejl."
+
+#: instances/templates/instance.html:169
+msgid ""
+"This action forcibly powers off the instance and may cause data corruption."
+msgstr "Denne handling lukker maskinen med det samme og kan skabe datafejl."
+
+#: instances/templates/instance.html:177
+#, fuzzy
+#| msgid "This action suspends or restores the instance."
+msgid "This action suspends the instance."
+msgstr "Denne handling suspenderer eller gendanner instansen."
+
+#: instances/templates/instance.html:188
+#, fuzzy
+#| msgid "This action suspends or restores the instance."
+msgid "This action restore the instance after suspend."
+msgstr "Denne handling suspenderer eller gendanner instansen."
+
+#: instances/templates/instance.html:196
+msgid "Administrator blocked your instance."
+msgstr ""
+
+#: instances/templates/instance.html:206
+msgid "Click on Boot button to start this instance."
+msgstr ""
+
+#: instances/templates/instance.html:209
+msgid "Template instance cannot be started."
+msgstr ""
+
+#: instances/templates/instance.html:227 instances/templates/instance.html:250
+#: instances/templates/instance.html:252 instances/templates/instances.html:124
+#: instances/templates/instances.html:218
+msgid "Console"
+msgstr "Konsol"
+
+#: instances/templates/instance.html:233
+#, fuzzy
+#| msgid "Set Password"
+msgid "Root Password"
+msgstr "Indstil adgangskode"
+
+#: instances/templates/instance.html:248
+msgid ""
+"This action opens a new window with a VNC connection to the console of the "
+"instance."
+msgstr ""
+"Denne handling åbner et nyt vindue med en VNC forbindelse til instansens "
+"konsol."
+
+#: instances/templates/instance.html:258
+msgid "You need shut down your instance and enter a new root password."
+msgstr ""
+
+#: instances/templates/instance.html:262
+#, fuzzy
+#| msgid "Set Password"
+msgid "Enter Password"
+msgstr "Indstil adgangskode"
+
+#: instances/templates/instance.html:266 instances/templates/instance.html:268
+#, fuzzy
+#| msgid "Set Password"
+msgid "Reset Root Password"
+msgstr "Indstil adgangskode"
+
+#: instances/templates/instance.html:276
+msgid "You need shut down your instance and choose your public key."
+msgstr ""
+
+#: instances/templates/instance.html:292 instances/templates/instance.html:294
+msgid "Add Public Key"
+msgstr ""
+
+#: instances/templates/instance.html:309
+#, fuzzy
+#| msgid "New Instance"
+msgid "Resize Instance"
+msgstr "Ny instans"
+
+#: instances/templates/instance.html:314
+#: storages/templates/create_stg_vol_block.html:46
+#, fuzzy
+#| msgid "Add New Image"
+msgid "Add New Volume"
+msgstr "Tilføj nyt image"
+
+#: instances/templates/instance.html:323
+msgid "Logical host CPUs:"
+msgstr "Logiske værts-CPU'er:"
+
+#: instances/templates/instance.html:325 instances/templates/instance.html:350
+#: instances/templates/instance.html:380
+msgid "Current allocation"
+msgstr "Nuværende tildeling"
+
+#: instances/templates/instance.html:339 instances/templates/instance.html:364
+msgid "Maximum allocation"
+msgstr "Maksimum tildeling"
+
+#: instances/templates/instance.html:348
+msgid "Total host memory:"
+msgstr "Samlet værts-hukommelse:"
+
+#: instances/templates/instance.html:359 instances/templates/instance.html:374
+msgid "Custom value"
+msgstr "Tilpasset værdi"
+
+#: instances/templates/instance.html:377
+#, fuzzy
+#| msgid "Maximum allocation"
+msgid "Disk allocation (B):"
+msgstr "Maksimum tildeling"
+
+#: instances/templates/instance.html:393 instances/templates/instance.html:475
+msgid "You don't have permission for resizing instance"
+msgstr ""
+
+#: instances/templates/instance.html:401
+msgid "Volume parameters"
+msgstr ""
+
+#: instances/templates/instance.html:426
+#: storages/templates/create_stg_block.html:179
+#: storages/templates/create_stg_vol_block.html:58
+#: storages/templates/storage.html:96 storages/templates/storage.html:134
+msgid "Format"
+msgstr "Format"
+
+#: instances/templates/instance.html:436
+#: storages/templates/create_stg_vol_block.html:68
+#: storages/templates/storage.html:95
+msgid "Size"
+msgstr "Størrelse"
+
+#: instances/templates/instance.html:443
+msgid "Bus"
+msgstr ""
+
+#: instances/templates/instance.html:453
+msgid "Cache"
+msgstr ""
+
+#: instances/templates/instance.html:469 instances/templates/instance.html:471
+#: instances/templates/instance.html:476
+#, fuzzy
+#| msgid "volume"
+msgid "Add volume"
+msgstr "volumen"
+
+#: instances/templates/instance.html:489 instances/templates/instance.html:510
+#: instances/templates/instance.html:512
+#, fuzzy
+#| msgid "Create Snapshot"
+msgid "Take Snapshot"
+msgstr "Opret snapshot"
+
+#: instances/templates/instance.html:494
+#, fuzzy
+#| msgid "Restore from Snapshot"
+msgid "Restore From Snapshot"
+msgstr "Gendan fra snapshot"
+
+#: instances/templates/instance.html:502
+msgid ""
+"This may take more than an hour, depending on how much content is on your "
+"droplet and how large the disk is."
+msgstr ""
+
+#: instances/templates/instance.html:506
+#, fuzzy
+#| msgid "Create Snapshot"
+msgid "Enter Snapshot Name"
+msgstr "Opret snapshot"
+
+#: instances/templates/instance.html:517
+#, fuzzy
+#| msgid "To take a snapshot, shutdown the instance."
+msgid "To take a snapshot please Power Off the instance."
+msgstr "For at lave et snapshot skal instansen lukkes ned."
+
+#: instances/templates/instance.html:523
+msgid "Choose a snapshot for restore"
+msgstr ""
+
+#: instances/templates/instance.html:529 instances/templates/instance.html:1102
+#: logs/templates/showlogs.html:31
+msgid "Date"
+msgstr "Dato"
+
+#: instances/templates/instance.html:566
+msgid "You do not have any snapshots"
+msgstr "Du har ikke nogen snapshots"
+
+#: instances/templates/instance.html:569
+#, fuzzy
+#| msgid "To take a snapshot, shutdown the instance."
+msgid "To restore snapshots you need Power Off the instance."
+msgstr "For at lave et snapshot skal instansen lukkes ned."
+
+#: instances/templates/instance.html:581
+msgid "Media"
+msgstr "Medier"
+
+#: instances/templates/instance.html:587 networks/templates/network.html:37
+msgid "Autostart"
+msgstr "Autostart"
+
+#: instances/templates/instance.html:608 instances/templates/instance.html:890
+#: instances/templates/instance.html:892 instances/templates/instances.html:73
+#: instances/templates/instances.html:176 storages/templates/storage.html:152
+#: storages/templates/storage.html:159
+msgid "Clone"
+msgstr "Klon"
+
+#: instances/templates/instance.html:615 instances/templates/instance.html:947
+#: instances/templates/instance.html:949
+msgid "Migrate"
+msgstr "Migrer"
+
+#: instances/templates/instance.html:627
+#, fuzzy
+#| msgid "Action"
+msgid "Options"
+msgstr "Handling"
+
+#: instances/templates/instance.html:645
+msgid "CDROM"
+msgstr "CDROM"
+
+#: instances/templates/instance.html:660 instances/templates/instance.html:662
+msgid "Mount"
+msgstr ""
+
+#: instances/templates/instance.html:671
+msgid "Umount"
+msgstr ""
+
+#: instances/templates/instance.html:681
+msgid "Autostart your instance when host server is power on"
+msgstr ""
+
+#: instances/templates/instance.html:684 networks/templates/network.html:55
+#: storages/templates/storage.html:69
+msgid "Enable"
+msgstr "Aktiver"
+
+#: instances/templates/instance.html:686 networks/templates/network.html:57
+#: storages/templates/storage.html:72
+msgid "Disable"
+msgstr "Deaktiver"
+
+#: instances/templates/instance.html:694
+#, fuzzy
+#| msgid "To take a snapshot, shutdown the instance."
+msgid "To set console's type, shutdown the instance."
+msgstr "For at lave et snapshot skal instansen lukkes ned."
+
+#: instances/templates/instance.html:697
+#: interfaces/templates/create_iface_block.html:44
+#: secrets/templates/secrets.html:52
+#: storages/templates/create_stg_block.html:31
+#: storages/templates/create_stg_block.html:60
+#: storages/templates/create_stg_block.html:89
+#: storages/templates/create_stg_block.html:154
+msgid "Type"
+msgstr "Type"
+
+#: instances/templates/instance.html:700 instances/templates/instance.html:768
+msgid "please choose"
+msgstr "vælg venligst"
+
+#: instances/templates/instance.html:708 instances/templates/instance.html:710
+#: instances/templates/instance.html:746 instances/templates/instance.html:748
+#: instances/templates/instance.html:776 instances/templates/instance.html:778
+#: secrets/templates/secrets.html:103
+msgid "Set"
+msgstr "Indstil"
+
+#: instances/templates/instance.html:715
+#, fuzzy
+#| msgid "To create password for VNC, shutdown the instance."
+msgid "To create console password, shutdown the instance."
+msgstr "For at indstille en adgangskode til VNC skal instansen lukkes ned."
+
+#: instances/templates/instance.html:721
+msgid "Generate"
+msgstr "Generer"
+
+#: instances/templates/instance.html:726 instances/templates/instance.html:759
+msgid "Clear"
+msgstr "Ryd"
+
+#: instances/templates/instance.html:743
+msgid "Show"
+msgstr "Vis"
+
+#: instances/templates/instance.html:753
+#, fuzzy
+#| msgid "To set a keymap for vnc, shutdown the instance."
+msgid "To set console's keymap, shutdown the instance."
+msgstr "For at indstille et keymap til vnc skal instansen lukkes ned."
+
+#: instances/templates/instance.html:765
+msgid "Keymap"
+msgstr "Keymap"
+
+#: instances/templates/instance.html:788
+msgid "Assign network device to bridge"
+msgstr ""
+
+#: instances/templates/instance.html:790 instances/templates/instance.html:836
+msgid "Network devices"
+msgstr "Netværksenheder"
+
+#: instances/templates/instance.html:813
+msgid "Create a clone"
+msgstr "Opret en klon"
+
+#: instances/templates/instance.html:816
+msgid "Clone Name"
+msgstr "Klonnavn"
+
+#: instances/templates/instance.html:823 instances/templates/instance.html:847
+msgid "Guess"
+msgstr ""
+
+#: instances/templates/instance.html:845
+msgid "Random"
+msgstr ""
+
+#: instances/templates/instance.html:857
+msgid "Storage devices"
+msgstr "Storage-enheder"
+
+#: instances/templates/instance.html:878 instances/templates/instance.html:978
+msgid "Title"
+msgstr ""
+
+#: instances/templates/instance.html:884 instances/templates/instance.html:984
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: instances/templates/instance.html:900
+#, fuzzy
+#| msgid "Both host servers must have equal settings and OS type"
+msgid "For migration both host servers must have equal settings and OS type"
+msgstr "Begge værtsservere skal have ens indstillinger og OS type"
+
+#: instances/templates/instance.html:903
+msgid "Original host"
+msgstr "Original vært"
+
+#: instances/templates/instance.html:909
+msgid "Host migration"
+msgstr "Værts migrering"
+
+#: instances/templates/instance.html:923
+msgid "Live migration"
+msgstr "Live migrering"
+
+#: instances/templates/instance.html:929
+msgid "Unsafe migration"
+msgstr "Usikker migrering"
+
+#: instances/templates/instance.html:935
+msgid "Delete original"
+msgstr "Slet original"
+
+#: instances/templates/instance.html:941
+#, fuzzy
+#| msgid "Live migration"
+msgid "Offline migration"
+msgstr "Live migrering"
+
+#: instances/templates/instance.html:955
+msgid "If you need to edit xml please Power Off the instance"
+msgstr ""
+
+#: instances/templates/instance.html:990
+#, fuzzy
+#| msgid "From Template"
+msgid "Is template"
+msgstr "Fra skabelon"
+
+#: instances/templates/instance.html:1008
+#, fuzzy
+#| msgid "Instances"
+msgid "Instance owners"
+msgstr "Instanser"
+
+#: instances/templates/instance.html:1043
+msgid "Real Time"
+msgstr ""
+
+#: instances/templates/instance.html:1048 logs/templates/showlogs.html:3
+#: logs/templates/showlogs.html:8 templates/navbar.html:28
+msgid "Logs"
+msgstr ""
+
+#: instances/templates/instance.html:1057
+msgid "CPU usage"
+msgstr "CPU brug"
+
+#: instances/templates/instance.html:1070
+#, fuzzy
+#| msgid "Bandwidth"
+msgid "Bandwidth device:"
+msgstr "Båndbredde"
+
+#: instances/templates/instance.html:1084
+#, fuzzy
+#| msgid "Disk I/O"
+msgid "Disk I/O device:"
+msgstr "Disk I/O"
+
+#: instances/templates/instance.html:1104 logs/templates/showlogs.html:34
+#, fuzzy
+#| msgid "Usage"
+msgid "Message"
+msgstr "Brug"
+
+#: instances/templates/instance.html:1123
+#, fuzzy
+#| msgid "Custom Instance"
+msgid "Destroy Instance"
+msgstr "Tilpasset instans"
+
+#: instances/templates/instance.html:1130
+#, fuzzy
+#| msgid "Delete Instance"
+msgid "Delete storage for instance?"
+msgstr "Slet instans"
+
+#: instances/templates/instance.html:1139
+msgid "Remove Instance's data"
+msgstr ""
+
+#: instances/templates/instances.html:4 instances/templates/instances.html:20
+#: templates/navbar.html:18
+msgid "Instances"
+msgstr "Instanser"
+
+#: instances/templates/instances.html:35 instances/templates/instances.html:141
+#, fuzzy
+#| msgid "You do not have any snapshots"
+msgid "You don't have any Instace"
+msgstr "Du har ikke nogen snapshots"
+
+#: instances/templates/instances.html:90 instances/templates/instances.html:107
+#: instances/templates/instances.html:190
+#: instances/templates/instances.html:204
+msgid "VNC Console"
+msgstr "VNC konsol"
+
+#: instances/views.py:68
+msgid "Deleting due to multiple records."
+msgstr ""
+
+#: instances/views.py:136
+msgid "Send console.vv file"
+msgstr ""
+
+#: instances/views.py:296
+msgid "None available device name"
+msgstr ""
+
+#: instances/views.py:423
+#, fuzzy
+#| msgid "Set Password"
+msgid "Reset root password"
+msgstr "Indstil adgangskode"
+
+#: instances/views.py:431 instances/views.py:453
+msgid "Please shutdow down your instance and then try again"
+msgstr ""
+
+#: instances/views.py:445
+#, python-format
+msgid "Installed new ssh public key %s"
+msgstr ""
+
+#: instances/views.py:477
+#, python-format
+msgid "User %s quota reached, cannot resize '%s'!"
+msgstr ""
+
+#: instances/views.py:506
+msgid "Attach new disk"
+msgstr ""
+
+#: instances/views.py:514
+#, fuzzy
+#| msgid "Media"
+msgid "Mount media"
+msgstr "Medier"
+
+#: instances/views.py:522
+msgid "Umount media"
+msgstr ""
+
+#: instances/views.py:529
+#, fuzzy
+#| msgid "Snapshots"
+msgid "New snapshot"
+msgstr "Snapshot"
+
+#: instances/views.py:536
+#, fuzzy
+#| msgid "Create Snapshot"
+msgid "Delete snapshot"
+msgstr "Opret snapshot"
+
+#: instances/views.py:543
+msgid "Successful revert snapshot: "
+msgstr "Gik korrekt tilbage til snapshot:"
+
+#: instances/views.py:546
+#, fuzzy
+#| msgid "Create Snapshot"
+msgid "Revert snapshot"
+msgstr "Opret snapshot"
+
+#: instances/views.py:564
+#, fuzzy
+#| msgid "Autostart"
+msgid "Set autostart"
+msgstr "Autostart"
+
+#: instances/views.py:570
+#, fuzzy
+#| msgid "Autostart"
+msgid "Unset autostart"
+msgstr "Autostart"
+
+#: instances/views.py:578
+#, fuzzy
+#| msgid "Edit"
+msgid "Edit XML"
+msgstr "Rediger"
+
+#: instances/views.py:592
+#, fuzzy
+#| msgid "Enter the VNC password or select Generate"
+msgid "Enter the console password or select Generate"
+msgstr "Indtast VNC adgangskode eller vælg generer"
+
+#: instances/views.py:596
+msgid ""
+"Error setting console password. You should check that your instance have an "
+"graphic device."
+msgstr ""
+
+#: instances/views.py:599
+#, fuzzy
+#| msgid "VNC Password"
+msgid "Set VNC password"
+msgstr "VNC adgangskode"
+
+#: instances/views.py:610
+#, fuzzy
+#| msgid "VNC Keymap"
+msgid "Set VNC keymap"
+msgstr "VNC keymap"
+
+#: instances/views.py:617
+msgid "Set VNC type"
+msgstr ""
+
+#: instances/views.py:645
+#, fuzzy, python-format
+#| msgid "Migrate"
+msgid "Migrate to %s"
+msgstr "Migrer"
+
+#: instances/views.py:657
+#, fuzzy
+#| msgid "Virtual Networks"
+msgid "Edit network"
+msgstr "Virtuelle netværk"
+
+#: instances/views.py:670
+#, fuzzy
+#| msgid "Pool name already use"
+msgid "Owner already added"
+msgstr "Pool-navnet er allerede i brug"
+
+#: instances/views.py:675
+#, python-format
+msgid "Added owner %d"
+msgstr ""
+
+#: instances/views.py:683
+#, python-format
+msgid "Deleted owner %d"
+msgstr ""
+
+#: instances/views.py:701
+#, python-format
+msgid "User %s quota reached, cannot create '%s'!"
+msgstr ""
+
+#: instances/views.py:704
+#, fuzzy, python-format
+#| msgid "ISO image already exist"
+msgid "Instance '%s' already exists!"
+msgstr "ISO-image eksisterer allerede"
+
+#: instances/views.py:707
+#, fuzzy, python-format
+#| msgid "The host name must not contain any special characters"
+msgid "Instance name '%s' contains invalid characters!"
+msgstr "Værtsnavnet må ikke indeholde nogen specialtegn"
+
+#: instances/views.py:710
+#, python-format
+msgid "Instance mac '%s' invalid format!"
+msgstr ""
+
+#: instances/views.py:719
+#, python-format
+msgid "Clone of '%s'"
+msgstr ""
+
+#: instances/views.py:733
+msgid "Edit options"
+msgstr ""
+
+#: interfaces/forms.py:25
+msgid "The ipv4 must not contain any special characters"
+msgstr "Ipv4 må ikke indeholde nogen specialtegn"
+
+#: interfaces/forms.py:27
+msgid "The ipv4 must not exceed 20 characters"
+msgstr "Ipv4 må ikke overskride 20 tegn"
+
+#: interfaces/forms.py:34
+msgid "The ipv4 gateway must not contain any special characters"
+msgstr "Ipv4 gateway må ikke ikke indeholde nogen specialtegn"
+
+#: interfaces/forms.py:36
+msgid "The ipv4 gateway must not exceed 20 characters"
+msgstr "Ipv4 gateway må ikke overskride 20 tegn"
+
+#: interfaces/forms.py:43
+msgid "The ipv6 must not contain any special characters"
+msgstr "Ipv6 må ikke indeholde nogen specialtegn"
+
+#: interfaces/forms.py:45
+msgid "The ipv6 must not exceed 100 characters"
+msgstr "Ipv6 må ikke overskride 100 tegn"
+
+#: interfaces/forms.py:52
+msgid "The ipv6 gateway must not contain any special characters"
+msgstr "Ipv6 gateway må ikke ikke indeholde nogen specialtegn"
+
+#: interfaces/forms.py:54
+msgid "The ipv6 gateway must not exceed 100 characters"
+msgstr "Ipv6 gateway må ikke overskride 100 tegn"
+
+#: interfaces/forms.py:61 interfaces/forms.py:70
+msgid "The interface must not contain any special characters"
+msgstr "Interfacet må ikke indeholde nogen specialtegn"
+
+#: interfaces/forms.py:63 interfaces/forms.py:72
+msgid "The interface must not exceed 10 characters"
+msgstr "Interfacet må ikke overskride 10 tegn"
+
+#: interfaces/templates/create_iface_block.html:13
+msgid "Create New Interface"
+msgstr "Opret nyt interface"
+
+#: interfaces/templates/create_iface_block.html:24
+msgid "Start mode"
+msgstr "Start tilstand"
+
+#: interfaces/templates/create_iface_block.html:27
+msgid "none"
+msgstr "ingen"
+
+#: interfaces/templates/create_iface_block.html:28
+msgid "onboot"
+msgstr "ved boot"
+
+#: interfaces/templates/create_iface_block.html:29
+msgid "hotplug"
+msgstr "hotplug"
+
+#: interfaces/templates/create_iface_block.html:34
+#: storages/templates/create_stg_block.html:73
+msgid "Device"
+msgstr "Enhed"
+
+#: interfaces/templates/create_iface_block.html:47
+msgid "bridge"
+msgstr "bridge"
+
+#: interfaces/templates/create_iface_block.html:48
+msgid "ethernet"
+msgstr "ethernet"
+
+#: interfaces/templates/create_iface_block.html:53
+msgid "STP"
+msgstr "STP"
+
+#: interfaces/templates/create_iface_block.html:57
+msgid "on"
+msgstr "til"
+
+#: interfaces/templates/create_iface_block.html:58
+msgid "off"
+msgstr "fra"
+
+#: interfaces/templates/create_iface_block.html:63
+msgid "Delay"
+msgstr "Pause"
+
+#: interfaces/templates/create_iface_block.html:71
+msgid "IPv4"
+msgstr "IPv4"
+
+#: interfaces/templates/create_iface_block.html:73
+msgid "IPv6"
+msgstr "IPv6"
+
+#: interfaces/templates/create_iface_block.html:80
+msgid "IPv4 Mode"
+msgstr "IPv4 tilstand"
+
+#: interfaces/templates/create_iface_block.html:83
+#: interfaces/templates/create_iface_block.html:110
+#: networks/templates/create_net_block.html:30
+msgid "DHCP"
+msgstr "DHCP"
+
+#: interfaces/templates/create_iface_block.html:84
+#: interfaces/templates/create_iface_block.html:111
+msgid "Static"
+msgstr "Statisk"
+
+#: interfaces/templates/create_iface_block.html:85
+#: interfaces/templates/create_iface_block.html:109
+msgid "No configuration"
+msgstr "Ingen konfiguration"
+
+#: interfaces/templates/create_iface_block.html:90
+msgid "IPv4 Address"
+msgstr "IPv4 adresse"
+
+#: interfaces/templates/create_iface_block.html:96
+msgid "IPv4 Gateway"
+msgstr "IPv4 gateway"
+
+#: interfaces/templates/create_iface_block.html:106
+msgid "IPv6 Mode"
+msgstr "IPv6 tilstand"
+
+#: interfaces/templates/create_iface_block.html:116
+msgid "IPv6 Address"
+msgstr "IPv6 adresse"
+
+#: interfaces/templates/create_iface_block.html:122
+msgid "IPv6 Gateway"
+msgstr "IPv6 gateway"
+
+#: interfaces/templates/interface.html:3
+msgid "Interface"
+msgstr "Interface"
+
+#: interfaces/templates/interface.html:8 interfaces/templates/interface.html:34
+#, fuzzy
+#| msgid "Interface"
+msgid "Interface:"
+msgstr "Interface"
+
+#: interfaces/templates/interface.html:35
+#, fuzzy
+#| msgid "IPv4"
+msgid "IPv4:"
+msgstr "IPv4"
+
+#: interfaces/templates/interface.html:36
+#, fuzzy
+#| msgid "IPv6"
+msgid "IPv6:"
+msgstr "IPv6"
+
+#: interfaces/templates/interface.html:37
+#, fuzzy
+#| msgid "MAC Adress"
+msgid "MAC Adress:"
+msgstr "MAC adresse"
+
+#: interfaces/templates/interface.html:38
+#, fuzzy
+#| msgid "Interface type"
+msgid "Interface Type:"
+msgstr "Interface type"
+
+#: interfaces/templates/interface.html:40
+msgid "Bridge device"
+msgstr "Bridge enhed"
+
+#: interfaces/templates/interface.html:42
+#, fuzzy
+#| msgid "Boot mode"
+msgid "Boot Mode:"
+msgstr "Boot tilstand"
+
+#: interfaces/templates/interface.html:43 storages/templates/storage.html:44
+#, fuzzy
+#| msgid "State"
+msgid "State:"
+msgstr "Tilstand"
+
+#: interfaces/templates/interface.html:58 networks/templates/network.html:45
+#: storages/templates/storage.html:56
+msgid "Start"
+msgstr "Start"
+
+#: interfaces/templates/interface.html:61 networks/templates/network.html:48
+#: storages/templates/storage.html:60
+msgid "Stop"
+msgstr "Stop"
+
+#: interfaces/templates/interfaces.html:39
+#, fuzzy
+#| msgid "You do not have any Secrets"
+msgid "Hypervisor doesn't have any Interfaces"
+msgstr "Du har ikke nogen hemmeligheder"
+
+#: interfaces/templates/interfaces.html:53 storages/templates/storages.html:51
+#, fuzzy
+#| msgid "Type"
+msgid "Type:"
+msgstr "Type"
+
+#: interfaces/templates/interfaces.html:54
+msgid "MAC:"
+msgstr ""
+
+#: logs/templates/showlogs.html:21
+#, fuzzy
+#| msgid "You do not have any flavors"
+msgid "You don't have any Logs"
+msgstr "Du har ikke nogen varianter"
+
+#: networks/forms.py:7 storages/forms.py:7
+msgid "No pool name has been entered"
+msgstr "Der er ikke angivet noget pool-navn"
+
+#: networks/forms.py:9
+msgid "No subnet has been entered"
+msgstr "Der er ikke angivet noget subnet"
+
+#: networks/forms.py:21 storages/forms.py:25
+msgid "The pool name must not contain any special characters"
+msgstr "Pool-navnet må ikke indeholde nogen specialtegn"
+
+#: networks/forms.py:23 storages/forms.py:27
+msgid "The pool name must not exceed 20 characters"
+msgstr "Pool-navnet må ikke overskride 20 tegn"
+
+#: networks/forms.py:30
+msgid "The pool subnet must not contain any special characters"
+msgstr "Pool-subnettet må ikke indeholde nogen specialtegn"
+
+#: networks/forms.py:32
+msgid "The pool subnet must not exceed 20 characters"
+msgstr "Pool-subnettet må ikke overskride 20 tegn"
+
+#: networks/forms.py:40
+msgid "The pool bridge name must not contain any special characters"
+msgstr "Pool-bridge navnet må ikke indeholde nogen specialtegn"
+
+#: networks/forms.py:42
+msgid "The pool bridge name must not exceed 20 characters"
+msgstr "Pool-bridge navnet må ikke overskride 20 tegn"
+
+#: networks/templates/create_net_block.html:13
+msgid "Add New Network"
+msgstr "Tilføj nyt netværk"
+
+#: networks/templates/create_net_block.html:24
+msgid "Subnet pool"
+msgstr "Subnet pool"
+
+#: networks/templates/create_net_block.html:36
+#: networks/templates/network.html:106
+msgid "Fixed Address"
+msgstr "Fast adresse"
+
+#: networks/templates/create_net_block.html:42
+msgid "Type forwarding"
+msgstr "Videresendelsestype"
+
+#: networks/templates/create_net_block.html:45
+#: networks/templates/network.html:78
+msgid "NAT"
+msgstr "NAT"
+
+#: networks/templates/create_net_block.html:46
+#: networks/templates/network.html:81
+msgid "ROUTE"
+msgstr "RUTE"
+
+#: networks/templates/create_net_block.html:47
+#: networks/templates/network.html:87
+msgid "ISOLATE"
+msgstr "ISOLER"
+
+#: networks/templates/create_net_block.html:48
+#: networks/templates/network.html:84
+msgid "BRIDGE"
+msgstr "BRIDGE"
+
+#: networks/templates/create_net_block.html:53
+msgid "Bridge Name"
+msgstr "Bridge navn"
+
+#: networks/templates/create_net_block.html:59
+msgid "Open vSwitch"
+msgstr "Open vSwitch"
+
+#: networks/templates/network.html:8 networks/templates/network.html:68
+#, fuzzy
+#| msgid "Network"
+msgid "Network:"
+msgstr "Netværk"
+
+#: networks/templates/network.html:34
+#, fuzzy
+#| msgid "Network name"
+msgid "Network name:"
+msgstr "Netværksnavn"
+
+#: networks/templates/network.html:35 networks/templates/networks.html:51
+#, fuzzy
+#| msgid "Device"
+msgid "Device:"
+msgstr "Enhed"
+
+#: networks/templates/network.html:36
+msgid "State"
+msgstr "Tilstand"
+
+#: networks/templates/network.html:65
+msgid "IPv4 configuration"
+msgstr "IPv4 konfiguration"
+
+#: networks/templates/network.html:67
+#, fuzzy
+#| msgid "IPv4 Forwarding"
+msgid "IPv4 Forwarding:"
+msgstr "IPv4 videresendelse"
+
+#: networks/templates/network.html:69
+#, fuzzy
+#| msgid "DHCP"
+msgid "DHCP:"
+msgstr "DHCP"
+
+#: networks/templates/network.html:71
+#, fuzzy
+#| msgid "Start"
+msgid "Start:"
+msgstr "Start"
+
+#: networks/templates/network.html:72
+msgid "End:"
+msgstr ""
+
+#: networks/templates/network.html:93
+msgid "ON"
+msgstr "TIL"
+
+#: networks/templates/network.html:95
+msgid "OFF"
+msgstr "FRA"
+
+#: networks/templates/network.html:127
+msgid "Address"
+msgstr "Adresse"
+
+#: networks/templates/networks.html:38
+#, fuzzy
+#| msgid "You do not have any virtual networks"
+msgid "Hypervisor doesn't have any Networks"
+msgstr "Du har ikke nogen virtuelle netværk"
+
+#: networks/templates/networks.html:52
+#, fuzzy
+#| msgid "Forward"
+msgid "Forward:"
+msgstr "Videresend"
+
+#: networks/views.py:39
+msgid "Pool name already in use"
+msgstr "Poolnavnet er allerede i brug"
+
+#: networks/views.py:46
+msgid "Input subnet pool error"
+msgstr "Fej i indtastet subnetpool"
+
+#: secrets/templates/create_secret_block.html:13
+msgid "Create New Secret"
+msgstr "Opret ny hemmelighed"
+
+#: secrets/templates/create_secret_block.html:18
+msgid "Ephemeral"
+msgstr "Ephemeral"
+
+#: secrets/templates/create_secret_block.html:21
+#: secrets/templates/create_secret_block.html:30
+msgid "no"
+msgstr "nej"
+
+#: secrets/templates/create_secret_block.html:22
+#: secrets/templates/create_secret_block.html:31
+msgid "yes"
+msgstr "ja"
+
+#: secrets/templates/create_secret_block.html:27
+msgid "Private"
+msgstr "Privat"
+
+#: secrets/templates/create_secret_block.html:36
+#: secrets/templates/secrets.html:53
+msgid "Usage"
+msgstr "Brug"
+
+#: secrets/templates/create_secret_block.html:39
+#: secrets/templates/secrets.html:68
+msgid "ceph"
+msgstr "ceph"
+
+#: secrets/templates/create_secret_block.html:40
+#: secrets/templates/secrets.html:62
+msgid "volume"
+msgstr "volumen"
+
+#: secrets/templates/create_secret_block.html:41
+#: secrets/templates/secrets.html:65
+msgid "iscsi"
+msgstr "iscsi"
+
+#: secrets/templates/create_secret_block.html:46
+msgid "Data"
+msgstr "Data"
+
+#: secrets/templates/secrets.html:42
+#, fuzzy
+#| msgid "You do not have any Secrets"
+msgid "Hypervisor doesn't have any Secrets"
+msgstr "Du har ikke nogen hemmeligheder"
+
+#: secrets/templates/secrets.html:51
+msgid "UUID"
+msgstr "UUID"
+
+#: secrets/templates/secrets.html:90
+msgid "Set secret value"
+msgstr "Indstil hemmelig værdi"
+
+#: secrets/templates/secrets.html:95
+msgid "Value"
+msgstr "Værdi"
+
+#: storages/forms.py:10 storages/forms.py:39
+msgid "No path has been entered"
+msgstr "Der ikke angivet nogen sti"
+
+#: storages/forms.py:36
+#, fuzzy
+#| msgid "The type must not contain any special characters"
+msgid "The target must not contain any special characters"
+msgstr "Typen må ikke indeholde nogen specialtegn"
+
+#: storages/forms.py:48
+msgid "No device has been entered"
+msgstr "Der er ikke angivet nogen enhed"
+
+#: storages/forms.py:50
+#, fuzzy
+#| msgid "The type must not contain any special characters"
+msgid "The source must not contain any special characters"
+msgstr "Typen må ikke indeholde nogen specialtegn"
+
+#: storages/forms.py:66 storages/forms.py:85
+msgid "The image name must not contain any special characters"
+msgstr "Image-navnet på ikke indeholde nogen specialtegn"
+
+#: storages/forms.py:68 storages/forms.py:87
+msgid "The image name must not exceed 20 characters"
+msgstr "Image-navnet må ikke overskride 20 tegn"
+
+#: storages/templates/create_stg_block.html:13
+msgid "Create Storage Pool"
+msgstr "Opret storage pool"
+
+#: storages/templates/create_stg_block.html:18
+msgid "DIR"
+msgstr "DIR"
+
+#: storages/templates/create_stg_block.html:20
+msgid "LVM"
+msgstr "LVM"
+
+#: storages/templates/create_stg_block.html:21
+msgid "CEPH"
+msgstr "CEPH"
+
+#: storages/templates/create_stg_block.html:22
+msgid "NETFS"
+msgstr "NETFS"
+
+#: storages/templates/create_stg_block.html:23
+msgid "ISO"
+msgstr "ISO"
+
+#: storages/templates/create_stg_block.html:44
+#: storages/templates/create_stg_block.html:218
+msgid "Path"
+msgstr "Sti"
+
+#: storages/templates/create_stg_block.html:102
+msgid "Ceph User"
+msgstr "Ceph bruger"
+
+#: storages/templates/create_stg_block.html:108
+msgid "Ceph Pool"
+msgstr "Ceph pool"
+
+#: storages/templates/create_stg_block.html:114
+msgid "Ceph Host"
+msgstr "Ceph vært"
+
+#: storages/templates/create_stg_block.html:173
+msgid "Remote Path"
+msgstr "Sti på fjernsystem"
+
+#: storages/templates/create_stg_block.html:182
+msgid "auto"
+msgstr "auto"
+
+#: storages/templates/create_stg_block.html:183
+msgid "nfs"
+msgstr "nfs"
+
+#: storages/templates/create_stg_block.html:184
+msgid "glusterfs"
+msgstr "glusterfs"
+
+#: storages/templates/create_stg_block.html:185
+msgid "cifs"
+msgstr "cifs"
+
+#: storages/templates/create_stg_block.html:190
+msgid "Local Path"
+msgstr "Lokal sti"
+
+#: storages/templates/create_stg_vol_block.html:15
+msgid "Upload ISO Image"
+msgstr "Upload ISO image"
+
+#: storages/templates/create_stg_vol_block.html:28
+msgid "Upload"
+msgstr "Upload"
+
+#: storages/templates/create_stg_vol_block.html:61
+#: storages/templates/storage.html:139
+msgid "qcow2"
+msgstr "qcow2"
+
+#: storages/templates/create_stg_vol_block.html:62
+#: storages/templates/storage.html:138
+msgid "qcow"
+msgstr "qcow"
+
+#: storages/templates/create_stg_vol_block.html:63
+#: storages/templates/storage.html:137
+msgid "raw"
+msgstr "raw"
+
+#: storages/templates/storage.html:13
+#, fuzzy
+#| msgid "Storage"
+msgid "Storage:"
+msgstr "Storage"
+
+#: storages/templates/storage.html:39
+#, fuzzy
+#| msgid "Pool name"
+msgid "Pool name:"
+msgstr "Poolnavn"
+
+#: storages/templates/storage.html:40
+#, fuzzy
+#| msgid "Pool type"
+msgid "Pool type:"
+msgstr "Pool-type"
+
+#: storages/templates/storage.html:41
+#, fuzzy
+#| msgid "Pool path"
+msgid "Pool path:"
+msgstr "Pool-sti"
+
+#: storages/templates/storage.html:42
+#, fuzzy
+#| msgid "Pool status"
+msgid "Pool status:"
+msgstr "Pool-status"
+
+#: storages/templates/storage.html:43 storages/templates/storages.html:52
+#, fuzzy
+#| msgid "Size"
+msgid "Size:"
+msgstr "Størrelse"
+
+#: storages/templates/storage.html:45
+#, fuzzy
+#| msgid "Autostart"
+msgid "Autostart:"
+msgstr "Autostart"
+
+#: storages/templates/storage.html:52
+#, fuzzy
+#| msgid "Usage"
+msgid "Usage:"
+msgstr "Brug"
+
+#: storages/templates/storage.html:85
+msgid "Volumes"
+msgstr "Volumner"
+
+#: storages/templates/storage.html:115
+msgid "Clone image"
+msgstr "Klon image"
+
+#: storages/templates/storage.html:128
+msgid "Convert"
+msgstr "Konverter"
+
+#: storages/templates/storage.html:181
+msgid "Hypervisor doesn't have any Volumes"
+msgstr ""
+
+#: storages/templates/storages.html:38
+#, fuzzy
+#| msgid "You do not have any storage pools"
+msgid "Hypervisor doesn't have any Storages"
+msgstr "Du har ikke nogen storage pools"
+
+#: storages/templates/storages.html:53
+#, fuzzy
+#| msgid "Volumes"
+msgid "Volumes:"
+msgstr "Volumner"
+
+#: storages/views.py:39
+msgid "Pool name already use"
+msgstr "Pool-navnet er allerede i brug"
+
+#: storages/views.py:43
+msgid "You need create secret for pool"
+msgstr "Du skal oprette en hemmelighed til pool'en"
+
+#: storages/views.py:46
+msgid "You need input all fields for creating ceph pool"
+msgstr "Du skal udfylde alle felter for at oprette en ceph pool"
+
+#: storages/views.py:174
+msgid "ISO image already exist"
+msgstr "ISO-image eksisterer allerede"
+
+#: storages/views.py:186
+msgid "Name of volume name already use"
+msgstr "Volumen-navnet er allerede i brug"
+
+#: templates/404.html:3
+msgid "404"
+msgstr "404"
+
+#: templates/404.html:9
+msgid "404 Not Found"
+msgstr "404 Ikke fundet"
+
+#: templates/404.html:11
+msgid "The requested page was not found on this server."
+msgstr "Den ønskede side blev ikke fundet på denne server."
+
+#: templates/500.html:3
+msgid "500"
+msgstr "500"
+
+#: templates/500.html:9
+msgid "500 Internal Server Error"
+msgstr "500 Intern serverfejl"
+
+#: templates/500.html:11
+msgid ""
+"The server encountered an internal error or misconfiguration and was unable "
+"to complete you request."
+msgstr ""
+"Serveren stødte på en intern fejl eller fejl-konfiguration og kunne ikke "
+"gennemføre din forespørgsel."
+
+#: templates/pleasewaitdialog.html:7
+#, fuzzy
+#| msgid "Processor"
+msgid "Processing"
+msgstr "Processor"
+
+#~ msgid "Show all host and vm's"
+#~ msgstr "Vis alle værter og VM'er"
+
+#~ msgid "Infrastructure"
+#~ msgstr "Infrastruktur"
+
+#~ msgid "Sign out"
+#~ msgstr "Log ud"
+
+#~ msgid "Sign in"
+#~ msgstr "Log ind"
+
+#~ msgid "Loading..."
+#~ msgstr "Indlæser"
+
+#~ msgid "From XML"
+#~ msgstr "Fra XML"
+
+#~ msgid "New Flavor"
+#~ msgstr "Ny variant"
+
+#~ msgid "Create Custom Instance"
+#~ msgstr "Opret tilpasset instans"
+
+#~ msgid "Create Instance From Template Image"
+#~ msgstr "Opret instans fra skabelon"
+
+#~ msgid "Create Instance From XML"
+#~ msgstr "Opret instans fra XML"
+
+#~ msgid "Memory usage"
+#~ msgstr "Hukommelsesbrug"
+
+#~ msgid "Running"
+#~ msgstr "Kører"
+
+#~ msgid "Shutoff"
+#~ msgstr "Slukket"
+
+#~ msgid "Hostname / VMs"
+#~ msgstr "Værtsnavn / VM'er"
+
+#~ msgid "VCPUs"
+#~ msgstr "VCPU'er"
+
+#~ msgid "Not Active"
+#~ msgstr "Ikke aktiv"
+
+#~ msgid "Connection Failed"
+#~ msgstr "Forbindelse mislykkedes"
+
+#~ msgid "You have no connection"
+#~ msgstr "Du har ikke nogen forbindelse"
+
+#~ msgid "VMs"
+#~ msgstr "VM'er"
+
+#~ msgid "Saved"
+#~ msgstr "Gemt"
+
+#~ msgid "Statistics"
+#~ msgstr "Statistik"
+
+#~ msgid "Shutdown"
+#~ msgstr "Luk ned"
+
+#~ msgid "Force Shutdown"
+#~ msgstr "Gennemtving nedlukning"
+
+#~ msgid "Save"
+#~ msgstr "Gem"
+
+#~ msgid "This action saves the state of the instance."
+#~ msgstr "Denne handling gemmer instansens tilstand."
+
+#~ msgid "Delete Save Image"
+#~ msgstr "Slet gemt image"
+
+#~ msgid "Telnet Console"
+#~ msgstr "Telnet konsol"
+
+#~ msgid ""
+#~ "This action open new window with console Telnet connection to your "
+#~ "instance."
+#~ msgstr ""
+#~ "Denne handling åbner et vindue med en konsol telnet forbindelse til din "
+#~ "instans."
+
+#~ msgid "Set Keymap"
+#~ msgstr "Indstil keymap"
+
+#~ msgid "VCPU's and Memory"
+#~ msgstr "VCPU'er og hukommelse"
+
+#~ msgid "Disks and Networks"
+#~ msgstr "Diske og netværk"
+
+#~ msgid "Description and Autostart"
+#~ msgstr "Beskrivelse og autostart"
+
+#~ msgid "Disconnect"
+#~ msgstr "Afbryd"
+
+#~ msgid "To revert to a snapshot, shutdown the instance"
+#~ msgstr "For at vende tilbage til et snapshot skal instansen lukkes ned"
+
+#~ msgid "Revert"
+#~ msgstr "Omgør"
+
+#~ msgid "Instance Statistics"
+#~ msgstr "Instans statistikker"
+
+#~ msgid "In"
+#~ msgstr "Ind"
+
+#~ msgid "Out"
+#~ msgstr "Ud"
+
+#~ msgid "Read"
+#~ msgstr "Læs"
+
+#~ msgid "Write"
+#~ msgstr "Skriv"
+
+#~ msgid "Delete HDD image?"
+#~ msgstr "Slet HHD image?"
+
+#~ msgid "If you check this box, Instance's data will be lost!"
+#~ msgstr "Hvis du markerer denne boks, vil instansens data gå tabt!"
+
+#~ msgid "You do not have any Virtual Machines"
+#~ msgstr "Du har ikke nogen virtuelle maskiner"
+
+#~ msgid "Sign Out"
+#~ msgstr "Log ud"
+
+#~ msgid "Network Pool"
+#~ msgstr "Netværks-pool"
+
+#~ msgid "End"
+#~ msgstr "Slut"
+
+#~ msgid "New Network"
+#~ msgstr "Nyt netværk"
+
+#~ msgid "Dashboard"
+#~ msgstr "Instrumentbord"
+
+#~ msgid "Connections"
+#~ msgstr "Forbindelser"
+
+#~ msgid "Host"
+#~ msgstr "Vært"
+
+#~ msgid "Edit Host Server"
+#~ msgstr "Rediger værtsserver"
+
+#~ msgid "TCP"
+#~ msgstr "TCP"
+
+#~ msgid "SSH"
+#~ msgstr "SSH"
+
+#~ msgid "TLS"
+#~ msgstr "TLS"
+
+#~ msgid "SOCKET"
+#~ msgstr "SOCKET"
+
+#~ msgid "Storage Pool"
+#~ msgstr "Storage pool"
+
+#~ msgid "Images"
+#~ msgstr "Images"
+
+#~ msgid "Upload ISO"
+#~ msgstr "Upload ISO"
+
+#~ msgid "You do not have any ISO images or storage pool not active"
+#~ msgstr "Du har ikke nogen aktive ISO images eller storage pools"
+
+#~ msgid "Add Image"
+#~ msgstr "Tilføj image"
+
+#~ msgid "You do not have any volumes or storage pools active"
+#~ msgstr "Du har ikke nogen aktive volumner eller storage pools"
+
+#~ msgid "New Storage Pool"
+#~ msgstr "Ny storage pool"

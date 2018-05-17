@@ -1,7 +1,7 @@
 import time
 import json
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from computes.models import Compute
@@ -123,7 +123,7 @@ def computes(request):
                 compute_edit.hostname = data['hostname']
                 compute_edit.login = data['login']
                 compute_edit.password = data['password']
-                compute.edit_details = data['details']
+                compute_edit.edit_details = data['details']
                 compute_edit.save()
                 return HttpResponseRedirect(request.get_full_path())
             else:

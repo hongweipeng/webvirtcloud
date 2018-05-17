@@ -39,12 +39,12 @@
                                     <table class="table table-hover table-striped sortable-theme-bootstrap" data-sortable>
                                         <thead>
                                             <tr>
-                                                <th>Name<br>Description</th>
+                                                <th>{% trans "Name" %}<br>Description</th>
                                                 <th>Host<br>User</th>
-                                                <th>Status</th>
-                                                <th>VCPU</th>
-                                                <th>Memory<br>({% trans "MB" %})</th>
-                                                <th data-sortable="false" style="width:205px;">Actions</th>
+                                                <th>{% trans "Status" %}</th>
+                                                <th>{% trans "VCPUs" %}</th>
+                                                <th>{% trans "Memory" %}<br>({% trans "MB" %})</th>
+                                                <th data-sortable="false" style="width:205px;">{% trans "Action" %}</th>
                                             </tr>
                                         </thead>
                                         <tbody class="searchable">
@@ -57,7 +57,7 @@
                                                                 <span class="text-success">{% trans "Active" %}</span>
                                                             {% endifequal %}
                                                             {% ifequal info.status 5 %}
-                                                                <span class="text-danger">{% trans "Off" %}</span>
+                                                                <span class="text-danger">{% trans "Shutoff" %}</span>
                                                             {% endifequal %}
                                                             {% ifequal info.status 3 %}
                                                                 <span class="text-warning">{% trans "Suspend" %}</span>

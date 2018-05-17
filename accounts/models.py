@@ -5,22 +5,22 @@ from instances.models import Instance
 
 
 class UserInstance(models.Model):
-    user = models.ForeignKey(User)
-    instance = models.ForeignKey(Instance)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    instance = models.ForeignKey(Instance, on_delete=models.SET_NULL, null=True)
     is_change = models.BooleanField(default=False)
     is_delete = models.BooleanField(default=False)
     is_vnc = models.BooleanField(default=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.instance.name
 
 
 class UserSSHKey(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     keyname = models.CharField(max_length=25)
     keypublic = models.CharField(max_length=500)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.keyname
 
 class UserAttributes(models.Model):
@@ -53,5 +53,5 @@ class UserAttributes(models.Model):
         UserAttributes.create_missing_userattributes(user)
         UserAttributes.add_default_instances(user)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username

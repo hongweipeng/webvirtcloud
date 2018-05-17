@@ -9,5 +9,5 @@ class Compute(models.Model):
     details = models.CharField(max_length=50, null=True, blank=True) 
     type = models.IntegerField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.hostname

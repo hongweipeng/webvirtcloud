@@ -7,5 +7,5 @@ class Flavor(models.Model):
     vcpu = models.IntegerField()
     disk = models.IntegerField()
 
-    def __unicode__(self):
-        return self.name
+    def __str__(self):
+        return self.label
