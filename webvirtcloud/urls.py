@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-# from django.contrib import admin
+from django.contrib import admin
 import instances.views
 import storages.views
 import networks.views
@@ -36,5 +36,5 @@ urlpatterns =[
         create.views.create_instance, name='create_instance'),
 
     url(r'^console/$', console.views.console, name='console'),
-    # (r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 ]

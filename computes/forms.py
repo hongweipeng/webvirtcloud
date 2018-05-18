@@ -124,7 +124,9 @@ class ComputeEditHostForm(forms.Form):
                                max_length=100)
     login = forms.CharField(error_messages={'required': _('No login has been entered')},
                             max_length=100)
-    password = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100, required=False)
+
+    details = forms.Textarea()
 
     def clean_name(self):
         name = self.cleaned_data['name']
