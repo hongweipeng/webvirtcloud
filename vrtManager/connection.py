@@ -214,7 +214,7 @@ class wvmConnection(object):
             except:
                 pass
 
-    def __unicode__(self):
+    def __str__(self):
         if self.type == CONN_TCP:
             type_str = u'tcp'
         elif self.type == CONN_SSH:
@@ -227,7 +227,7 @@ class wvmConnection(object):
         return u'qemu+{type}://{user}@{host}/system'.format(type=type_str, user=self.login, host=self.host)
 
     def __repr__(self):
-        return '<wvmConnection {connection_str}>'.format(connection_str=unicode(self))
+        return '<wvmConnection {connection_str}>'.format(connection_str=str(self))
 
 
 class wvmConnectionManager(object):

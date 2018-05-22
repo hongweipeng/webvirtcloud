@@ -164,7 +164,7 @@ class wvmCreate(wvmConnect):
                   <on_crash>restart</on_crash>
                   <devices>"""
 
-        disk_letters = list(string.lowercase)
+        disk_letters = list(string.ascii_lowercase)
         for image, img_type in images.items():
             stg = self.get_storage_by_vol_path(image)
             stg_type = util.get_xml_path(stg.XMLDesc(0), "/pool/@type")
