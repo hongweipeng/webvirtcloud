@@ -4,3 +4,5 @@ gunicorn
 #libvirt-python
 lxml
 django-bootstrap3
+pymysql
+mysqlclient

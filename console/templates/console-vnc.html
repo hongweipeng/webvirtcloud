@@ -180,6 +180,11 @@
         host = '{{ ws_host }}';
         port = '{{ ws_port }}';
         password = '{{ console_passwd }}';
+        token = '{{ token }}';
+        if (token) {
+            WebUtil.createCookie('token', token, 1)
+        }
+        path = WebUtil.getQueryVar('path', 'websockify');
 
         if ((!host) || (!port)) {
             updateState('failed',

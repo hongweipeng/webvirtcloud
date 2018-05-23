@@ -660,11 +660,11 @@ msgstr "保存"
 
 #: templates/instance.html:62
 msgid "Power"
-msgstr ""
+msgstr "电源"
 
 #: templates/instance.html:66
 msgid "Access"
-msgstr ""
+msgstr "访问"
 
 #: templates/instance.html:70
 msgid "Snapshots"
@@ -677,6 +677,9 @@ msgstr "统计"
 #: templates/instance.html:78
 msgid "Settings"
 msgstr "设置"
+
+msgid "Power On"
+msgstr "开机"
 
 #: templates/instance.html:82 templates/instance.html.py:703
 #: templates/instance.html:705
@@ -715,11 +718,8 @@ msgid "Save"
 msgstr "保存"
 
 #: templates/instance.html:100
-#, fuzzy
 msgid "This action sends an ACPI shutdown signal to the instance."
-msgstr ""
-"关机选项执行指令发送ACPI软件关闭信号给虚拟机关机，而强制关机选项则相当于立即"
-"关闭电源关闭虚拟机。"
+msgstr "关机选项执行指令发送ACPI软件关闭信号给虚拟机关机。"
 
 #: templates/instance.html:105 templates/instance.html.py:123
 #: templates/instance.html:141 templates/instance.html.py:160
@@ -731,9 +731,8 @@ msgid "Start"
 msgstr "启动"
 
 #: templates/instance.html:118
-msgid ""
-"This action forcibly powers off the instance and may cause data corruption."
-msgstr ""
+msgid "This action forcibly powers off the instance and may cause data corruption."
+msgstr "此操作强制关闭实例，并可能导致数据损坏。"
 
 #: templates/instance.html:136
 msgid "This action suspends or restores the instance."
@@ -777,7 +776,7 @@ msgstr "控制台"
 msgid ""
 "This action opens a new window with a VNC connection to the console of the "
 "instance."
-msgstr ""
+msgstr "此操作打开一个新窗口，其中VNC连接到虚机控制台。"
 
 #: templates/instance.html:193 templates/instance.html.py:196
 #: templates/instance.html:203 templates/instance.html.py:207
@@ -1668,8 +1667,8 @@ msgstr "逻辑CPU"
 #~ msgid "Volume name already use"
 #~ msgstr "卷名称已被占用"
 
-#~ msgid "Create VM"
-#~ msgstr "创建虚拟机"
+msgid "Create VM"
+msgstr "创建虚拟机"
 
 #~ msgid "Add Flavor"
 #~ msgstr "添加收藏"
@@ -1677,23 +1676,23 @@ msgstr "逻辑CPU"
 #~ msgid "Virtual Machine"
 #~ msgstr "虚拟机池"
 
-#~ msgid "Action For This Server"
-#~ msgstr "服务器操作"
+msgid "Action For This Server"
+msgstr "服务器操作"
 
-#~ msgid "Name & Status"
-#~ msgstr "名称和状态"
+msgid "Name & Status"
+msgstr "名称和状态"
 
 #~ msgid "Technical Details"
 #~ msgstr "技术详情"
 
-#~ msgid "Disk"
-#~ msgstr "磁盘"
+msgid "Disk"
+msgstr "磁盘"
 
 #~ msgid "Media Details"
 #~ msgstr "介质详情"
 
-#~ msgid "Connected"
-#~ msgstr "已连接"
+msgid "Connected"
+msgstr "已连接"
 
 #~ msgid "Power On Server"
 #~ msgstr "启动虚拟机"
@@ -1751,3 +1750,26 @@ msgstr "逻辑CPU"
 
 #~ msgid "Tx"
 #~ msgstr "发送"
+
+
+###### 提示信息 ######
+
+msgid "This action forcibly powers off and start the instance and may cause data corruption."
+msgstr "此操作将重启虚机，并可能导致数据损坏。"
+
+msgid "This action suspends the instance."
+msgstr "此操作将暂停虚机。"
+
+msgid "This action restore the instance after suspend."
+msgstr "此操作是恢复挂起时的虚机。"
+
+msgid "Click on Boot button to start this instance."
+msgstr "单击启动按钮启动此虚机。"
+
+msgid "Template instance cannot be started."
+msgstr "无法启动模板实例"
+
+
+
+
+

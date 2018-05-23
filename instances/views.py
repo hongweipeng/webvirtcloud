@@ -220,7 +220,8 @@ def instance(request, compute_id, vname):
     def filesizefstr(size_str):
         if size_str == '':
             return 0
-        size_str = size_str.encode('ascii', 'ignore').upper().translate(None, " B")
+        # size_str = size_str.encode('ascii', 'ignore').upper().translate(None, " B")
+        size_str = size_str.upper()[:-1]  # "10.0 GB" -> "10.0 G"
         if 'K' == size_str[-1]:
             return int(float(size_str[:-1]))<<10
         elif 'M' == size_str[-1]:
@@ -289,7 +290,7 @@ def instance(request, compute_id, vname):
         else:
             dev_base = "sd"
         existing_devs = [ disk['dev'] for disk in disks ]
-        for l in string.lowercase:
+        for l in string.ascii_lowercase:
             dev = dev_base + l
             if dev not in existing_devs:
                 return dev

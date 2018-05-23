@@ -123,6 +123,8 @@ WS_PUBLIC_HOST = None
 # Websock SSL connection
 WS_CERT = None
 
+VNC_TOKENS_FILE = os.path.join(BASE_DIR, 'vnc_tokens')
+
 # list of console types
 QEMU_CONSOLE_TYPES = ['vnc', 'spice']
 

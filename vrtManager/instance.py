@@ -326,11 +326,14 @@ class wvmInstance(wvmConnect):
             if attach_iso(dev, disk, vol):
                 break
         if self.get_status() == 1:
-            xml = ElementTree.tostring(disk)
+            xml = ElementTree.tostring(disk).decode("utf-8")
             self.instance.attachDevice(xml)
             xmldom = self._XMLDesc(VIR_DOMAIN_XML_SECURE)
         if self.get_status() == 5:
-            xmldom = ElementTree.tostring(tree)
+            xmldom = ElementTree.tostring(tree).decode("utf-8")
+
+        #if type(xmldom) is bytes:
+        #    xmldom = xmldom.decode("utf-8")
         self._defineXML(xmldom)
 
     def umount_iso(self, dev, image):
@@ -345,11 +348,15 @@ class wvmInstance(wvmConnect):
                         if elm.get('dev') == dev:
                             disk.remove(src_media)
         if self.get_status() == 1:
-            xml_disk = ElementTree.tostring(disk)
+            xml_disk = ElementTree.tostring(disk).decode("utf-8")
             self.instance.attachDevice(xml_disk)
             xmldom = self._XMLDesc(VIR_DOMAIN_XML_SECURE)
         if self.get_status() == 5:
-            xmldom = ElementTree.tostring(tree)
+            xmldom = ElementTree.tostring(tree).decode("utf-8")
+
+        #if type(xmldom) is bytes:
+        #    xmldom = xmldom.decode("utf-8")
+
         self._defineXML(xmldom)
 
     def attach_disk(self, source, target, sourcetype='file', type='disk', driver='qemu', subdriver='raw', cache='none', targetbus='ide'):
@@ -365,7 +372,7 @@ class wvmInstance(wvmConnect):
             devices = tree.find('devices')
             elm_disk = ElementTree.fromstring(xml_disk)
             devices.append(elm_disk)
-            xmldom = ElementTree.tostring(tree)
+            xmldom = ElementTree.tostring(tree).decode("utf-8")
             self._defineXML(xmldom)
 
     def cpu_usage(self):
@@ -491,7 +498,7 @@ class wvmInstance(wvmConnect):
             # Little fix for old version ElementTree
             graphic = root.find("devices/graphics")
         graphic.set('type', console_type)
-        newxml = ElementTree.tostring(root)
+        newxml = ElementTree.tostring(root).decode("utf-8")
         self._defineXML(newxml)
 
     def get_console_port(self, console_type=None):
@@ -529,7 +536,7 @@ class wvmInstance(wvmConnect):
                 graphic.attrib.pop('passwd')
             except:
                 pass
-        newxml = ElementTree.tostring(root)
+        newxml = ElementTree.tostring(root).decode("utf-8")
         return self._defineXML(newxml)
 
     def set_console_keymap(self, keymap):
@@ -548,7 +555,7 @@ class wvmInstance(wvmConnect):
                 graphic.attrib.pop('keymap')
             except:
                 pass
-        newxml = ElementTree.tostring(root)
+        newxml = ElementTree.tostring(root, encoding="utf-8")
         self._defineXML(newxml)
 
     def get_console_keymap(self):
@@ -578,7 +585,7 @@ class wvmInstance(wvmConnect):
             vol = self.get_volume_by_path(source_dev)
             vol.resize(disk['size_new'])
         
-        new_xml = ElementTree.tostring(tree)
+        new_xml = ElementTree.tostring(tree).decode("utf-8")
         self._defineXML(new_xml)
 
     def get_iso_media(self):
