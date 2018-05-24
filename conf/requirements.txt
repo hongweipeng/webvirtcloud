@@ -1,8 +1,9 @@
 Django
 websockify
 gunicorn
-#libvirt-python
+libvirt-python
 lxml
 django-bootstrap3
 pymysql
 mysqlclient
+rwlock

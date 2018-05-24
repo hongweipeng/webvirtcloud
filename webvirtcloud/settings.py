@@ -63,10 +63,10 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
         #'NAME': os.path.join(os.path.dirname(__file__), '..', 'webvirtmgr.sqlite3'),
-        'NAME': 'webvirt2',
+        'NAME': 'webvirt',
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': 'admin123',
+        'PASSWORD': 'jxkj123',
         'HOST': '127.0.0.1',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': 3306,  # Set to empty string for default.
     }
