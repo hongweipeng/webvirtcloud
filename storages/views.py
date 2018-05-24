@@ -100,7 +100,7 @@ def storage(request, compute_id, pool):
         size, free = conn.get_size()
         used = (size - free)
         if state:
-            percent = (used * 100) / size
+            percent = round((used * 100) / size, 2)
         else:
             percent = 0
         status = conn.get_status()
