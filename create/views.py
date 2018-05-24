@@ -26,6 +26,7 @@ def create_instance(request, compute_id):
     error_messages = []
     storages = []
     networks = []
+    instances = []
     meta_prealloc = False
     computes = Compute.objects.all()
     compute = get_object_or_404(Compute, pk=compute_id)

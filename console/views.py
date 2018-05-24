@@ -68,10 +68,8 @@ def console(request):
         if console_passwd is None:
             console_passwd = ""
 
-        response = render(request, 'console-vnc.html', locals())
-
+        #response = render(request, 'console-vnc.html', locals())
         vnc_url = "http://%s:%s/vnc_auto.html?path=websockify/?token=%s&verify=%s" % (ws_host, ws_port, token, console_passwd)
-        print(vnc_url)
         return redirect(vnc_url)
 
     elif console_type == 'spice':
