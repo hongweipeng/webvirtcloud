@@ -60,13 +60,16 @@ def console(request):
                 if line and not line.startswith('#'):
                     ttoken, target = line.split(': ')
                     vnc_ip, _vnc_port = target.split(':')
-                    if vnc_ip == vnc_host and vnc_port == _vnc_port and token == ttoken:
-                        break       # 已配置，跳过
-                    elif vnc_ip != vnc_host and vnc_port != _vnc_port:
+                    print(vnc_ip, _vnc_port)
+                    if vnc_ip == vnc_host and vnc_port == _vnc_port:
+                        if token == ttoken:
+                            break       # 已配置，跳过
+                    else:
                         vnc_token_lines.append(line)
             else:
                 vnc_token_lines.append("%s: %s:%s" % (token, vnc_host, vnc_port))
-                #vnc_info = "%s: %s:%s" % (token, vnc_host, vnc_port)
+                f.seek(0)
+                f.truncate()        # 清空文件
                 f.write("\n".join(vnc_token_lines))
         if console_passwd is None:
             console_passwd = ""
