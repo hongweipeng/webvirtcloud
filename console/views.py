@@ -52,7 +52,7 @@ def console(request):
     #
     if ':' in ws_host:
         ws_host = re.sub(':[0-9]+', '', ws_host)
-
+    vnc_token_lines = []
     if console_type == 'vnc':
     #     # 设置vnc文件
         with open(VNC_TOKENS_FILE, "r+") as f:
@@ -60,11 +60,14 @@ def console(request):
                 if line and not line.startswith('#'):
                     ttoken, target = line.split(': ')
                     vnc_ip, _vnc_port = target.split(':')
-                    if vnc_ip == vnc_host and vnc_port == _vnc_port:
+                    if vnc_ip == vnc_host and vnc_port == _vnc_port and token == ttoken:
                         break       # 已配置，跳过
+                    elif vnc_ip != vnc_host and vnc_port != _vnc_port:
+                        vnc_token_lines.append(line)
             else:
-                vnc_info = "%s: %s:%s" % (token, vnc_host, vnc_port)
-                f.writelines(["\n", vnc_info])
+                vnc_token_lines.append("%s: %s:%s" % (token, vnc_host, vnc_port))
+                #vnc_info = "%s: %s:%s" % (token, vnc_host, vnc_port)
+                f.write("\n".join(vnc_token_lines))
         if console_passwd is None:
             console_passwd = ""
 
