@@ -167,7 +167,7 @@ def instances(request):
 
         except libvirtError as lib_err:
             error_messages.append(lib_err)
-            addlogmsg(request.user.username, instance.name, lib_err.message)
+            addlogmsg(request.user.username, instance.name, str(lib_err))
 
     return render(request, 'instances.html', locals())
 

@@ -745,7 +745,7 @@ class wvmInstance(wvmConnect):
                 source = interface.find('source')
                 source.set('bridge', network_data['net-source-' + str(num)])
 
-        new_xml = ElementTree.tostring(tree)
+        new_xml = ElementTree.tostring(tree).decode("utf-8")
         self._defineXML(new_xml)
 
     def _set_options(self, tree, options):
