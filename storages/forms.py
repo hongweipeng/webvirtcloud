@@ -52,7 +52,7 @@ class AddStgPool(forms.Form):
 
 
 class AddImage(forms.Form):
-    name = forms.CharField(max_length=20)
+    name = forms.CharField(max_length=63)
     format = forms.ChoiceField(required=True, choices=(('qcow2', 'qcow2 (recommended)'),
                                                        ('qcow', 'qcow'),
                                                        ('raw', 'raw')))
@@ -70,7 +70,7 @@ class AddImage(forms.Form):
 
 
 class CloneImage(forms.Form):
-    name = forms.CharField(max_length=20)
+    name = forms.CharField(max_length=63)
     image = forms.CharField(max_length=20)
     convert = forms.BooleanField(required=False)
     format = forms.ChoiceField(required=False, choices=(('qcow2', 'qcow2 (recommended)'),

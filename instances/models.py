@@ -4,7 +4,7 @@ from computes.models import Compute
 
 class Instance(models.Model):
     compute = models.ForeignKey(Compute, on_delete=models.SET_NULL, null=True)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=63)
     uuid = models.CharField(max_length=36)
     is_template = models.BooleanField(default=False)
     created = models.DateField(auto_now_add=True)
