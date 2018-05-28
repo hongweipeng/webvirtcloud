@@ -207,7 +207,7 @@ class wvmStorage(wvmConnect):
         if vol_fmt == 'unknown':
             vol_fmt = 'raw'
         if storage_type == 'dir':
-            name += '.img'
+            name += '.%s' % vol_fmt
             alloc = 0
         xml = """
             <volume>
