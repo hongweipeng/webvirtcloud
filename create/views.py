@@ -85,7 +85,7 @@ def create_instance(request, compute_id):
                         conn._defineXML(xml)
                         return HttpResponseRedirect(reverse('instance', args=[compute_id, name]))
                     except libvirtError as lib_err:
-                        error_messages.append(lib_err.message)
+                        error_messages.append(str(lib_err))
             if 'create' in request.POST:
                 volumes = {}
                 form = NewVMForm(request.POST)
@@ -108,7 +108,7 @@ def create_instance(request, compute_id):
                                                               metadata=meta_prealloc)
                                     volumes[path] = conn.get_volume_type(path)
                                 except libvirtError as lib_err:
-                                    error_messages.append(lib_err.message)
+                                    error_messages.append(str(lib_err))
                         elif data['template']:
                             templ_path = conn.get_volume_path(data['template'])
                             clone_path = conn.clone_from_template(data['name'], templ_path, metadata=meta_prealloc)
@@ -123,7 +123,7 @@ def create_instance(request, compute_id):
                                         path = conn.get_volume_path(vol)
                                         volumes[path] = conn.get_volume_type(path)
                                     except libvirtError as lib_err:
-                                        error_messages.append(lib_err.message)
+                                        error_messages.append(str(lib_err))
                         if data['cache_mode'] not in conn.get_cache_modes():
                             error_msg = _("Invalid cache mode")
                             error_messages.append(error_msg)

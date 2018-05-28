@@ -96,31 +96,31 @@ def network(request, compute_id, pool):
                 conn.start()
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'stop' in request.POST:
             try:
                 conn.stop()
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'delete' in request.POST:
             try:
                 conn.delete()
                 return HttpResponseRedirect(reverse('networks', args=[compute_id]))
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'set_autostart' in request.POST:
             try:
                 conn.set_autostart(1)
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'unset_autostart' in request.POST:
             try:
                 conn.set_autostart(0)
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
 
     conn.close()
 

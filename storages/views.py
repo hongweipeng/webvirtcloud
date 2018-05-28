@@ -122,31 +122,31 @@ def storage(request, compute_id, pool):
                 conn.start()
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'stop' in request.POST:
             try:
                 conn.stop()
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'delete' in request.POST:
             try:
                 conn.delete()
                 return HttpResponseRedirect(reverse('storages', args=[compute_id]))
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'set_autostart' in request.POST:
             try:
                 conn.set_autostart(1)
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'unset_autostart' in request.POST:
             try:
                 conn.set_autostart(0)
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'add_volume' in request.POST:
             form = AddImage(request.POST)
             if form.is_valid():
@@ -168,7 +168,7 @@ def storage(request, compute_id, pool):
                 vol.delete(0)
                 return HttpResponseRedirect(request.get_full_path())
             except libvirtError as lib_err:
-                error_messages.append(lib_err.message)
+                error_messages.append(str(lib_err))
         if 'iso_upload' in request.POST:
             if str(request.FILES['file']) in conn.update_volumes():
                 error_msg = _("ISO image already exist")
