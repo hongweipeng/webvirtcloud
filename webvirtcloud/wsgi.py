@@ -12,3 +12,19 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "webvirtcloud.settings")
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
+
+
+
+# noVNC server
+import multiprocessing
+
+def worker():
+    cmd = 'python noVNC/utils/websockify --target-config=vnc_tokens 6080 >/dev/null 2>&1'
+    os.system(cmd)
+
+def start_websockify():
+    t = multiprocessing.Process(target=worker)
+    t.start()
+
+start_websockify()
+

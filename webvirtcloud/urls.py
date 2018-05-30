@@ -36,5 +36,6 @@ urlpatterns =[
         create.views.create_instance, name='create_instance'),
 
     url(r'^console/$', console.views.console, name='console'),
+    url(r'^vnc_auto/$', console.views.vnc_auto, name='vnc_auto'),
     url(r'^admin/', admin.site.urls),
 ]

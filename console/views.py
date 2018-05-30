@@ -74,7 +74,10 @@ def console(request):
             console_passwd = ""
 
         #response = render(request, 'console-vnc.html', locals())
-        vnc_url = "http://%s:%s/vnc_auto.html?path=websockify/?token=%s&verify=%s" % (ws_host, ws_port, token, console_passwd)
+        vnc_url = reverse('vnc_auto')
+        vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
+        #_vnc_url = "http://%s:%s/vnc_auto.html?path=websockify/?token=%s&verify=%s" % (ws_host, ws_port, token, console_passwd)
+        #print(_vnc_url)
         return redirect(vnc_url)
 
     elif console_type == 'spice':
@@ -84,3 +87,9 @@ def console(request):
 
     response.set_cookie('token', token)
     return response
+
+
+@login_required
+def vnc_auto(request):
+    return render(request, 'vnc_auto.html')
+
