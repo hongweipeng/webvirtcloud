@@ -12,3 +12,4 @@ dhcpd.*
 #webvirtcloud/settings.py
 migrations
 test.py
+ignore_dir/

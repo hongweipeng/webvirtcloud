@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.urls import path, re_path, register_converter
 from django.contrib import admin
 import instances.views
 import storages.views
@@ -8,34 +9,37 @@ import create.views
 import interfaces.views
 import secrets.views
 import console.views
+from . import converters
+
+register_converter(converters.FilenameConverter, 'filename')
 
 urlpatterns =[
-    url(r'^$', instances.views.index, name='index'),
-    url(r'^instances/$', instances.views.instances, name='instances'),
+    path('', instances.views.index, name='index'),
+    path(r'instances/', instances.views.instances, name='instances'),
 
-    url(r'^instance/', include('instances.urls')),
-    url(r'^accounts/', include('accounts.urls')),
-    url(r'^computes/', include('computes.urls')),
-    url(r'^logs/', include('logs.urls')),
+    path(r'instance/', include('instances.urls')),
+    path(r'accounts/', include('accounts.urls')),
+    path(r'computes/', include('computes.urls')),
+    path(r'logs/', include('logs.urls')),
 
-    url(r'^compute/(?P<compute_id>[0-9]+)/storages/$',
+    path(r'compute/<int:compute_id>/storages/',
         storages.views.storages, name='storages'),
-    url(r'^compute/(?P<compute_id>[0-9]+)/storage/(?P<pool>[\w\-\.\/]+)/$',
+    path(r'compute/<int:compute_id>/storage/<filename:pool>/',
         storages.views.storage, name='storage'),
-    url(r'^compute/(?P<compute_id>[0-9]+)/networks/$',
+    path(r'compute/P<int:compute_id>/networks/',
         networks.views.networks, name='networks'),
-    url(r'^compute/(?P<compute_id>[0-9]+)/network/(?P<pool>[\w\-\.]+)/$',
+    path(r'compute/<int:compute_id>/network/<filename:pool>/',
         networks.views.network, name='network'),
-    url(r'^compute/(?P<compute_id>[0-9]+)/interfaces/$',
+    path(r'compute/P<int:compute_id>/interfaces/',
         interfaces.views.interfaces, name='interfaces'),
-    url(r'^compute/(?P<compute_id>[0-9]+)/interface/(?P<iface>[\w\-\.\:]+)/$',
+    path(r'compute/<int:compute_id>/interface/<filename:iface>/',
         interfaces.views.interface, name='interface'),
-    url(r'^compute/(?P<compute_id>[0-9]+)/secrets/$',
+    path(r'compute/<int:compute_id>/secrets/',
         secrets.views.secrets, name='secrets'),
-    url(r'^compute/(?P<compute_id>[0-9]+)/create/$',
+    path(r'compute/<int:compute_id>/create/',
         create.views.create_instance, name='create_instance'),
 
-    url(r'^console/$', console.views.console, name='console'),
-    url(r'^vnc_auto/$', console.views.vnc_auto, name='vnc_auto'),
-    url(r'^admin/', admin.site.urls),
+    path(r'console/', console.views.console, name='console'),
+    path(r'vnc_auto/', console.views.vnc_auto, name='vnc_auto'),
+    path(r'admin/', admin.site.urls),
 ]

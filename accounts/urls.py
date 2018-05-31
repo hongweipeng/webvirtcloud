@@ -1,13 +1,14 @@
 from django.conf.urls import url
+from django.urls import path
 from . import views
 import django.contrib.auth.views
 
 urlpatterns = [
-    url(r'^$', views.accounts, name='accounts'),
-    url(r'^login/$', django.contrib.auth.views.login,
+    path(r'', views.accounts, name='accounts'),
+    path(r'login/', django.contrib.auth.views.login,
         {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', django.contrib.auth.views.logout,
+    path(r'logout/', django.contrib.auth.views.logout,
         {'template_name': 'logout.html'}, name='logout'),
-    url(r'^profile/$', views.profile, name='profile'),
-    url(r'^profile/(?P<user_id>[0-9]+)/$', views.account, name='account'),
+    path(r'profile/', views.profile, name='profile'),
+    path(r'profile/<filename:user_id>/', views.account, name='account'),
 ]

@@ -1,8 +1,9 @@
 from django.conf.urls import url
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.showlogs, name='showlogs'),
-    url(r'^(?P<page>[0-9]+)/$', views.showlogs, name='showlogspage'),
-    url(r'^vm_logs/(?P<vname>[\w\-\.]+)/$', views.vm_logs, name='vm_logs'),
+    path(r'', views.showlogs, name='showlogs'),
+    path(r'<int:page>/', views.showlogs, name='showlogspage'),
+    path(r'vm_logs/<filename:vname>/', views.vm_logs, name='vm_logs'),
 ]
