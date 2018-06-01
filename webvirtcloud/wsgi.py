@@ -27,7 +27,7 @@ def worker():
 
     #server = websockify.WebSocketProxy(listen_port=WS_PORT, target_cfg=VNC_TOKENS_FILE,)
     #server.start_server()
-    args = [sys.executable, 'noVNC/utils/websockify', '--target-config=vnc_tokens',  '6080', '>/dev/null 2>&1', ]
+    args = [sys.executable, 'noVNC/utils/websockify', '--target-config=%s' % VNC_TOKENS_FILE,  str(WS_PORT), '>/dev/null 2>&1', ]
     new_environ = os.environ.copy()
     new_environ["RUN_MAIN"] = 'true'
     exit_code = subprocess.call(args, env=new_environ)
