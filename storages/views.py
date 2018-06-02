@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -96,6 +96,24 @@ def storage(request, compute_id, pool):
                           pool)
 
         storages = conn.get_storages()
+        #get_images = sorted(conn.get_storages_images())
+        get_images = []
+        for storage in storages:
+            stg = conn.get_storage(storage)
+            
+            try:
+                stg.refresh(0)
+            except:
+                pass
+            for img in stg.listVolumes():
+                if img.endswith('.iso'):
+                    pass
+                else:
+                    #vol = stg.storageVolLookupByName(img)
+                    get_images.append(img)
+        
+        #print(dir(get_images[2]))
+        
         state = conn.is_active()
         size, free = conn.get_size()
         used = (size - free)
@@ -151,10 +169,16 @@ def storage(request, compute_id, pool):
             form = AddImage(request.POST)
             if form.is_valid():
                 data = form.cleaned_data
+                backing_file = data["backing_file"]
+                # 如果有指定后端镜像，先计算它的绝对路径    xxx.qcow2 => /var/kvm/backing/xxx.qcow2
+                if data["is_use_backing"] and backing_file:
+                    vol = conn.get_volume(backing_file)
+                    backing_file = vol.path()
+                    
                 if data['meta_prealloc'] and data['format'] == 'qcow2':
                     meta_prealloc = True
                 try:
-                    conn.create_volume(data['name'], data['size'], data['format'], meta_prealloc)
+                    conn.create_volume(data['name'], data['size'], data['format'], meta_prealloc, data["is_use_backing"], backing_file)
                     return HttpResponseRedirect(request.get_full_path())
                 except libvirtError as lib_err:
                     error_messages.append(lib_err)

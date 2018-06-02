@@ -200,7 +200,7 @@ class wvmStorage(wvmConnect):
             )
         return vol_list
 
-    def create_volume(self, name, size, vol_fmt='qcow2', metadata=False):
+    def create_volume(self, name, size, vol_fmt='qcow2', metadata=False, is_use_backing=False, backing_file=""):
         size = int(size) * 1073741824
         storage_type = self.get_type()
         alloc = size
@@ -209,15 +209,27 @@ class wvmStorage(wvmConnect):
         if storage_type == 'dir':
             name += '.%s' % vol_fmt
             alloc = 0
-        xml = """
+        xml = f"""
             <volume>
-                <name>%s</name>
-                <capacity>%s</capacity>
-                <allocation>%s</allocation>
+                <name>{name}</name>
                 <target>
-                    <format type='%s'/>
+                    <format type='{vol_fmt}'/>
                 </target>
-            </volume>""" % (name, size, alloc, vol_fmt)
+            """
+        if is_use_backing and backing_file:
+            xml += f"""
+                <backingStore>
+                    <path>{backing_file}</path>
+                    <format type='{vol_fmt}' />
+                </backingStore>
+            """
+        else:
+            xml += f"""
+                <capacity>{size}</capacity>
+                <allocation>{alloc}</allocation>
+            """
+        
+        xml += "</volume>"
         self._createXML(xml, metadata)
 
     def clone_volume(self, name, clone, vol_fmt=None, metadata=False):

@@ -278,7 +278,7 @@ class wvmConnectionManager(object):
 
         connection = self._search_connection(host, login, passwd, conn)
 
-        if (connection is None):
+        if connection is None:
             with self._connections_lock.writer_lock:
             #try:
                 # we have to search for the connection again after aquireing the write lock

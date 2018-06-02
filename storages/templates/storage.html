@@ -221,5 +221,14 @@
             })
         }(jQuery));
     });
+
+    $(function() {
+        var $backing_file_group = $('#backing_file');
+        $backing_file_group.hide();
+        $('#is_use_backing').change(function (e) {
+            $backing_file_group.toggle();
+        });
+    });
+
 </script>
 {% endblock %}

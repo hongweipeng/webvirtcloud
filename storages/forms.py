@@ -56,6 +56,9 @@ class AddImage(forms.Form):
     format = forms.ChoiceField(required=True, choices=(('qcow2', 'qcow2 (recommended)'),
                                                        ('qcow', 'qcow'),
                                                        ('raw', 'raw')))
+    is_use_backing = forms.BooleanField(required=False)
+    backing_file = forms.CharField(max_length=63, required=False)
+    
     size = forms.IntegerField()
     meta_prealloc = forms.BooleanField(required=False)
 

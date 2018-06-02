@@ -65,6 +65,28 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="is_use_backing">是否使用后端</label>
+                                    <div class="col-sm-6">
+                                        <input type="checkbox" id="is_use_backing" name="is_use_backing" value="true">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="backing_files_groups">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-6">
+                                    <select id="backing_file" name="backing_file" class="form-control">
+                                        {% if get_images %}
+                                            <option value="">请选择后端镜像</option>
+                                            {% for name in get_images %}
+                                                <option value="{{ name }}">{{ name }}</option>
+                                            {% endfor %}
+                                        {% else %}
+                                            <option value="">{% trans "None" %}</option>
+                                        {% endif %}
+                                    </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label">{% trans "Size" %}</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" name="size" value="10" maxlength="3" required pattern="[0-9]+">
