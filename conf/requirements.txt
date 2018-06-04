@@ -7,3 +7,4 @@ django-bootstrap3
 pymysql
 mysqlclient
 rwlock
+djangorestframework

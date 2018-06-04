@@ -21,6 +21,8 @@ urlpatterns =[
     path(r'accounts/', include('accounts.urls')),
     path(r'computes/', include('computes.urls')),
     path(r'logs/', include('logs.urls')),
+    path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'rest_full/', include('restfull.urls')),
 
     path(r'compute/<int:compute_id>/storages/',
         storages.views.storages, name='storages'),
