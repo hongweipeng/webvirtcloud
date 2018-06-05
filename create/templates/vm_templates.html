@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="#AddVMTemp" type="button" class="btn btn-success pull-right" data-toggle="modal">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
+            <h1 class="page-header"> 模板管理 </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for vm_temp in vm_temps %}
+            <div id="temp_{{ vm_temp.id }}" class="col-xs-12 col-sm-4">
+                <div class="panel panel-success panel-data">
+                    <div class="panel-heading">
+
+                        <a data-toggle="modal" href="#editTemp_{{ vm_temp.id }}" class="pull-right" title="{% trans "Edit" %}">
+                            <i class="fa fa-cog"></i>
+                        </a>
+                        <h3 class="panel-title">{{ vm_temp.label }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6">
+                                <p><strong>cpu个数:</strong></p>
+                                <p><strong>内存大小:</strong></p>
+                                <p><strong>后端镜像:</strong></p>
+                                <p><strong>硬盘大小:</strong></p>
+                                <p><strong>Virtio:</strong></p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6">
+                                <p>{{ vm_temp.vcpu }}</p>
+                                <p>{{ vm_temp.memory|filesizeformat }}</p>
+                                <p>是{% if vm_temp.backing_file %} {% else %} 否 {% endif %}</p>
+                                <p>{{ vm_temp.disk | default:"空"}}</p>
+                                <p>{{ vm_temp.virtio }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+    <div class="modal fade" id="AddVMTemp" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="post" action="" role="form">{% csrf_token %}
+                <div class="modal-header">
+                    <h3 class="panel-title">添加模板</h3>
+                </div>
+                <div class="modal-body">
+                    {% bootstrap_form form layout='horizontal' %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+                    <button type="submit" class="btn btn-primary" name="create">{% trans "Create" %}</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

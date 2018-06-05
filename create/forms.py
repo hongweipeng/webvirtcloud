@@ -2,6 +2,7 @@ import re
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from create.models import Flavor
+from . import models
 
 
 class FlavorAddForm(forms.Form):
@@ -54,3 +55,8 @@ class NewVMForm(forms.Form):
         elif len(name) > 20:
             raise forms.ValidationError(_('The name of the virtual machine must not exceed 20 characters'))
         return name
+
+class VMTempForm(forms.ModelForm):
+    class Meta:
+        model = models.VMTemplate
+        exclude = ()

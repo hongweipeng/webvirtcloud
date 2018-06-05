@@ -4,8 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from computes.models import Compute
-from create.models import Flavor
-from create.forms import FlavorAddForm, NewVMForm
+from create.models import Flavor, VMTemplate
+from create.forms import FlavorAddForm, NewVMForm, VMTempForm
 from instances.models import Instance
 from vrtManager.create import wvmCreate
 from vrtManager import util
@@ -138,8 +138,22 @@ def create_instance(request, compute_id):
                                 return HttpResponseRedirect(reverse('instance', args=[compute_id, data['name']]))
                             except libvirtError as lib_err:
                                 if data['hdd_size']:
-                                    conn.delete_volume(volumes.keys()[0])
+                                    conn.delete_volume(list(volumes.keys())[0])
                                 error_messages.append(lib_err)
         conn.close()
 
     return render(request, 'create_instance.html', locals())
+
+
+@login_required
+def vm_template(request):
+    if request.method == 'POST':
+        form = VMTempForm(request.POST)
+        if form.is_valid():
+            instance = form.save()
+        
+    vm_temps = VMTemplate.objects.all()
+    form = VMTempForm()
+    return render(request, 'vm_templates.html', locals())
+
+

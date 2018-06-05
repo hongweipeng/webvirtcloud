@@ -24,6 +24,10 @@
                     <li {% class_active request "^/account" %}>
                         <a href="{% url 'accounts' %}"><i class="fa fa-fw fa-users"></i> {% trans "Users" %}</a>
                     </li>
+
+                    <li>
+                        <a href="{% url 'vm_template' %}"><i class="fa fa-fw fa-bookmark-o"></i> 模板 </a>
+                    </li>
                     <li {% class_active request "^/log" %}>
                         <a href="{% url 'showlogs' %}"><i class="fa fa-fw fa-list-alt"></i> {% trans "Logs" %}</a>
                     </li>
