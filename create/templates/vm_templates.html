@@ -19,7 +19,7 @@
                 <div class="panel panel-success panel-data">
                     <div class="panel-heading">
 
-                        <a data-toggle="modal" href="#editTemp_{{ vm_temp.id }}" class="pull-right" title="{% trans "Edit" %}">
+                        <a data-toggle="modal" href="{% url 'edit_vm_template' vm_temp.id %}" class="pull-right" title="{% trans "Edit" %}" data-target="#modal_result">
                             <i class="fa fa-cog"></i>
                         </a>
                         <h3 class="panel-title">{{ vm_temp.label }}</h3>
@@ -36,10 +36,9 @@
                             <div class="col-xs-6 col-sm-6">
                                 <p>{{ vm_temp.vcpu }}</p>
                                 <p>{{ vm_temp.memory|filesizeformat }}</p>
-                                <p>是{% if vm_temp.backing_file %} {% else %} 否 {% endif %}</p>
+                                <p>{% if vm_temp.backing_file %} 是 {% else %} 否 {% endif %}</p>
                                 <p>{{ vm_temp.disk | default:"空"}}</p>
                                 <p>{{ vm_temp.virtio }}</p>
-
                             </div>
                         </div>
                     </div>
@@ -68,8 +67,34 @@
             </div>
         </div>
     </div>
-{% endblock %}
 
+    <div id="modal_result" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    等待结果，请稍后...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+$('#modal_result').on('hidden.bs.modal',function(e){
+    $(this).find('.modal-body').html(' 等待结果，请稍后...');
+    $(this).removeData('bs.modal');
+});
+</script>
+
+
+{% endblock %}
 
 
 

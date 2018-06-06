@@ -60,3 +60,6 @@ class VMTempForm(forms.ModelForm):
     class Meta:
         model = models.VMTemplate
         exclude = ()
+        help_texts = {
+            'disk': '硬盘大小，如需要两块硬盘100g和200g。则填入<code>100 200</code>，若有指定后端镜像，则后端镜像会是第一块硬盘',
+        }

@@ -26,6 +26,8 @@ urlpatterns =[
     
     
     path(r'vm_template/', create.views.vm_template, name='vm_template'),
+    path(r'vm_template/<int:pk>/', create.views.show_vm_template_modal, name='edit_vm_template'),
+    
     path(r'compute/<int:compute_id>/storages/',
         storages.views.storages, name='storages'),
     path(r'compute/<int:compute_id>/storage/<filename:pool>/',

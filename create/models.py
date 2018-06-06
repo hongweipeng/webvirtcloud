@@ -27,10 +27,10 @@ class BackingFile(models.Model):
 class VMTemplate(models.Model):
     label = models.CharField(max_length=31, verbose_name='模板名称')
     vcpu = models.IntegerField(verbose_name='cpu个数')
-    memory = models.IntegerField(verbose_name='内存大小GB')
-    backing_file = models.ForeignKey(BackingFile, null=True, on_delete=models.SET_NULL)
+    memory = models.IntegerField(verbose_name='内存大小MB')
+    backing_file = models.ForeignKey(BackingFile, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='后端镜像')
     
-    disk = models.CharField(max_length=31, null=True, blank=True, verbose_name='硬盘大小(100 200)')
+    disk = models.CharField(max_length=31, null=True, blank=True, verbose_name='硬盘')
     
     virtio = models.BooleanField(default=True)
     

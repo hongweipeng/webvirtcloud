@@ -151,9 +151,27 @@ def vm_template(request):
         form = VMTempForm(request.POST)
         if form.is_valid():
             instance = form.save()
+            return HttpResponseRedirect(request.get_full_path())
         
     vm_temps = VMTemplate.objects.all()
     form = VMTempForm()
     return render(request, 'vm_templates.html', locals())
+
+
+@login_required
+def show_vm_template_modal(request, pk):
+    instance = VMTemplate.objects.get(pk=pk)
+    
+    if request.method == 'POST':
+        form = VMTempForm(request.POST, instance=instance)
+        if form.is_valid():
+            if 'edit' in request.POST:
+                form.save()
+            elif 'del' in request.POST:
+                instance.delete()
+        return HttpResponseRedirect(reverse('vm_template'))
+    
+    form = VMTempForm(instance=instance)
+    return render(request, 'edit_template.html', locals())
 
 
