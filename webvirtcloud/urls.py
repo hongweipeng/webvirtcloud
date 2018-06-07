@@ -17,13 +17,13 @@ urlpatterns =[
     path('', instances.views.index, name='index'),
     path(r'instances/', instances.views.instances, name='instances'),
 
-    path(r'instance/', include('instances.urls')),
-    path(r'accounts/', include('accounts.urls')),
-    path(r'computes/', include('computes.urls')),
-    path(r'logs/', include('logs.urls')),
-    path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'instance/',  include('instances.urls')),
+    path(r'accounts/',  include('accounts.urls')),
+    path(r'computes/',  include('computes.urls')),
+    path(r'logs/',      include('logs.urls')),
+    path(r'api-auth/',  include('rest_framework.urls', namespace='rest_framework')),
     path(r'rest_full/', include('restfull.urls')),
-    path(r'api/', include('api.urls')),
+    path(r'api/',       include('api.urls')),
     
     
     path(r'vm_template/',                       create.views.vm_template, name='vm_template'),
