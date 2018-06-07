@@ -47,6 +47,9 @@ class QuickVM(models.Model):
     token = models.CharField(max_length=63, unique=True, verbose_name='token')
     template = models.ForeignKey(VMTemplate, null=True, on_delete=models.SET_NULL, verbose_name='模板')
     instance = models.ForeignKey('instances.Instance', null=True, on_delete=models.SET_NULL, verbose_name='实例')
+    status = models.CharField(max_length=31, null=True, choices=consts.TASK_CHOICE)
+    # 步骤
+    step = models.CharField(max_length=31, null=True, blank=True)
     
     def __str__(self):
         return self.credit
