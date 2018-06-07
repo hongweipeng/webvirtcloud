@@ -7,6 +7,8 @@ register_list = [
     models.Flavor,
     models.BackingFile,
     models.VMTemplate,
+    models.QuickVM,
+    models.QuickVMStep,
 ]
 
 admin.site.register(register_list)

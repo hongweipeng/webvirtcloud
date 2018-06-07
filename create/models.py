@@ -1,5 +1,5 @@
 from django.db import models
-
+from vrtManager import consts
 
 class Flavor(models.Model):
     label = models.CharField(max_length=12)
@@ -37,4 +37,41 @@ class VMTemplate(models.Model):
     def __str__(self):
         return self.label
     
+    
+class QuickVM(models.Model):
+    """
+    快速出机，此表中的记录全部是后端镜像出机
+    """
+    id = models.IntegerField(auto_created=True, primary_key=True)
+    credit = models.CharField(max_length=63, unique=True, verbose_name='凭证')
+    token = models.CharField(max_length=63, unique=True, verbose_name='token')
+    template = models.ForeignKey(VMTemplate, null=True, on_delete=models.SET_NULL, verbose_name='模板')
+    instance = models.ForeignKey('instances.Instance', null=True, on_delete=models.SET_NULL, verbose_name='实例')
+    
+    def __str__(self):
+        return self.credit
+    
+class StepHistoryBase(models.Model):
+    """
+    单个步骤的部署历史
+    """
+
+    name = models.CharField(max_length=31, verbose_name='步骤名称')
+    status = models.CharField(max_length=31, choices=consts.HISTORY_STATUS, verbose_name='状态')
+    result = models.TextField(null=True, blank=True, verbose_name='详细信息')
+    created = models.DateTimeField(auto_now=True, verbose_name='创建日期')
+    
+    class Meta:
+        abstract = True
+        
+    def __str__(self):
+        return self.name
+    
+class QuickVMStep(StepHistoryBase):
+    """
+    快速出机的历史步骤
+    """
+    quick_id = models.IntegerField(default=0)
+    def __str__(self):
+        return "%s: %s - %s" %(self.quick_id, self.name, self.status)
     
