@@ -27,7 +27,9 @@ def save_history(name, status:str, result:str or dict,
         'result': result,
         history_comment: model.id,
     }
-    history_model_cls.objects.create(**kwargs)
+    print(kwargs)
+    history_model = history_model_cls(**kwargs)
+    history_model.save()
 
 def set_next_step(raw_model:models.Model, steps:list, step:str=''):
     """

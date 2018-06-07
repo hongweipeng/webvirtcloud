@@ -42,7 +42,7 @@ class QuickVM(models.Model):
     """
     快速出机，此表中的记录全部是后端镜像出机
     """
-    id = models.IntegerField(auto_created=True, primary_key=True)
+    id = models.AutoField(auto_created=True, primary_key=True)
     credit = models.CharField(max_length=63, unique=True, verbose_name='凭证')
     token = models.CharField(max_length=63, unique=True, verbose_name='token')
     template = models.ForeignKey(VMTemplate, null=True, on_delete=models.SET_NULL, verbose_name='模板')
@@ -52,7 +52,7 @@ class QuickVM(models.Model):
     step = models.CharField(max_length=31, null=True, blank=True)
     
     def __str__(self):
-        return self.credit
+        return self.token
     
 class StepHistoryBase(models.Model):
     """
