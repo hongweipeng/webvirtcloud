@@ -150,6 +150,7 @@ class CreateVM(taskflow_base.TaskBase):
         vcpu_num = quick_model.template.vcpu
         memory = quick_model.template.memory
         clock = quick_model.template.clock
+        network = quick_model.template.network
         if not quick_model.disks_path:
             raise Exception('no disk')
         
@@ -162,22 +163,25 @@ class CreateVM(taskflow_base.TaskBase):
         #path = conn.get_volume_path(vol)
         #volumes[path] = conn.get_volume_type(path)
         disks = quick_model.disks_path.split(',')
-        data = {
-            'name': quick_model.token,
-            'memory': memory,
-            'vcpu': vcpu_num,
-            'host_model': True,
-            'cache_mode': 'default',
-            'networks': 'bridge',
-            'virtio': True,
-        }
+
         
         volumes = {}
         for disk_path in disks:
             volumes[disk_path] = conn.get_volume_type(disk_path)
-        
-        conn.create_instance(data['name'], data['memory'], data['vcpu'], data['host_model'],
-                             uuid, volumes, data['cache_mode'], data['networks'], data['virtio'], clock=clock)
+
+        data = {
+            'uuid': uuid,
+            'name': quick_model.token,
+            'memory': memory,
+            'vcpu': vcpu_num,
+            'images': volumes,
+            'host_model': True,
+            'cache_mode': 'default',
+            'networks': network,
+            'virtio': True,
+            'clock': clock,
+        }
+        conn.create_instance(**data)
         create_instance = Instance(compute_id=quick_model.compute_id, name=data['name'], uuid=uuid)
         create_instance.save()
         quick_model.instance = create_instance

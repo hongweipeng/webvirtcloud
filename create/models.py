@@ -32,6 +32,7 @@ class VMTemplate(models.Model):
     
     disk = models.CharField(max_length=31, null=True, blank=True, verbose_name='硬盘')
 
+    network = models.CharField(max_length=13, choices=consts.NETWORK_CHOICE, default='default')
     clock = models.CharField(max_length=13, choices=consts.CLOCK_CHOICE, default='utc')
     virtio = models.BooleanField(default=True)
     

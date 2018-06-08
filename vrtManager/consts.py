@@ -38,3 +38,8 @@ CLOCK_CHOICE = (
     ('utc', 'utc'),
     ('localtime', 'localtime'),
 )
+
+NETWORK_CHOICE = (
+    ('default', 'default'),
+    ('bridge', 'bridge'),
+)
