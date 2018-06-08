@@ -25,8 +25,8 @@ import threading
 
 def worker():
 
-    #server = websockify.WebSocketProxy(listen_port=WS_PORT, target_cfg=VNC_TOKENS_FILE,)
-    #server.start_server()
+    # server = websockify.WebSocketProxy(listen_port=WS_PORT, target_cfg=VNC_TOKENS_FILE,)
+    # server.start_server()
     args = [sys.executable, 'noVNC/utils/websockify', '--target-config=%s' % VNC_TOKENS_FILE,  str(WS_PORT), '>/dev/null 2>&1', ]
     new_environ = os.environ.copy()
     new_environ["RUN_MAIN"] = 'true'
@@ -36,9 +36,9 @@ def worker():
     #     return exit_code
 
 
-    #cmd = 'python noVNC/utils/websockify --target-config=vnc_tokens 6080 >/dev/null 2>&1'
-    #subprocess.Popen(cmd)
-    #os.system(cmd)
+    # cmd = 'python noVNC/utils/websockify --target-config=vnc_tokens 6080 >/dev/null 2>&1'
+    # subprocess.Popen(cmd)
+    # os.system(cmd)
 
 def start_websockify():
     t = threading.Thread(target=worker)

@@ -27,7 +27,6 @@ def save_history(name, status:str, result:str or dict,
         'result': result,
         history_comment: model.id,
     }
-    print(kwargs)
     history_model = history_model_cls(**kwargs)
     history_model.save()
 

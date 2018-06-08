@@ -204,7 +204,7 @@ def compute_graph(request, compute_id):
 
     datasets['timer'].append(curent_time)
     datasets['cpu'].append(int(cpu_usage['usage']))
-    datasets['mem'].append(int(mem_usage['usage']) / 1048576)
+    datasets['mem'].append(int(mem_usage['usage']) // 1048576)
 
     if len(datasets['timer']) > points:
         datasets['timer'].pop(0)
