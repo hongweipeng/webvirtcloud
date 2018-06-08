@@ -9,6 +9,8 @@ from taskflow.patterns import linear_flow as lf
 from django.db import models
 from . import consts
 
+LOG = logging.getLogger(__name__)
+
 def save_history(name, status:str, result:str or dict,
                  model, history_model_cls, history_comment:str) -> None:
     """
@@ -95,6 +97,7 @@ class TaskWorker(threading.Thread):
                          self.history_model_cls, self.history_comment)  # 记录历史
             self.raw_model.status = consts.HANGUP
             self.raw_model.save()
+            LOG.error(whole_err_msg)
             
 def build(raw_model, steps:list, history_model_cls, history_comment):
     """

@@ -31,7 +31,8 @@ class VMTemplate(models.Model):
     backing_file = models.ForeignKey(BackingFile, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='后端镜像')
     
     disk = models.CharField(max_length=31, null=True, blank=True, verbose_name='硬盘')
-    
+
+    clock = models.CharField(max_length=13, choices=consts.CLOCK_CHOICE, default='utc')
     virtio = models.BooleanField(default=True)
     
     def __str__(self):
@@ -47,7 +48,7 @@ class QuickVM(models.Model):
     token = models.CharField(max_length=63, unique=True, verbose_name='token')
     template = models.ForeignKey(VMTemplate, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='模板')
     compute_id = models.IntegerField(default=0, verbose_name='宿主id')
-    instance = models.ForeignKey('instances.Instance', null=True, blank=True, on_delete=models.CASCADE, verbose_name='实例')
+    instance = models.ForeignKey('instances.Instance', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='实例')
     status = models.CharField(max_length=31, null=True, choices=consts.TASK_CHOICE)
     disks_path = models.CharField(max_length=511, null=True, blank=True)
     # 步骤

@@ -129,7 +129,7 @@ class wvmCreate(wvmConnect):
         vol = self.get_volume_by_path(path)
         vol.delete()
 
-    def create_instance(self, name, memory, vcpu, host_model, uuid, images, cache_mode, networks, virtio, mac=None):
+    def create_instance(self, name, memory, vcpu, host_model, uuid, images, cache_mode, networks, virtio, mac=None, clock='utc'):
         """
         Create VM function
         """
@@ -158,11 +158,11 @@ class wvmCreate(wvmConnect):
         xml += """<features>
                     <acpi/><apic/><pae/>
                   </features>
-                  <clock offset="utc"/>
+                  <clock offset="%s"/>
                   <on_poweroff>destroy</on_poweroff>
                   <on_reboot>restart</on_reboot>
                   <on_crash>restart</on_crash>
-                  <devices>"""
+                  <devices>""" % clock
 
         disk_letters = list(string.ascii_lowercase)
         for image, img_type in images.items():

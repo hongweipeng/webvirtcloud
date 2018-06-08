@@ -13,12 +13,34 @@ from libvirt import libvirtError
 
 class ClearIfSet(taskflow_base.TaskBase):
     def do_execute(self, quick_model:create_models.QuickVM):
-        if quick_model.instance:
-            pass
-        
-        if quick_model.compute_id and compute_models.Compute.objects.filter(id=quick_model.compute_id).exists():
-            com_model = compute_models.Compute.objects.get(id=quick_model.compute_id)
-            # 做一些清理工作
+        if not quick_model.instance:
+            return None
+
+        if not quick_model.compute_id or not compute_models.Compute.objects.filter(id=quick_model.compute_id).exists():
+            return None
+        instance = quick_model.instance
+        compute = compute_models.Compute.objects.get(id=quick_model.compute_id)
+        # 做一些清理工作
+        conn = wvmInstance(compute.hostname,
+                           compute.login,
+                           compute.password,
+                           compute.type,
+                           quick_model.instance.name)
+        status = conn.get_status()
+
+        # 状态为 5 ，表示关闭，可以删除
+        if status != 5:
+            raise Exception('%s is not shutdwon in host %s' % (quick_model.instance.name, compute.name))
+
+        snapshots = sorted(conn.get_snapshot(), reverse=True)
+        for snap in snapshots:
+            conn.snapshot_delete(snap['name'])
+        conn.delete_disk()
+        conn.delete()
+        conn.close()
+        instance.delete()
+        quick_model.refresh_from_db()
+
             
             
 class SelectCompute(taskflow_base.TaskBase):
@@ -68,6 +90,7 @@ class CreateDisk(taskflow_base.TaskBase):
     """
     backing_pool_name = 'backing'
     target_disk_pool_name = 'imgdev'
+    disk_format = 'qcow2'
     
     def do_execute(self, quick_model: create_models.QuickVM):
         disks_path = []
@@ -77,32 +100,31 @@ class CreateDisk(taskflow_base.TaskBase):
                           compute.password,
                           compute.type,
                           self.target_disk_pool_name)
-        #storages = conn.get_storages()
+        
         pool_dir = util.get_xml_path(conn.pool.XMLDesc(), 'target/path')
         backing_file = quick_model.template.backing_file
         if backing_file:
             backing_file = backing_file.name
             backing_pool = conn.get_storage(self.backing_pool_name)
-            #print(type(backing_pool.XMLDesc()))
-            #print(backing_pool.XMLDesc())
 
-            #return True
             vol = backing_pool.storageVolLookupByName(backing_file)
             backing_file = vol.path()   # 绝对路径
             meta_prealloc = False
-            disk_name = quick_model.token + 'backing'
+            disk_name = quick_model.token + '-backing'
+            
             data = {
                 'name': disk_name,
-                'size': 1, # GB
-                'format': 'qcow2',
+                'size': 1, # GB     后端镜像不需要指定磁盘大小
+                'format': self.disk_format,
                 'is_use_backing': True,
             }
             conn.create_volume(data['name'], data['size'], data['format'], meta_prealloc, data["is_use_backing"],
                                backing_file)
-            disks_path.append(os.path.join(pool_dir, '%s.qcow2' % disk_name))
+            disks_path.append(os.path.join(pool_dir, '%s.%s' % (disk_name, self.disk_format)))
 
+        # 创建数据盘
         if quick_model.template.disk:
-            disks = quick_model.template.disk.split(',')
+            disks = [ x.strip() for x in quick_model.template.disk.split(',')]
             for i, disk in enumerate(disks, start=1):
                 meta_prealloc = False
                 disk_name = quick_model.token + '-disk' + str(i)
@@ -112,7 +134,7 @@ class CreateDisk(taskflow_base.TaskBase):
                     'format': 'qcow2',
                 }
                 conn.create_volume(data['name'], data['size'], data['format'], meta_prealloc)
-                disks_path.append(os.path.join(pool_dir, disk_name + '.qcow2'))
+                disks_path.append(os.path.join(pool_dir, '%s.%s' % (disk_name, self.disk_format)))
         
         quick_model.disks_path = ','.join(disks_path)
         quick_model.save()
@@ -121,9 +143,13 @@ class CreateDisk(taskflow_base.TaskBase):
         
 
 class CreateVM(taskflow_base.TaskBase):
+    """
+    创建虚机
+    """
     def do_execute(self, quick_model: create_models.QuickVM):
         vcpu_num = quick_model.template.vcpu
         memory = quick_model.template.memory
+        clock = quick_model.template.clock
         if not quick_model.disks_path:
             raise Exception('no disk')
         
@@ -151,7 +177,7 @@ class CreateVM(taskflow_base.TaskBase):
             volumes[disk_path] = conn.get_volume_type(disk_path)
         
         conn.create_instance(data['name'], data['memory'], data['vcpu'], data['host_model'],
-                             uuid, volumes, data['cache_mode'], data['networks'], data['virtio'])
+                             uuid, volumes, data['cache_mode'], data['networks'], data['virtio'], clock=clock)
         create_instance = Instance(compute_id=quick_model.compute_id, name=data['name'], uuid=uuid)
         create_instance.save()
         quick_model.instance = create_instance

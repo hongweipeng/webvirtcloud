@@ -33,3 +33,8 @@ HISTORY_STATUS = (
     (SUCCESS, SUCCESS),
     (FAIL, FAIL),
 )
+
+CLOCK_CHOICE = (
+    ('utc', 'utc'),
+    ('localtime', 'localtime'),
+)
