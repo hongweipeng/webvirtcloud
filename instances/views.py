@@ -957,7 +957,7 @@ def delete_instance(instance, delete_disk=False):
             print("Forcing shutdown")
             conn.force_shutdown()
         if delete_disk:
-            snapshots = sorted(conn.get_snapshot(), reverse=True)
+            snapshots = sorted(conn.get_snapshot(), reverse=True, key=lambda k:k['date'])
             for snap in snapshots:
                 print("Deleting snapshot {}".format(snap['name']))
                 conn.snapshot_delete(snap['name'])
