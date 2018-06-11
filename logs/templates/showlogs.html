@@ -38,7 +38,7 @@
                                     {% for log in logs %}
                                         <tr>
                                             <td>{{ log.id }}</td>
-                                            <td style="width:130px;">{{ log.date|date:"M d H:i:s" }}</td>
+                                            <td style="width:130px;">{{ log.date|date:"Y-m-d H:i:s" }}</td>
                                             <td>{{ log.user }}</a></td>
                                             <td>{{ log.instance }}</a></td>
                                             <td>{{ log.message }}</td>

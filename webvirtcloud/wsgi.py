@@ -46,3 +46,8 @@ def start_websockify():
 
 start_websockify()
 
+# 计划任务 server
+from crontab import scheduler
+scheduler.start()
+
+
