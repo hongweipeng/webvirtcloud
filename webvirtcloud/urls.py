@@ -40,5 +40,6 @@ urlpatterns =[
 
     path(r'console/',                           console.views.console, name='console'),
     path(r'vnc_auto/',                          console.views.vnc_auto, name='vnc_auto'),
+    path(r'frame_vnc_auto/',                    console.views.vnc_allow_cors, name='vnc_allow_cors'),
     path(r'admin/',                             admin.site.urls),
 ]

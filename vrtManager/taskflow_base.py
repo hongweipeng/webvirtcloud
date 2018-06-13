@@ -130,3 +130,22 @@ def async_run(eng, game_model, history_model_cls, history_foreign_key):
     worker = TaskWorker(eng, game_model, history_model_cls, history_foreign_key)
     worker.start()
 
+def sync_run(engine, raw_model, history_model_cls, history_foreign_key):
+    whole_err_msg = ''
+    try:
+        raw_model.status = consts.RUNNING
+        raw_model.save()
+        engine.run()
+    except Exception as e:
+        with io.StringIO() as err_fp:
+            traceback.print_exc(file=err_fp)
+            whole_err_msg = err_fp.getvalue()
+
+        save_history(raw_model.step, consts.FAIL, whole_err_msg, raw_model,
+                     history_model_cls, history_foreign_key)  # 记录历史
+        raw_model.status = consts.HANGUP
+        raw_model.save()
+        LOG.error(whole_err_msg)
+
+
+
