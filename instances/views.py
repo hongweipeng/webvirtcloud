@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from computes.models import Compute
 from instances.models import Instance
@@ -117,6 +118,8 @@ def instances(request):
                 msg = _("Power On")
                 addlogmsg(request.user.username, instance.name, msg)
                 conn.start(name)
+                instance.start_time = timezone.now()
+                instance.save()
                 return HttpResponseRedirect(request.get_full_path())
 
             if 'poweroff' in request.POST:
@@ -365,6 +368,8 @@ def instance(request, compute_id, vname):
                 conn.start()
                 msg = _("Power On")
                 addlogmsg(request.user.username, instance.name, msg)
+                instance.start_time = timezone.now()
+                instance.save()
                 return HttpResponseRedirect(request.get_full_path() + '#poweron')
 
             if 'powercycle' in request.POST:

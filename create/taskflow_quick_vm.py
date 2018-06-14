@@ -1,5 +1,6 @@
 import os
 import random
+from django.utils import timezone
 from vrtManager import taskflow_base
 from vrtManager import consts, util
 from vrtManager.create import wvmCreate
@@ -197,6 +198,9 @@ class StarVM(taskflow_base.TaskBase):
                            compute.type,
                            quick_model.instance.name)
         conn.start()
+        instance = quick_model.instance
+        instance.start_time = timezone.now()
+        instance.save()
         return True
         
 class Step2(taskflow_base.TaskBase):

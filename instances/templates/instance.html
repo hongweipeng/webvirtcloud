@@ -1139,7 +1139,7 @@
                                                                     <strong>{% trans "Remove Instance's data" %}</strong>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-lg btn-success pull-right" name="delete">{% trans "Destroy" %}</button>
+                                                            <button type="submit" class="btn btn-lg btn-success pull-right" name="delete" onclick="return confirm('你确定吗？');">{% trans "Destroy" %}</button>
                                                         </form>
                                                     {% endifequal %}
                                                 {% else %}
