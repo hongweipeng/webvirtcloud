@@ -33,13 +33,21 @@ def snap_crontab():
                 continue
 
             snapshot_list = conn.instance.snapshotListNames(0)
-            # 清理 3 小时前的
+            snap_coll = []         # [{'created': <int>, 'snap':snap_obj}, ...]
+            # 收集快照信息
             for snapshot_name in snapshot_list:
                 snap = conn.instance.snapshotLookupByName(snapshot_name, 0)
                 snap_time_create = util.get_xml_path(snap.getXMLDesc(0), "/domainsnapshot/creationTime")
+                snap_coll.append({
+                    'created': int(snap_time_create),
+                    'snap': snap
+                })
 
-                # 清除 一周 前的快照
-                if int(time.time()) - int(snap_time_create) > 3600 * 24 * 7:
+            # 若快照数量高于7个，删除旧的快照
+            if len(snap_coll) >= 7:
+                snap_coll = sorted(snap_coll, reverse=True, key=lambda d:d['created'])
+                for item in snap_coll[7:]:
+                    snap = item['snap']
                     snap.delete(0)
 
             # 创建一个新的快照
