@@ -1,4 +1,6 @@
 import time
+import io
+import base64
 import os.path
 try:
     from libvirt import libvirtError, VIR_DOMAIN_XML_SECURE, VIR_MIGRATE_LIVE, VIR_MIGRATE_UNSAFE
@@ -10,6 +12,7 @@ from datetime import datetime
 from vrtManager.connection import wvmConnect
 from vrtManager.storage import wvmStorage
 from webvirtcloud.settings import QEMU_CONSOLE_TYPES
+from PIL import Image
 
 
 class wvmInstances(wvmConnect):
@@ -621,6 +624,24 @@ class wvmInstance(wvmConnect):
         xml += """<active>0</active>
                   </domainsnapshot>"""
         self._snapshotCreateXML(xml, 0)
+
+    def get_screenshot(self, return_base64=True):
+        def saver(stream, data, file_):
+            return file_.write(data)
+
+        st = self.wvm.newStream(0)
+        mime = self.instance.screenshot(st, 0)
+        base64_byte = b''
+        with io.BytesIO() as receive, io.BytesIO() as save:
+            st.recvAll(saver, receive)
+            img = Image.open(receive)
+            img.save(save, format='PNG')
+            byte_data = save.getvalue()
+            base64_byte = base64.b64encode(byte_data)
+
+            img.close()
+            st.finish()
+        return base64_byte.decode('utf8')
 
     def get_snapshot(self):
         snapshots = []
