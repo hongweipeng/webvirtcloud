@@ -1,6 +1,8 @@
+import time
 from django.urls import reverse
 from rest_framework import generics, permissions, exceptions
 from rest_framework.views import APIView, Response
+from rest_framework.decorators import api_view
 from create import models as create_models
 from vrtManager import taskflow_base
 from vrtManager import consts
@@ -12,6 +14,9 @@ from webvirtcloud.settings import WS_PORT
 from webvirtcloud.settings import WS_PUBLIC_HOST
 from webvirtcloud.settings import VNC_TOKENS_FILE
 from rest_framework.request import Request
+from django.contrib.auth import authenticate
+from accounts.models import UserInstance
+from vrtManager import tools
 
 
 class QuickVMList(APIView):
@@ -87,5 +92,56 @@ class QuickVMList(APIView):
             'success': True,
             'vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + vnc_url),
         })
+
+
+def api_auth_check(request: Request):
+    data = request.data
+    username = data.get('username')
+    password = data.get('password')
+    user = authenticate(username=username, password=password)
+    if not user:
+        raise exceptions.ValidationError('username or password error')
+
+    timestamp = data.get('timestamp')
+    checkcode = data.get('checkcode')
+    if not timestamp or not checkcode:
+        raise exceptions.ValidationError('checkcode error')
+
+
+    code = tools.md5(password + chr(163) + str(timestamp) + 'jxkj')
+    if checkcode != code:
+        raise exceptions.ValidationError('checkcode error')
+
+    return user
+
+class ScreenShot(APIView):
+    queryset = UserInstance.objects.all()
+    permission_classes = (permissions.AllowAny, )  # 使用自定义的认证方式，因此rest ful不对此进行验证
+    def post(self, request, instance_id):
+        if request.method != 'POST':
+            raise exceptions.ValidationError('method not allow')
+        user = api_auth_check(request)
+        userinstace = None
+        try:
+            userinstace = UserInstance.objects.get(instance__id=instance_id,
+                                                   user__id=user.id)
+        except UserInstance.DoesNotExist:
+            raise exceptions.ValidationError('the vm id %s is not exist' % instance_id)
+        compute = userinstace.instance.compute
+        conn = wvmInstance(compute.hostname,
+                           compute.login,
+                           compute.password,
+                           compute.type,
+                           userinstace.instance.name)
+
+        img_base64 = conn.get_screenshot()
+        return Response({
+            'success': True,
+            'data': img_base64,
+        })
+
+
+
+
 
 

@@ -1,3 +1,4 @@
+import hashlib
 from webvirtcloud.settings import WS_PORT
 from webvirtcloud.settings import WS_PUBLIC_HOST
 from webvirtcloud.settings import VNC_TOKENS_FILE
@@ -20,3 +21,10 @@ def set_proxy(token, vnc_host, vnc_port):
             f.truncate()  # 清空文件
             f.write("\n".join(vnc_token_lines))
     return True
+
+
+def md5(line: str) -> str:
+    return hashlib.md5(line.encode('latin1')).hexdigest()
+
+if __name__ == '__main__':
+    print(md5("jxkj123" + chr(163) + str(1) + "jxkj"))
