@@ -33,7 +33,7 @@ class ClearIfSet(taskflow_base.TaskBase):
         if status != 5:
             raise Exception('%s is not shutdwon in host %s' % (quick_model.instance.name, compute.name))
 
-        snapshots = sorted(conn.get_snapshot(), reverse=True)
+        snapshots = sorted(conn.get_snapshot(), reverse=True, key=lambda k:k['date'] )
         for snap in snapshots:
             conn.snapshot_delete(snap['name'])
         conn.delete_disk()
