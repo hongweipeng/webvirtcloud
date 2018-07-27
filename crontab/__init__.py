@@ -44,9 +44,9 @@ def snap_crontab():
                 })
 
             # 若快照数量高于7个，删除旧的快照
-            if len(snap_coll) >= 7:
+            if len(snap_coll) >= 6:
                 snap_coll = sorted(snap_coll, reverse=True, key=lambda d:d['created'])
-                for item in snap_coll[7:]:
+                for item in snap_coll[6:]:
                     snap = item['snap']
                     snap.delete(0)
 
@@ -57,7 +57,7 @@ def snap_crontab():
     print("end snap_crontab")
 
 
-scheduler.add_job(snap_crontab, 'cron', hour=5, minute=20, max_instances=1)
+scheduler.add_job(snap_crontab, 'cron', hour=5, minute=20)
 # scheduler.add_job(snap_crontab, 'interval', minutes=100, max_instances=1)
 
 #snap_crontab()
