@@ -18,12 +18,32 @@ from django.contrib.auth import authenticate
 from accounts.models import UserInstance
 from vrtManager import tools
 
+def api_auth_check(request: Request):
+    data = request.data
+    username = data.get('username')
+    password = data.get('password')
+    user = authenticate(username=username, password=password)
+    if not user:
+        raise exceptions.ValidationError('username or password error')
+
+    timestamp = data.get('timestamp')
+    checkcode = data.get('checkcode')
+    if not timestamp or not checkcode:
+        raise exceptions.ValidationError('checkcode error')
+
+
+    code = tools.md5(password + chr(163) + str(timestamp) + 'jxkj')
+    if checkcode != code:
+        raise exceptions.ValidationError('checkcode error')
+
+    return user
 
 class QuickVMList(APIView):
     queryset = create_models.QuickVM.objects.all()
     permission_classes = (permissions.AllowAny, )
     
     def post(self, request):
+        user = api_auth_check(request)
         data = request.data
         print(data)
         # 验证必填的参数
@@ -95,25 +115,7 @@ class QuickVMList(APIView):
         })
 
 
-def api_auth_check(request: Request):
-    data = request.data
-    username = data.get('username')
-    password = data.get('password')
-    user = authenticate(username=username, password=password)
-    if not user:
-        raise exceptions.ValidationError('username or password error')
 
-    timestamp = data.get('timestamp')
-    checkcode = data.get('checkcode')
-    if not timestamp or not checkcode:
-        raise exceptions.ValidationError('checkcode error')
-
-
-    code = tools.md5(password + chr(163) + str(timestamp) + 'jxkj')
-    if checkcode != code:
-        raise exceptions.ValidationError('checkcode error')
-
-    return user
 
 class ScreenShot(APIView):
     queryset = UserInstance.objects.all()
@@ -136,13 +138,36 @@ class ScreenShot(APIView):
                            userinstace.instance.name)
 
         img_base64 = conn.get_screenshot()
+        conn.close()
         return Response({
             'success': True,
             'data': img_base64,
         })
 
 
+class ShutDownVm(APIView):
+    qeryset = ()
+    permission_classes = (permissions.AllowAny, )
 
+    def post(self, request):
+        user = api_auth_check(request)
+        instance_id = request.data.get('instance_id')
+        try:
+            userinstace = create_models.QuickVM.objects.get(instance__id=instance_id)
+        except create_models.QuickVM.DoesNotExist:
+            raise exceptions.ValidationError('the vm id %s is not exist' % instance_id)
 
+        compute = userinstace.instance.compute
+        conn = wvmInstance(compute.hostname,
+                           compute.login,
+                           compute.password,
+                           compute.type,
+                           userinstace.instance.name)
+
+        conn.shutdown()
+        conn.close()
+        return Response({
+            'success': True,
+        })
 
 
