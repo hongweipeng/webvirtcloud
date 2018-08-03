@@ -212,6 +212,11 @@
                            'onPasswordRequired':  passwordRequired});
             rfb.connect(host, port, password, path);
         };
+        document.body.addEventListener('click', function(){
+            if(window.parent) {
+                window.parent.postMessage('focus', '*');
+            }
+        }, true)
         </script>
 
     </body>
