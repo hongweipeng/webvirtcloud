@@ -115,7 +115,7 @@ class QuickVMList(APIView):
             'success': True,
             'instance_id': instance.id,
             'vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + vnc_url),
-            'view_only_vnc_url': (request.scheme, request._get_raw_host() + view_only_vnc_url),
+            'view_only_vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + view_only_vnc_url),
         })
 
 
