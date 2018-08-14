@@ -84,3 +84,9 @@ def vnc_allow_cors(request):
     response['X-Frame-Options'] = 'ALLOW-FROM'
     response['Content-Security-Policy'] = 'frame-ancestors *'
     return response
+
+def view_only_vnc_allow_cors(request):
+    response = render(request, 'view_only_vnc_auto.html')
+    response['X-Frame-Options'] = 'ALLOW-FROM'
+    response['Content-Security-Policy'] = 'frame-ancestors *'
+    return response

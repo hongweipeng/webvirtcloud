@@ -108,10 +108,14 @@ class QuickVMList(APIView):
         vnc_url = reverse('vnc_allow_cors')
         vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
 
+        view_only_vnc_url = reverse('view_only_vnc_allow_cors')
+        view_only_vnc_url = "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
+
         return Response({
             'success': True,
             'instance_id': instance.id,
             'vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + vnc_url),
+            'view_only_vnc_url': view_only_vnc_url,
         })
 
 
