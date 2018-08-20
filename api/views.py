@@ -174,8 +174,10 @@ class ShutDownVm(APIView):
                            compute.password,
                            compute.type,
                            userinstace.instance.name)
-
-        conn.shutdown()
+        if request.data.get('force'):
+            conn.force_shutdown()
+        else:
+            conn.shutdown()
         conn.close()
         return Response({
             'success': True,
