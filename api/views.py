@@ -82,11 +82,18 @@ class QuickVMList(APIView):
             })
 
         # 同步
-
         taskflow_base.sync_run(eng, qvm_model, create_models.QuickVMStep, 'quick_id')
+
 
         # 返回 vnc 地址
         instance = qvm_model.instance
+
+        if not instance:
+            return Response({
+                'success': False,
+                'msg': 'can not find idle compute'
+            })
+
         uuid = instance.uuid
         conn = wvmInstance(instance.compute.hostname,
                            instance.compute.login,
