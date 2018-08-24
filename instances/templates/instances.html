@@ -65,7 +65,7 @@
                                                             {% endifequal %}
                                                         </td>
                                                         <td>{{ info.vcpu }}</td>
-                                                        <td>{{ info.memory }}</td>
+                                                        <td>{{ info.memory | filesizeformat}}</td>
                                                         <td><form action="" method="post" role="form">{% csrf_token %}
                                                                 <input type="hidden" name="name" value="{{ vm }}"/>
                                                                 <input type="hidden" name="compute_id" value="{{ host.0 }}"/>

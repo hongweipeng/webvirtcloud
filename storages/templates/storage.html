@@ -33,60 +33,18 @@
 </div>
 <!-- /.row -->
 
-<<<<<<< HEAD
-            <div class="row">
-                <div class="col-xs-6 col-sm-6">
-                    <p>{% trans "Pool name" %}:</p>
-                    <p>{% trans "Pool type" %}:</p>
-                    <p>{% trans "Pool path" %}:</p>
-                    <p>{% trans "Pool status" %}:</p>
-                    <p>{% trans "Size" %}: ({{ size|filesizeformat }} / {{ used|filesizeformat }})</p>
-                    <p>{% trans "State" %}:</p>
-                    <p>{% trans "Autostart" %}:</p>
-                </div>
-                <div class="col-xs-6 col-sm-6">
-                    <p>{{ pool }}</p>
-                    <p>{% if not type %}{% trans "None" %}{% else %}{{ type }}{% endif %}</p>
-                    <p>{% if not path %}{% trans "None" %}{% else %}{{ path }}{% endif %}</p>
-                    <p>{% if not status %}{% trans "None" %}{% else %}{{ status }}{% endif %}</p>
-                    <p>{% trans "Usage" %}: {{ percent }}%</p>
-                    <p>
-                        <form action="" method="post" role="form">{% csrf_token %}
-                            {% ifequal state 0 %}
-                                <input type="submit" class="btn btn-xs btn-default" name="start" value="{% trans "Start" %}">
-                                <input type="submit" class="btn btn-xs btn-default" name="delete" value="{% trans "Delete" %}"
-                                       onclick="return confirm('{% trans "Are you sure?" %}')">
-                            {% else %}
-                                <input type="submit" class="btn btn-xs btn-default" name="stop" value="{% trans "Stop" %}"
-                                       onclick="return confirm('{% trans "Are you sure?" %}')">
-                            {% endifequal %}
-                        </form>
-                    </p>
-                    <p>
-                        <form action="" method="post" role="form">{% csrf_token %}
-                            {% ifequal autostart 0 %}
-                                <input type="submit" class="btn btn-xs btn-default" name="set_autostart"
-                                       value="{% trans "Enable" %}">
-                            {% else %}
-                                <input type="submit" class="btn btn-xs btn-default" name="unset_autostart"
-                                       onclick="return confirm('{% trans "Are you sure?" %}')" value="{% trans "Disable" %}">
-                            {% endifequal %}
-                        </form>
-                    </p>
-                </div>
-=======
 {% include 'errors_block.html' %}
 {% include 'messages_block.html' %}
 
 <div class="row">
     <div class="col-xs-6 col-sm-6">
-        <p>{% trans "Pool name:" %}</p>
-        <p>{% trans "Pool type:" %}</p>
-        <p>{% trans "Pool path:" %}</p>
-        <p>{% trans "Pool status:" %}</p>
-        <p>{% trans "Size:" %} ({{ size|filesizeformat }} / {{ used|filesizeformat }})</p>
-        <p>{% trans "State:" %}</p>
-        <p>{% trans "Autostart:" %}</p>
+        <p>{% trans "Pool name" %}:</p>
+        <p>{% trans "Pool type" %}:</p>
+        <p>{% trans "Pool path" %}:</p>
+        <p>{% trans "Pool status" %}:</p>
+        <p>{% trans "Size" %}: ({{ size|filesizeformat }} / {{ used|filesizeformat }})</p>
+        <p>{% trans "State" %}:</p>
+        <p>{% trans "Autostart" %}:</p>
     </div>
     <div class="col-xs-6 col-sm-6">
         <p>{{ pool }}</p>
@@ -125,7 +83,6 @@
         <div class="row">
             <div class="pull-right">
                 <input id="filter" class="form-control" type="text" placeholder="Search">
->>>>>>> 3748a46d8fef7bca5628b5b9021dd1968adfa7ed
             </div>
             <h3 class="page-header">{% trans "Volumes" %}</h3>
 
@@ -255,43 +212,6 @@
             } else {
                 $('.meta-prealloc').hide();
             }
-{#<<<<<<< HEAD#}
-{#        } else {#}
-{#            $('.format-convert').hide();#}
-{#            $('.meta-prealloc').hide();#}
-{#        }#}
-{#    });#}
-{#    $(document).on('change', '.image-format', function () {#}
-{#        if ($(this).val() == "qcow2") {#}
-{#            $('.meta-prealloc').show();#}
-{#        } else {#}
-{#            $('.meta-prealloc').hide();#}
-{#        }#}
-{#    });#}
-{#</script>#}
-{#<script>#}
-{#    $(document).ready(function () {#}
-{#        (function ($) {#}
-{#            $('#filter').keyup(function () {#}
-{#                var rex = new RegExp($(this).val(), 'i');#}
-{#                $('.searchable tr').hide();#}
-{#                $('.searchable tr').filter(function () {#}
-{#                    return rex.test($(this).text());#}
-{#                }).show();#}
-{#            })#}
-{#        }(jQuery));#}
-{#    });#}
-{##}
-{#    $(function() {#}
-{#        var $backing_file_group = $('#backing_file');#}
-{#        $backing_file_group.hide();#}
-{#        $('#is_use_backing').change(function (e) {#}
-{#            $backing_file_group.toggle();#}
-{#        });#}
-{#    });#}
-{##}
-{#</script>#}
-{#=======#}
         });
     </script>
     <script>
