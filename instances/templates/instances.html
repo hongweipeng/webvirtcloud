@@ -31,11 +31,12 @@
                                 {% if not all_host_vms %}
                                     <div class="col-lg-12">
                                         <div class="alert alert-warning alert-dismissable">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            <i class="fa fa-exclamation-triangle"></i> <strong>{% trans "Warning:" %}</strong> {% trans "You don't have any Instace" %}
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>
+                                            <i class="fa fa-exclamation-triangle"></i> <strong>{% trans "Warning:" %}</strong> {% trans "You don't have any Instance" %}
                                         </div>
                                     </div>
                                 {% else %}
+{#<<<<<<< HEAD#}
                                     <table class="table table-hover table-striped sortable-theme-bootstrap" data-sortable>
                                         <thead>
                                             <tr>
@@ -132,13 +133,21 @@
                                             {% endfor %}
                                         </tbody>
                                     </table>
+{#=======#}
+{#                                   {% ifequal view_style "nongrouped"  %}#}
+{#                                       {% include 'instances_nongrouped.html' %}#}
+{#                                   {% endifequal %}#}
+{#                                   {% ifequal view_style "grouped" %}#}
+{#                                       {% include 'instances_grouped.html' %}#}
+{#                                   {% endifequal %}#}
+{#>>>>>>> 3748a46d8fef7bca5628b5b9021dd1968adfa7ed#}
                                 {% endif %}
                             {% else %}
                                 {% if not all_user_vms %}
                                     <div class="col-lg-12">
                                         <div class="alert alert-warning alert-dismissable">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            <i class="fa fa-exclamation-triangle"></i> <strong>{% trans "Warning:" %}</strong> {% trans "You don't have any Instace" %}
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <i class="fa fa-exclamation-triangle"></i> <strong>{% trans "Warning:" %}</strong> {% trans "You don't have any Instance" %}
                                         </div>
                                     </div>
                                 {% else  %}

@@ -5,6 +5,7 @@
 
 * User can add SSH public key to root in Instance (Tested only Ubuntu)
 * User can change root password in Instance (Tested only Ubuntu)
+* Supports cloud-init datasource interface
 
 ### Warning!!!
 
@@ -31,7 +32,7 @@ print(''.join([random.SystemRandom().choice(haystack) for _ in range(50)]))
 ### Install WebVirtCloud panel (Ubuntu)
 
 ```bash
-sudo apt-get -y install git python-virtualenv python-dev libxml2-dev libvirt-dev zlib1g-dev nginx supervisor libsasl2-modules gcc pkg-config
+sudo apt-get -y install git python-virtualenv python-dev python-lxml libvirt-dev zlib1g-dev nginx supervisor libsasl2-modules gcc pkg-config python-guestfs
 git clone https://github.com/retspen/webvirtcloud
 cd webvirtcloud
 cp webvirtcloud/settings.py.template webvirtcloud/settings.py
@@ -66,7 +67,7 @@ wget -O - https://clck.ru/9V9fH | sudo sh
 ### Install WebVirtCloud panel (CentOS)
 
 ```bash
-sudo yum -y install python-virtualenv python-devel libvirt-devel glibc gcc nginx supervisor libxml2 libxml2-devel git
+sudo yum -y install python-virtualenv python-devel libvirt-devel glibc gcc nginx supervisor python-lxml git python-libguestfs
 ```
 
 #### Creating directories and cloning repo
@@ -192,16 +193,15 @@ sudo systemctl restart nginx && systemctl restart supervisord
 And finally, check everything is running:
 ```bash
 sudo supervisorctl status
-
-novncd                           RUNNING    pid 24186, uptime 2:59:14
-webvirtcloud                     RUNNING    pid 24185, uptime 2:59:14
-
+gstfsd             RUNNING   pid 24662, uptime 6:01:40
+novncd             RUNNING   pid 24661, uptime 6:01:40
+webvirtcloud       RUNNING   pid 24660, uptime 6:01:40
 ```
 
 #### Apache mod_wsgi configuration
 ```
 WSGIDaemonProcess webvirtcloud threads=2 maximum-requests=1000 display-name=webvirtcloud
-WSGIScriptAlias / /srv/webvirtcloud/webvirtcloud/wsgi.py
+WSGIScriptAlias / /srv/webvirtcloud/webvirtcloud/wsgi_custom.py
 ```
 
 #### Install final required packages for libvirtd and others on Host Server
@@ -219,9 +219,20 @@ login: admin
 password: admin
 </pre>
 
+### Cloud-init
+Currently supports only root ssh authorized keys and hostname. Example configuration of the cloud-init client follows.
+```
+datasource:
+  OpenStack:
+      metadata_urls: [ "http://webvirtcloud.domain.com/datasource" ]
+```
+
 ### How To Update
 ```bash
+sudo virtualenv venv
+sudo source venv/bin/activate
 git pull
+pip install -U -r conf/requirements.txt 
 python manage.py migrate
 sudo service supervisor restart
 ```

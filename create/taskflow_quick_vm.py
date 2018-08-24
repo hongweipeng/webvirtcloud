@@ -42,7 +42,10 @@ class ClearIfSet(taskflow_base.TaskBase):
         instance.delete()
         quick_model.refresh_from_db()
 
-            
+class ValidTemplateCode(taskflow_base.TaskBase):
+    """验证实验镜像是否已认证"""
+    def do_execute(self, raw_model:create_models.QuickVM):
+        pass
             
 class SelectCompute(taskflow_base.TaskBase):
     """

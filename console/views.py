@@ -18,8 +18,10 @@ def console(request):
     :return:
     """
     token = ''
+    console_error = None
     if request.method == 'GET':
         token = request.GET.get('token', '')
+        view_type = request.GET.get('view', 'lite')
 
     try:
         temptoken = token.split('-', 1)
@@ -68,8 +70,13 @@ def console(request):
 
     elif console_type == 'spice':
         response = render(request, 'console-spice.html', locals())
+
+    console_page = "console-" + console_type + "-" + view_type + ".html"
+    if console_type == 'vnc' or console_type == 'spice':
+        response = render(request, console_page, locals())
     else:
-        response = "Console type %s no support" % console_type
+        console_error = "Console type: %s no support" % console_type
+        response = render(request, 'console-vnc-lite.html', locals())
 
     response.set_cookie('token', token)
     return response

@@ -8,6 +8,8 @@ from accounts.models import *
 from instances.models import Instance
 from accounts.forms import UserAddForm
 from django.conf import settings
+from django.core.validators import ValidationError
+
 
 
 @login_required
@@ -92,22 +94,33 @@ def accounts(request):
                 UserAttributes.configure_user(new_user)
                 return HttpResponseRedirect(request.get_full_path())
         if 'edit' in request.POST:
+            CHECKBOX_MAPPING = {'on': True, 'off': False, }
+
             user_id = request.POST.get('user_id', '')
             user_pass = request.POST.get('user_pass', '')
             user_edit = User.objects.get(id=user_id)
-            user_edit.set_password(user_pass)
-            user_edit.is_staff = True if request.POST.get('user_is_staff', False) == 'on' else False
-            user_edit.is_superuser = True if request.POST.get('user_is_superuser', False) == 'on' else False
+
+
+            if user_pass != '': user_edit.set_password(user_pass)
+            user_edit.is_staff = CHECKBOX_MAPPING.get(request.POST.get('user_is_staff', 'off'))
+            user_edit.is_superuser = CHECKBOX_MAPPING.get(request.POST.get('user_is_superuser', 'off'))
             user_edit.save()
 
-            userattributes = user_edit.userattributes
-            userattributes.can_clone_instances = True if request.POST.get('userattributes_can_clone_instances', False) == 'on' else False
-            userattributes.max_instances = request.POST.get('userattributes_max_instances', 0)
-            userattributes.max_cpus = request.POST.get('userattributes_max_cpus', 0)
-            userattributes.max_memory = request.POST.get('userattributes_max_memory', 0)
-            userattributes.max_disk_size = request.POST.get('userattributes_max_disk_size', 0)
-            userattributes.save()
-            return HttpResponseRedirect(request.get_full_path())
+            UserAttributes.create_missing_userattributes(user_edit)
+            user_edit.userattributes.can_clone_instances = CHECKBOX_MAPPING.get(request.POST.get('userattributes_can_clone_instances', 'off'))
+            user_edit.userattributes.max_instances = request.POST.get('userattributes_max_instances', 0)
+            user_edit.userattributes.max_cpus = request.POST.get('userattributes_max_cpus', 0)
+            user_edit.userattributes.max_memory = request.POST.get('userattributes_max_memory', 0)
+            user_edit.userattributes.max_disk_size = request.POST.get('userattributes_max_disk_size', 0)
+
+            try:
+                user_edit.userattributes.clean_fields()
+            except ValidationError as exc:
+                error_messages.append(exc)
+            else:
+                user_edit.userattributes.save()
+                return HttpResponseRedirect(request.get_full_path())
+
         if 'block' in request.POST:
             user_id = request.POST.get('user_id', '')
             user_block = User.objects.get(id=user_id)
@@ -130,7 +143,10 @@ def accounts(request):
                 user_delete.delete()
             return HttpResponseRedirect(request.get_full_path())
 
-    return render(request, 'accounts.html', locals())
+    accounts_template_file = 'accounts.html'
+    if settings.VIEW_ACCOUNTS_STYLE == "list":
+        accounts_template_file = 'accounts-list.html'
+    return render(request, accounts_template_file, locals())
 
 
 @login_required

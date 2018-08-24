@@ -206,10 +206,10 @@ class wvmInstance(wvmConnect):
 
     def get_net_device(self):
         def get_mac_ipaddr(net, mac_host):
-            def fixed(ctx):
-                for net in ctx.xpathEval('/network/ip/dhcp/host'):
-                    mac = net.xpathEval('@mac')[0].content
-                    host = net.xpathEval('@ip')[0].content
+            def fixed(doc):
+                for net in doc.xpath('/network/ip/dhcp/host'):
+                    mac = net.xpath('@mac')[0]
+                    host = net.xpath('@ip')[0]
                     if mac == mac_host:
                         return host
                 return None
@@ -218,24 +218,23 @@ class wvmInstance(wvmConnect):
 
         def networks(ctx):
             result = []
-            # for net in ctx.xpathEval('/domain/devices/interface'):
+
             for net in ctx.xpath('/domain/devices/interface'):
-                # mac_host = net.xpathEval('mac/@address')[0].content
                 mac_host = net.xpath('mac/@address')[0]
-                # nic_host = net.xpathEval('source/@network|source/@bridge|source/@dev')[0].content
-                nic_host = net.xpath('source/@network|source/@bridge|source/@dev')[0]
+                network_host = net.xpath('source/@network|source/@bridge|source/@dev')[0]
+                target_host = '' if not net.xpath('target/@dev') else net.xpath('target/@dev')[0]
                 try:
-                    net = self.get_network(nic_host)
+                    net = self.get_network(network_host)
                     ip = get_mac_ipaddr(net, mac_host)
-                except:
+                except libvirtError as e:
                     ip = None
-                result.append({'mac': mac_host, 'nic': nic_host, 'ip': ip})
+                result.append({'mac': mac_host, 'nic': network_host, 'target': target_host,'ip': ip})
             return result
 
         return util.get_xml_path(self._XMLDesc(0), func=networks)
 
     def get_disk_device(self):
-        def disks(ctx):
+        def disks(doc):
             result = []
             dev = None
             volume = None
@@ -243,17 +242,14 @@ class wvmInstance(wvmConnect):
             src_fl = None
             disk_format = None
             disk_size = None
-            # for disk in ctx.xpathEval('/domain/devices/disk'):
-            for disk in ctx.xpath('/domain/devices/disk'):
-                # device = disk.xpathEval('@device')[0].content
+
+
+            for disk in doc.xpath('/domain/devices/disk'):
                 device = disk.xpath('@device')[0]
                 if device == 'disk':
                     try:
-                        # dev = disk.xpathEval('target/@dev')[0].content
                         dev = disk.xpath('target/@dev')[0]
-                        # src_fl = disk.xpathEval('source/@file|source/@dev|source/@name|source/@volume')[0].content
                         src_fl = disk.xpath('source/@file|source/@dev|source/@name|source/@volume')[0]
-                        # disk_format = disk.xpathEval('driver/@type')[0].content
                         disk_format = disk.xpath('driver/@type')[0]
                         try:
                             vol = self.get_volume_by_path(src_fl)
@@ -274,23 +270,21 @@ class wvmInstance(wvmConnect):
         return util.get_xml_path(self._XMLDesc(0), func=disks)
 
     def get_media_device(self):
-        def disks(ctx):
+        def disks(doc):
             result = []
             dev = None
             volume = None
             storage = None
             src_fl = None
-            # for media in ctx.xpathEval('/domain/devices/disk'):
-            for media in ctx.xpath('/domain/devices/disk'):
-                # device = media.xpathEval('@device')[0].content
+
+            for media in doc.xpath('/domain/devices/disk'):
                 device = media.xpath('@device')[0]
                 if device == 'cdrom':
                     try:
-                        # dev = media.xpathEval('target/@dev')[0].content
-                        dev = media.xpath('target/@dev')[0]
+                        dev = media.xpath('target/@dev')
                         try:
-                            # src_fl = media.xpathEval('source/@file')[0].content
-                            src_fl = media.xpath('source/@file')[0]
+                            # src_fl = media.xpath('source/@file')[0]
+                            src_fl = media.xpath('source/@file')
                             vol = self.get_volume_by_path(src_fl)
                             volume = vol.name()
                             stg = vol.storagePoolLookupByVolume()
@@ -317,7 +311,7 @@ class wvmInstance(wvmConnect):
                             disk.insert(2, src_media)
                             return True
 
-        storages = self.get_storages()
+        storages = self.get_storages(only_actives=True)
         for storage in storages:
             stg = self.get_storage(storage)
             if stg.info()[0] != 0:
@@ -477,14 +471,39 @@ class wvmInstance(wvmConnect):
                     return "127.0.0.1"
         return listen_addr
 
+    def set_console_listen_addr(self, listen_addr):
+        xml = self._XMLDesc(VIR_DOMAIN_XML_SECURE)
+        root = ElementTree.fromstring(xml)
+        console_type = self.get_console_type()
+        try:
+            graphic = root.find("devices/graphics[@type='%s']" % console_type)
+        except SyntaxError:
+            # Little fix for old version ElementTree
+            graphic = root.find("devices/graphics")
+        if graphic is None:
+            return False
+        listen = graphic.find("listen[@type='address']")
+        if listen is None:
+            return False
+        if listen_addr:
+            graphic.set("listen", listen_addr)
+            listen.set("address", listen_addr)
+        else:
+            try:
+                graphic.attrib.pop("listen")
+                listen.attrib.pop("address")
+            except:
+                pass
+        newxml = ElementTree.tostring(root)
+        return self._defineXML(newxml)
+    
     def get_console_socket(self):
         socket = util.get_xml_path(self._XMLDesc(0),
                                    "/domain/devices/graphics/@socket")
         return socket
 
     def get_console_type(self):
-        console_type = util.get_xml_path(self._XMLDesc(0),
-                                         "/domain/devices/graphics/@type")
+        console_type = util.get_xml_path(self._XMLDesc(0),"/domain/devices/graphics/@type")
         return console_type
 
     def set_console_type(self, console_type):
@@ -593,7 +612,7 @@ class wvmInstance(wvmConnect):
 
     def get_iso_media(self):
         iso = []
-        storages = self.get_storages()
+        storages = self.get_storages(only_actives=True)
         for storage in storages:
             stg = self.get_storage(storage)
             if stg.info()[0] != 0:
@@ -760,13 +779,20 @@ class wvmInstance(wvmConnect):
         tree = ElementTree.fromstring(xml)
 
         for num, interface in enumerate(tree.findall('devices/interface')):
+            net = self.get_network(network_data['net-source-' + str(num)])
             if interface.get('type') == 'bridge':
                 source = interface.find('mac')
                 source.set('address', network_data['net-mac-' + str(num)])
                 source = interface.find('source')
+# <<<<<<< HEAD
                 source.set('bridge', network_data['net-source-' + str(num)])
 
         new_xml = ElementTree.tostring(tree).decode("utf-8")
+# =======
+#                 source.set('bridge', net.bridgeName())
+#                 source.set('network', net.name())
+#         new_xml = ElementTree.tostring(tree)
+# >>>>>>> 3748a46d8fef7bca5628b5b9021dd1968adfa7ed
         self._defineXML(new_xml)
 
     def _set_options(self, tree, options):

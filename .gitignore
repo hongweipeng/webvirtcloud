@@ -1,6 +1,10 @@
 .vagrant
 venv
+<<<<<<< HEAD
 .env
+=======
+.vscode
+>>>>>>> 3748a46d8fef7bca5628b5b9021dd1968adfa7ed
 .idea
 .DS_*
 __pycache__/
@@ -9,7 +13,12 @@ db.sqlite3*
 console/cert.pem*
 tags
 dhcpd.*
+<<<<<<< HEAD
 #webvirtcloud/settings.py
 migrations
 test.py
 ignore_dir/
+=======
+webvirtcloud/settings.py
+*migrations/*
+>>>>>>> 3748a46d8fef7bca5628b5b9021dd1968adfa7ed
