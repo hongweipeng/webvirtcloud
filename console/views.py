@@ -18,6 +18,7 @@ def console(request):
     :return:
     """
     token = ''
+    view_type = ''
     console_error = None
     if request.method == 'GET':
         token = request.GET.get('token', '')
@@ -55,6 +56,7 @@ def console(request):
     if ':' in ws_host:
         ws_host = re.sub(':[0-9]+', '', ws_host)
     vnc_token_lines = []
+    console_page = "console-" + console_type + "-" + view_type + ".html"
     if console_type == 'vnc':
         # 设置vnc文件
         tools.set_proxy(token, vnc_host, vnc_port)
@@ -69,7 +71,7 @@ def console(request):
         return redirect(vnc_url)
 
     elif console_type == 'spice':
-        response = render(request, 'console-spice.html', locals())
+        response = render(request, console_page, locals())
 
     console_page = "console-" + console_type + "-" + view_type + ".html"
     if console_type == 'vnc' or console_type == 'spice':

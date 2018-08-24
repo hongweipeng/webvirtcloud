@@ -148,6 +148,12 @@ QEMU_CONSOLE_TYPES = ['vnc', 'spice']
 # default console type
 QEMU_CONSOLE_DEFAULT_TYPE = 'vnc'
 
+# list of console listen addresses
+QEMU_CONSOLE_LISTEN_ADDRESSES = (
+    ('127.0.0.1', 'Localhost'),
+    ('0.0.0.0', 'All interfaces'),
+)
+
 # list taken from http://qemu.weilnetz.de/qemu-doc.html#sec_005finvocation
 QEMU_KEYMAPS = ['ar', 'da', 'de', 'de-ch', 'en-gb', 'en-us', 'es', 'et', 'fi',
                 'fo', 'fr', 'fr-be', 'fr-ca', 'fr-ch', 'hr', 'hu', 'is', 'it',
@@ -167,6 +173,13 @@ ALLOW_EMPTY_PASSWORD = True
 SHOW_ACCESS_ROOT_PASSWORD = False
 SHOW_ACCESS_SSH_KEYS = False
 SHOW_PROFILE_EDIT_PASSWORD = False
+
+# available: default (grid), list
+VIEW_ACCOUNTS_STYLE = 'grid'
+
+# available: default (grouped), nongrouped
+VIEW_INSTANCES_LIST_STYLE = 'grouped'
+
 INSTANCE_VOLUME_DEFAULT_FORMAT = 'qcow2'
 INSTANCE_VOLUME_DEFAULT_BUS = 'virtio'
 INSTANCE_VOLUME_DEFAULT_CACHE = 'directsync'
