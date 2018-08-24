@@ -39,6 +39,7 @@ function SpiceConn(o)
     this.connection_id = o.connection_id !== undefined ? o.connection_id : 0;
     this.type = o.type !== undefined ? o.type : SPICE_CHANNEL_MAIN;
     this.chan_id = o.chan_id !== undefined ? o.chan_id : 0;
+    this.view_only = o.view_only !== undefined ? o.view_only : false;
     if (o.parent !== undefined)
     {
         this.parent = o.parent;

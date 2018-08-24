@@ -89,18 +89,31 @@ def console(request):
     return response
 
 
+def _vm_video_response(request, template_name):
+    host = request.get_host()
+    if ':' in host:
+        host = host.split(':')[0]
+
+    ws_port = WS_PORT
+    ws_host = WS_PUBLIC_HOST if WS_PUBLIC_HOST else host
+
+    response = render(request, template_name, locals())
+    response['X-Frame-Options'] = 'ALLOW-FROM'
+    response['Content-Security-Policy'] = 'frame-ancestors *'
+    return response
+
 @login_required
 def vnc_auto(request):
     return render(request, 'vnc_auto.html')
 
 def vnc_allow_cors(request):
-    response = render(request, 'vnc_auto.html')
-    response['X-Frame-Options'] = 'ALLOW-FROM'
-    response['Content-Security-Policy'] = 'frame-ancestors *'
-    return response
+    return _vm_video_response(request, 'vnc_auto.html')
 
 def view_only_vnc_allow_cors(request):
-    response = render(request, 'view_only_vnc_auto.html')
-    response['X-Frame-Options'] = 'ALLOW-FROM'
-    response['Content-Security-Policy'] = 'frame-ancestors *'
-    return response
+    return _vm_video_response(request, 'view_only_vnc_auto.html')
+
+def spice_allow_cors(request):
+    return _vm_video_response(request, 'console-spice-control.html')
+
+def view_only_spice_allow_cors(request):
+    return _vm_video_response(request, 'console-spice-view-only.html')

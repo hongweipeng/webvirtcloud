@@ -148,7 +148,8 @@ class wvmCreate(wvmConnect):
         vol = self.get_volume_by_path(path)
         vol.delete()
 
-    def create_instance(self, name, memory, vcpu, host_model, uuid, images, cache_mode, networks, virtio, mac=None, clock='utc'):
+    def create_instance(self, name, memory, vcpu, host_model, uuid, images, cache_mode, networks, virtio, mac=None,
+                        clock='utc', console_type='vnc', video_model='cirrus'):
         """
         Create VM function
         """
@@ -159,13 +160,17 @@ class wvmCreate(wvmConnect):
         else:
             hypervisor_type = 'qemu'
 
+        xmlns_qemu = ''
+        if console_type == 'spice':
+            xmlns_qemu = "xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'"
+
         xml = """
-                <domain type='%s'>
+                <domain type='%s' %s>
                   <name>%s</name>
                   <description>None</description>
                   <uuid>%s</uuid>
                   <memory unit='KiB'>%s</memory>
-                  <vcpu>%s</vcpu>""" % (hypervisor_type, name, uuid, memory, vcpu)
+                  <vcpu>%s</vcpu>""" % (hypervisor_type, xmlns_qemu, name, uuid, memory, vcpu)
         if host_model:
             xml += """<cpu mode='host-model'/>"""
         xml += """<os>
@@ -234,14 +239,22 @@ class wvmCreate(wvmConnect):
                 xml += """<model type='virtio'/>"""
             xml += """</interface>"""
 
+        xml_extra = ''
+        if console_type == 'spice':
+            xml_extra += """<qemu:commandline>
+                <qemu:env name='SPICE_DEBUG_ALLOW_MC' value='1'/>
+              </qemu:commandline>
+            """
+
         xml += """  <input type='mouse' bus='ps2'/>
                     <input type='tablet' bus='usb'/>
                     <graphics type='%s' port='-1' autoport='yes' passwd='%s' listen='0.0.0.0'/>
                     <console type='pty'/>
                     <video>
-                      <model type='cirrus'/>
+                      <model type='%s'/>
                     </video>
                     <memballoon model='virtio'/>
                   </devices>
-                </domain>""" % (QEMU_CONSOLE_DEFAULT_TYPE, util.randomPasswd())
+                  %s
+                </domain>""" % (console_type, util.randomPasswd(), video_model, xml_extra)
         self._defineXML(xml)

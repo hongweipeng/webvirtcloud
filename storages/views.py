@@ -181,7 +181,7 @@ def storage(request, compute_id, pool):
 
                     conn.create_volume(data['name'], data['size'], data['format'], meta_prealloc, data["is_use_backing"], backing_file)
                     #conn.create_volume(data['name'], data['size'], data['format'], meta_prealloc)
-                    messages.success("Image file {} is created successfully".format(data['name']+".img"))
+                    messages.success(request, "Image file {} is created successfully".format(data['name']+".img"))
                     return HttpResponseRedirect(request.get_full_path())
                 except libvirtError as lib_err:
                     error_messages.append(lib_err)

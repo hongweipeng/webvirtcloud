@@ -549,6 +549,7 @@ def instance(request, compute_id, vname):
                 return HttpResponseRedirect(request.get_full_path() + '#media')
 
             if 'mount_iso' in request.POST:
+                print(request.POST)
                 image = request.POST.get('media', '')
                 dev = request.POST.get('mount_iso', '')
                 conn.mount_iso(dev, image)

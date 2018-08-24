@@ -22,7 +22,7 @@
    --------------------------------------------------
 
 -->
-{% extends "console-base.html" %}
+{% extends "console-frame-base.html" %}
 {% load i18n %}
 {% load staticfiles %}
 {% block head %}
@@ -59,19 +59,24 @@
         <script src="{% static "js/spice-html5/port.js" %}"></script>
 
         <link rel="stylesheet" type="text/css" href="{% static "js/spice-html5/spice.css" %}" />
-
+        <style>
+        #spice-area {
+            height: auto;
+            width: auto;
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+        }
+        .spice-screen {
+            margin: 1px;
+        }
+        </style>
 {% endblock %}
 
 
 {% block content %}
         <div id="spice-area">
             <div id="spice-screen" class="spice-screen"></div>
-        </div>
-
-        <div id="message-div" class="spice-message"></div>
-
-        <div id="debug-div">
-        <!-- If DUMPXXX is turned on, dumped images will go here -->
         </div>
 {% endblock %}
 
@@ -161,8 +166,8 @@
 
                 try
                 {
-                    sc = new SpiceMainConn({uri: uri, screen_id: "spice-screen", dump_id: "debug-div",
-                                message_id: "message-div", password: password, onerror: spice_error, onagent: agent_connected });
+                    sc = new SpiceMainConn({uri: uri, screen_id: "spice-screen",
+                                password: password, onerror: spice_error, onagent: agent_connected });
                 }
                 catch (e)
                 {

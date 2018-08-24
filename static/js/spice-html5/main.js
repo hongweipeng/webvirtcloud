@@ -153,8 +153,10 @@ SpiceMainConn.prototype.process_channel_message = function(msg)
             }
             else if (chans.channels[i].type == SPICE_CHANNEL_INPUTS)
             {
-                this.inputs = new SpiceInputsConn(conn);
-                this.inputs.mouse_mode = this.mouse_mode;
+                if(!this.view_only) {
+                    this.inputs = new SpiceInputsConn(conn);
+                    this.inputs.mouse_mode = this.mouse_mode;
+                }
             }
             else if (chans.channels[i].type == SPICE_CHANNEL_CURSOR)
                 this.cursor = new SpiceCursorConn(conn);

@@ -112,10 +112,14 @@ class QuickVMList(APIView):
         if console_passwd is None:
             console_passwd = ""
 
-        vnc_url = reverse('vnc_allow_cors')
-        vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
+        if console_type == 'vnc':
+            vnc_url = reverse('vnc_allow_cors')
+            view_only_vnc_url = reverse('view_only_vnc_allow_cors')
+        else:
+            vnc_url = reverse('spice_allow_cors')
+            view_only_vnc_url = reverse('view_only_spice_allow_cors')
 
-        view_only_vnc_url = reverse('view_only_vnc_allow_cors')
+        vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
         view_only_vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
 
         return Response({
