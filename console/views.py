@@ -71,6 +71,11 @@ def console(request):
         return redirect(vnc_url)
 
     elif console_type == 'spice':
+        tools.set_proxy(token, vnc_host, vnc_port)
+        if console_passwd is None:
+            console_passwd = ""
+
+
         response = render(request, console_page, locals())
 
     console_page = "console-" + console_type + "-" + view_type + ".html"

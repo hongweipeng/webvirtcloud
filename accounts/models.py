@@ -6,13 +6,8 @@ from django.core.validators import MinValueValidator
 
 
 class UserInstance(models.Model):
-# <<<<<<< HEAD
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    instance = models.ForeignKey(Instance, on_delete=models.SET_NULL, null=True)
-# =======
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     instance = models.ForeignKey(Instance, on_delete=models.CASCADE)
-# >>>>>>> 3748a46d8fef7bca5628b5b9021dd1968adfa7ed
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    instance = models.ForeignKey(Instance, on_delete=models.CASCADE)
     is_change = models.BooleanField(default=False)
     is_delete = models.BooleanField(default=False)
     is_vnc = models.BooleanField(default=False)
@@ -22,11 +17,7 @@ class UserInstance(models.Model):
 
 
 class UserSSHKey(models.Model):
-#<<<<<<< HEAD
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-# =======
-#     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-# >>>>>>> 3748a46d8fef7bca5628b5b9021dd1968adfa7ed
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     keyname = models.CharField(max_length=25)
     keypublic = models.CharField(max_length=500)
 
