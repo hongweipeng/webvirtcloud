@@ -25,6 +25,11 @@ class BackingFile(models.Model):
     
 
 class VMTemplate(models.Model):
+    VIDEO_MODE_CHOICE = (
+        ('vnc', 'vnc'),
+        ('spice', 'spice'),
+    )
+
     label = models.CharField(max_length=31, verbose_name='模板名称')
     vcpu = models.IntegerField(verbose_name='cpu个数')
     memory = models.IntegerField(verbose_name='内存大小MB')
@@ -32,9 +37,10 @@ class VMTemplate(models.Model):
     
     disk = models.CharField(max_length=31, null=True, blank=True, verbose_name='硬盘')
 
-    network = models.CharField(max_length=13, choices=consts.NETWORK_CHOICE, default='default')
-    clock = models.CharField(max_length=13, choices=consts.CLOCK_CHOICE, default='utc')
-    virtio = models.BooleanField(default=True)
+    network = models.CharField(max_length=13, choices=consts.NETWORK_CHOICE, default='default', verbose_name='网络模式')
+    clock = models.CharField(max_length=13, choices=consts.CLOCK_CHOICE, default='utc', verbose_name='时钟模式')
+    virtio = models.BooleanField(default=True, verbose_name='是否使用半虚拟化')
+    video_mode = models.CharField(max_length=13, choices=VIDEO_MODE_CHOICE, default='spice', verbose_name='显示模式')
     
     def __str__(self):
         return self.label
