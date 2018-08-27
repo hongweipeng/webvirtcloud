@@ -15,8 +15,8 @@ class BackingFile(models.Model):
     """
     后端镜像，手动录入，要求所有宿主机中要有这个名称的镜像
     """
-    label = models.CharField(max_length=31)
-    name = models.CharField(max_length=63, verbose_name='镜像文件名称')
+    label = models.CharField(max_length=31, verbose_name='标记镜像', help_text='便于用户识别')
+    name = models.CharField(max_length=63, unique=True, verbose_name='镜像文件名称', help_text='目录中的镜像名称，一般以qcow2做扩展名')
     os_type = models.CharField(max_length=31, null=True, blank=True)
     size = models.IntegerField(default=0, verbose_name='大小GB')
     

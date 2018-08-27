@@ -119,14 +119,27 @@ class QuickVMList(APIView):
             vnc_url = reverse('spice_allow_cors')
             view_only_vnc_url = reverse('view_only_spice_allow_cors')
 
-        vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
-        view_only_vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
+        vnc_url += "?token=%s&verify=%s" % (token, console_passwd)
+        view_only_vnc_url += "?token=%s&verify=%s" % (token, console_passwd)
+
+        host = request.get_host()
+        if ':' in host:
+            host = host.split(':')[0]
+        ws_port = WS_PORT
+        ws_host = WS_PUBLIC_HOST if WS_PUBLIC_HOST else host
+        extra_data = {
+            'ws_host': ws_host,
+            'ws_port': ws_port,
+            'token': token,
+            'verify': console_passwd,
+        }
 
         return Response({
             'success': True,
             'instance_id': instance.id,
             'vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + vnc_url),
             'view_only_vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + view_only_vnc_url),
+            'extra_data': extra_data,
         })
 
 
