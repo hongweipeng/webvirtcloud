@@ -139,7 +139,8 @@
                 }
 
                 password = spice_query_var('verify', '');
-                //password = '{{ console_passwd | safe }}';
+                if (!password)
+                    password = '{{ console_passwd | safe }}';
                 path = spice_query_var('path', 'websockify');
 
                 if ((!host) || (!port)) {
