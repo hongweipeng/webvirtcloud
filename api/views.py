@@ -132,6 +132,7 @@ class QuickVMList(APIView):
             'ws_port': ws_port,
             'token': token,
             'verify': console_passwd,
+            'console_type': console_type,
         }
 
         return Response({
