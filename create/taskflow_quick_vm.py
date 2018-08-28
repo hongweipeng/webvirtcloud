@@ -185,8 +185,9 @@ class CreateVM(taskflow_base.TaskBase):
             'virtio': True,
             'clock': clock,
         }
-        console_type = quick_model.template.video_mode
-        conn.create_instance(**data, console_type=console_type, video_model='qxl')
+        console_type = quick_model.template.console_type
+        video_mode = quick_model.template.video_mode
+        conn.create_instance(**data, console_type=console_type, video_model=video_mode)
         create_instance = Instance(compute_id=quick_model.compute_id, name=data['name'], uuid=uuid)
         create_instance.save()
         quick_model.instance = create_instance

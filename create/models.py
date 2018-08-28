@@ -25,9 +25,14 @@ class BackingFile(models.Model):
     
 
 class VMTemplate(models.Model):
-    VIDEO_MODE_CHOICE = (
+    CONSOLE_TYPE_CHOICE = (
         ('vnc', 'vnc'),
         ('spice', 'spice'),
+    )
+
+    VIDEO_MODE_CHOICE = (
+        ('cirrus', 'cirrus'),
+        ('qxl', 'qxl'),
     )
 
     label = models.CharField(max_length=31, verbose_name='模板名称')
@@ -40,8 +45,9 @@ class VMTemplate(models.Model):
     network = models.CharField(max_length=13, choices=consts.NETWORK_CHOICE, default='default', verbose_name='网络模式')
     clock = models.CharField(max_length=13, choices=consts.CLOCK_CHOICE, default='utc', verbose_name='时钟模式')
     virtio = models.BooleanField(default=True, verbose_name='是否使用半虚拟化')
-    video_mode = models.CharField(max_length=13, choices=VIDEO_MODE_CHOICE, default='spice', verbose_name='显示模式')
-    
+    console_type = models.CharField(max_length=13, choices=CONSOLE_TYPE_CHOICE, default='spice', verbose_name='显示模式')
+    video_mode = models.CharField(max_length=13, choices=VIDEO_MODE_CHOICE, default='cirrus', verbose_name='显示模式')
+
     def __str__(self):
         return self.label
     
