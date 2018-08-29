@@ -56,8 +56,8 @@ class SelectCompute(taskflow_base.TaskBase):
         select_compute = None
         
         # vm需要的系统资源
-        vcpu_num = quick_model.template.vcpu
-        memory = quick_model.template.memory
+        vcpu_num = quick_model.vcpu
+        memory = quick_model.memory
         
         
         all_computes = list(compute_models.Compute.objects.all())
@@ -106,9 +106,9 @@ class CreateDisk(taskflow_base.TaskBase):
                           self.target_disk_pool_name)
         
         pool_dir = util.get_xml_path(conn.pool.XMLDesc(), 'target/path')
-        backing_file = quick_model.template.backing_file
+        backing_file = quick_model.backing_file
         if backing_file:
-            backing_file = backing_file.name
+            backing_file = backing_file
             backing_pool = conn.get_storage(self.backing_pool_name)
 
             vol = backing_pool.storageVolLookupByName(backing_file)
@@ -127,8 +127,8 @@ class CreateDisk(taskflow_base.TaskBase):
             disks_path.append(os.path.join(pool_dir, '%s.%s' % (disk_name, self.disk_format)))
 
         # 创建数据盘
-        if quick_model.template.disk:
-            disks = [ x.strip() for x in quick_model.template.disk.split(',')]
+        if quick_model.disk:
+            disks = [ x.strip() for x in quick_model.disk.split(',')]
             for i, disk in enumerate(disks, start=1):
                 meta_prealloc = False
                 disk_name = quick_model.token + '-disk' + str(i)
@@ -151,10 +151,10 @@ class CreateVM(taskflow_base.TaskBase):
     创建虚机
     """
     def do_execute(self, quick_model: create_models.QuickVM):
-        vcpu_num = quick_model.template.vcpu
-        memory = quick_model.template.memory
-        clock = quick_model.template.clock
-        network = quick_model.template.network
+        vcpu_num = quick_model.vcpu
+        memory = quick_model.memory
+        clock = quick_model.clock
+        network = quick_model.network
         if not quick_model.disks_path:
             raise Exception('no disk')
         
@@ -185,8 +185,8 @@ class CreateVM(taskflow_base.TaskBase):
             'virtio': True,
             'clock': clock,
         }
-        console_type = quick_model.template.console_type
-        video_mode = quick_model.template.video_mode
+        console_type = quick_model.console_type
+        video_mode = quick_model.video_mode
         conn.create_instance(**data, console_type=console_type, video_model=video_mode)
         create_instance = Instance(compute_id=quick_model.compute_id, name=data['name'], uuid=uuid)
         create_instance.save()
