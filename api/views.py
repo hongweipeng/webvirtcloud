@@ -80,7 +80,7 @@ class QuickVMList(APIView):
             qvm_model = create_models.QuickVM(credit=credit, token=token)
             qvm_model.save()
         qvm_model.step = ""
-        qvm_model.template_id = template_id
+        #qvm_model.template_id = template_id
         qvm_model.vcpu = vcpu
         qvm_model.backing_file = backing_file
         qvm_model.memory = memory
