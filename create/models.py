@@ -19,10 +19,10 @@ class BackingFile(models.Model):
     name = models.CharField(max_length=63, unique=True, verbose_name='镜像文件名称', help_text='目录中的镜像名称，一般以qcow2做扩展名')
     os_type = models.CharField(max_length=31, null=True, blank=True)
     size = models.IntegerField(default=0, verbose_name='大小GB')
-    
+
     def __str__(self):
         return "%s: %s" % (self.label, self.name)
-    
+
 
 class VMTemplate(models.Model):
     CONSOLE_TYPE_CHOICE = (
@@ -39,7 +39,7 @@ class VMTemplate(models.Model):
     vcpu = models.IntegerField(verbose_name='cpu个数')
     memory = models.IntegerField(verbose_name='内存大小MB')
     backing_file = models.ForeignKey(BackingFile, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='后端镜像')
-    
+
     disk = models.CharField(max_length=31, null=True, blank=True, verbose_name='硬盘')
 
     network = models.CharField(max_length=13, choices=consts.NETWORK_CHOICE, default='default', verbose_name='网络模式')
@@ -50,8 +50,8 @@ class VMTemplate(models.Model):
 
     def __str__(self):
         return self.label
-    
-    
+
+
 class QuickVM(models.Model):
     """
     快速出机，此表中的记录全部是后端镜像出机
@@ -68,7 +68,6 @@ class QuickVM(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True)
     credit = models.CharField(max_length=63, unique=True, verbose_name='凭证')
     token = models.CharField(max_length=63, unique=True, verbose_name='token')
-    template = models.ForeignKey(VMTemplate, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='模板')
     compute_id = models.IntegerField(default=0, verbose_name='宿主id')
     instance = models.ForeignKey('instances.Instance', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='实例')
     status = models.CharField(max_length=31, null=True, choices=consts.TASK_CHOICE)

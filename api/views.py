@@ -54,10 +54,7 @@ class QuickVMList(APIView):
         token = data.get('token')
         if not token:
             raise exceptions.ValidationError('key "token" is null or empty')
-        
-        template_id = int(data.get('template_id'))
-        #if not template_id or not create_models.VMTemplate.objects.filter(pk=template_id).exists():
-        #    raise exceptions.ValidationError('key "template_id" is null or empty or template not exists')
+
 
         vcpu = data.get('vcpu')
         memory = data.get('memory')
@@ -80,7 +77,6 @@ class QuickVMList(APIView):
             qvm_model = create_models.QuickVM(credit=credit, token=token)
             qvm_model.save()
         qvm_model.step = ""
-        #qvm_model.template_id = template_id
         qvm_model.vcpu = vcpu
         qvm_model.backing_file = backing_file
         qvm_model.memory = memory
