@@ -75,7 +75,7 @@ class QuickVM(models.Model):
     disks_path = models.CharField(max_length=511, null=True, blank=True)
     vcpu = models.IntegerField(default=1, verbose_name='cpu个数')
     memory = models.IntegerField(default=512, verbose_name='内存大小MB')
-    backing_file = models.CharField(max_length=63, unique=True, verbose_name='后端镜像文件名', help_text='目录中的镜像名称，一般以qcow2做扩展名')
+    backing_file = models.CharField(max_length=63, default='', null=True, blank=True, verbose_name='后端镜像文件名', help_text='目录中的镜像名称，一般以qcow2做扩展名')
     disk = models.CharField(max_length=31, null=True, blank=True, verbose_name='硬盘')
     network = models.CharField(max_length=13, choices=consts.NETWORK_CHOICE, default='default', verbose_name='网络模式')
     clock = models.CharField(max_length=13, choices=consts.CLOCK_CHOICE, default='utc', verbose_name='时钟模式')

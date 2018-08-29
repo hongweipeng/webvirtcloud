@@ -59,6 +59,16 @@ class QuickVMList(APIView):
         if not template_id or not create_models.VMTemplate.objects.filter(pk=template_id).exists():
             raise exceptions.ValidationError('key "template_id" is null or empty or template not exists')
 
+        vcpu = data.get('vcpu')
+        memory = data.get('memory')
+        network = data.get('network')
+        clock = data.get('clock')
+        virtio = data.get('virtio')
+        console_type = data.get('console_type')
+        video_mode = data.get('video_mode')
+        backing_file = data.get('backing_file')
+
+
         is_async = data.get('async', False)
         reuse_computer = data.get('reuse_computer', True)
         
@@ -71,6 +81,14 @@ class QuickVMList(APIView):
             qvm_model.save()
         qvm_model.step = ""
         qvm_model.template_id = template_id
+        qvm_model.vcpu = vcpu
+        qvm_model.backing_file = backing_file
+        qvm_model.memory = memory
+        qvm_model.network = network
+        qvm_model.clock = clock
+        qvm_model.virtio = virtio
+        qvm_model.console_type = console_type
+        qvm_model.video_mode = video_mode
         qvm_model.save()
             
         
