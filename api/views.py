@@ -56,8 +56,8 @@ class QuickVMList(APIView):
             raise exceptions.ValidationError('key "token" is null or empty')
         
         template_id = int(data.get('template_id'))
-        if not template_id or not create_models.VMTemplate.objects.filter(pk=template_id).exists():
-            raise exceptions.ValidationError('key "template_id" is null or empty or template not exists')
+        #if not template_id or not create_models.VMTemplate.objects.filter(pk=template_id).exists():
+        #    raise exceptions.ValidationError('key "template_id" is null or empty or template not exists')
 
         vcpu = data.get('vcpu')
         memory = data.get('memory')
