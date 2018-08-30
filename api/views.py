@@ -1,4 +1,5 @@
 import time
+import os
 from django.urls import reverse
 from rest_framework import generics, permissions, exceptions
 from rest_framework.views import APIView, Response
@@ -216,3 +217,15 @@ class ShutDownVm(APIView):
         })
 
 
+class BackingFileList(APIView):
+    qeryset = ()
+    permission_classes = (permissions.AllowAny,)
+
+    path = '/var/kvm/backing'
+
+    def get(self, request):
+        res = []
+        if not os.path.isdir(self.path):
+            return Response(res)
+        res = os.listdir(self.path)
+        return Response(res)
