@@ -227,5 +227,5 @@ class BackingFileList(APIView):
         res = []
         if not os.path.isdir(self.path):
             return Response(res)
-        res = os.listdir(self.path)
+        res = [x for x in os.listdir(self.path) if not x.startswith('.')]
         return Response(res)
