@@ -54,10 +54,17 @@ class QuickVMList(APIView):
         token = data.get('token')
         if not token:
             raise exceptions.ValidationError('key "token" is null or empty')
-        
-        template_id = int(data.get('template_id'))
-        if not template_id or not create_models.VMTemplate.objects.filter(pk=template_id).exists():
-            raise exceptions.ValidationError('key "template_id" is null or empty or template not exists')
+
+
+        vcpu = data.get('vcpu')
+        memory = data.get('memory')
+        network = data.get('network')
+        clock = data.get('clock')
+        virtio = data.get('virtio')
+        console_type = data.get('console_type')
+        video_mode = data.get('video_mode')
+        backing_file = data.get('backing_file')
+
 
         is_async = data.get('async', False)
         reuse_computer = data.get('reuse_computer', True)
@@ -70,7 +77,14 @@ class QuickVMList(APIView):
             qvm_model = create_models.QuickVM(credit=credit, token=token)
             qvm_model.save()
         qvm_model.step = ""
-        qvm_model.template_id = template_id
+        qvm_model.vcpu = vcpu
+        qvm_model.backing_file = backing_file
+        qvm_model.memory = memory
+        qvm_model.network = network
+        qvm_model.clock = clock
+        qvm_model.virtio = virtio
+        qvm_model.console_type = console_type
+        qvm_model.video_mode = video_mode
         qvm_model.save()
             
         
@@ -119,14 +133,28 @@ class QuickVMList(APIView):
             vnc_url = reverse('spice_allow_cors')
             view_only_vnc_url = reverse('view_only_spice_allow_cors')
 
-        vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
-        view_only_vnc_url += "?path=websockify/?token=%s&verify=%s" % (token, console_passwd)
+        vnc_url += "?token=%s&verify=%s" % (token, console_passwd)
+        view_only_vnc_url += "?token=%s&verify=%s" % (token, console_passwd)
+
+        host = request.get_host()
+        if ':' in host:
+            host = host.split(':')[0]
+        ws_port = WS_PORT
+        ws_host = WS_PUBLIC_HOST if WS_PUBLIC_HOST else host
+        extra_data = {
+            'ws_host': ws_host,
+            'ws_port': ws_port,
+            'token': token,
+            'verify': console_passwd,
+            'console_type': console_type,
+        }
 
         return Response({
             'success': True,
             'instance_id': instance.id,
             'vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + vnc_url),
             'view_only_vnc_url': '%s://%s' % (request.scheme, request._get_raw_host() + view_only_vnc_url),
+            'extra_data': extra_data,
         })
 
 
