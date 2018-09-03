@@ -148,6 +148,8 @@ class QuickVMList(APIView):
             'token': token,
             'verify': console_passwd,
             'console_type': console_type,
+            'target_host': vnc_host,
+            'target_port': vnc_port,
         }
 
         return Response({
